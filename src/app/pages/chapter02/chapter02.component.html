@@ -13,24 +13,28 @@
                 <div class="table" [style.--grid-template-columns]="example.tableSolution.gridTemplateColumns">
                     <div class="table__header">
                         <div class="table__header__row">
-                            <div *ngFor="let header of example.tableSolution.headers" class="table__header__row__cell">
-                                {{ header }}
-                            </div>
+                            <div
+                                *ngFor="let header of example.tableSolution.headers"
+                                class="table__header__row__cell"
+                                [mathjax]="header"
+                            ></div>
                         </div>
                     </div>
                     <div class="table__body">
                         <div *ngFor="let row of example.tableSolution.rows" class="table__body__row">
-                            <div *ngFor="let cell of row" class="table__body__row__cell">{{ cell }}</div>
+                            <div *ngFor="let cell of row" class="table__body__row__cell" [mathjax]="cell"></div>
                         </div>
 
                         <div class="table__body__row table__body__row--dots">
-                            <div class="table__body__row__cell table__body__row__cell--dots">...</div>
+                            <div class="table__body__row__cell table__body__row__cell--dots" mathjax="$...$"></div>
                         </div>
 
                         <div class="table__body__row">
-                            <div *ngFor="let cell of example.tableSolution.lastRow" class="table__body__row__cell">
-                                {{ cell }}
-                            </div>
+                            <div
+                                *ngFor="let cell of example.tableSolution.lastRow"
+                                class="table__body__row__cell"
+                                [mathjax]="cell"
+                            ></div>
                         </div>
                     </div>
                 </div>
