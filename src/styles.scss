@@ -28,18 +28,13 @@
     --color--footer-background: hsl(var(--base-hue), 18%, 16%);
     --color--footer-foreground: hsl(0, 0%, 98%);
 
-    --color--scrollbar-thumb: hsl(var(--base-hue), 18%, 18%);
-    --color--scrollbar-thumb--hover: hsl(var(--base-hue), 18%, 22%);
-    --color--scrollbar-track: transparent;
-
-    --color--section-title: hsl(var(--base-hue), 18%, 90%);
-    --color--section-border: hsl(var(--base-hue), 18%, 18%);
-
-    --color--card-background: hsl(var(--base-hue), 18%, 18%);
-    --color--card-background--hover: hsl(var(--base-hue), 18%, 22%);
-    --color--card-foreground: hsl(0, 0%, 98%);
-    --color--card-title: hsl(var(--base-hue), 18%, 86%);
-    --color--card-description: hsl(var(--base-hue), 18%, 74%);
+    --color--table-border: hsl(var(--base-hue), 30%, 90%);
+    //--color--table-border: hsl(var(--base-hue), 30%, 40%);
+    --color--table-header-background: var(--color--table-border);
+    --color--table-header-foreground: inherit;
+    //--color--table-header-foreground: hsl(0, 0%, 98%);
+    --color--table-body-background--hover: hsl(var(--base-hue), 30%, 80%);
+    --color--table-body-foreground--hover: inherit;
 
     --full-width: 120rem;
     --full-width-padding-inline: calc(max(100% - var(--full-width), 4rem) / 2);
@@ -89,4 +84,6 @@ body {
     width: 100%;
 
     padding-inline: var(--full-width-padding-inline);
+
+    font-size: 1.6rem;
 }

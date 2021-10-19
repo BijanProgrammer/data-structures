@@ -6,9 +6,10 @@ import {AppComponent} from './app.component';
 import {HeaderComponent} from './components/header/header.component';
 import {HomeComponent} from './pages/home/home.component';
 import {Chapter02Component} from './pages/chapter02/chapter02.component';
+import {LatexComponent} from './components/latex/latex.component';
 
 @NgModule({
-    declarations: [AppComponent, HeaderComponent, HomeComponent, Chapter02Component],
+    declarations: [AppComponent, HeaderComponent, HomeComponent, Chapter02Component, LatexComponent],
     imports: [BrowserModule, AppRoutingModule],
     providers: [],
     bootstrap: [AppComponent],

@@ -1,1 +1,50 @@
-<p>chapter02 works!</p>
+<div class="wrapper">
+    <h1>Chapter 02</h1>
+
+    <section *ngFor="let example of chapter02Service.EXAMPLES; let exampleIndex = index">
+        <h2>Example {{ exampleIndex }}</h2>
+
+        <div class="spoiler">
+            <div class="code">
+                {{ example.code }}
+            </div>
+
+            <div class="table-solution">
+                <div class="table" [style.--grid-template-columns]="example.tableSolution.gridTemplateColumns">
+                    <div class="table__header">
+                        <div class="table__header__row">
+                            <div *ngFor="let header of example.tableSolution.headers" class="table__header__row__cell">
+                                {{ header }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table__body">
+                        <div *ngFor="let row of example.tableSolution.rows" class="table__body__row">
+                            <div *ngFor="let cell of row" class="table__body__row__cell">{{ cell }}</div>
+                        </div>
+
+                        <div class="table__body__row table__body__row--dots">
+                            <div class="table__body__row__cell table__body__row__cell--dots">...</div>
+                        </div>
+
+                        <div class="table__body__row">
+                            <div *ngFor="let cell of example.tableSolution.lastRow" class="table__body__row__cell">
+                                {{ cell }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <app-latex [lines]="example.tableSolution.lines"></app-latex>
+            </div>
+
+            <div class="sigma-solution">
+                <app-latex [lines]="example.sigmaSolution.lines"></app-latex>
+            </div>
+
+            <div class="complexity">
+                {{ example.complexity }}
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,82 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+
+    section {
+        h2 {
+        }
+
+        .spoiler {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            .code {
+            }
+
+            .table-solution {
+                .table {
+                    --border: 0 solid var(--color--table-border);
+                    --border-width: 2px;
+
+                    display: flex;
+                    flex-direction: column;
+
+                    border: var(--border);
+                    border-width: 0 var(--border-width) var(--border-width) 0;
+
+                    &__header,
+                    &__body {
+                        &__row {
+                            display: grid;
+                            grid-template-columns: var(--grid-template-columns);
+
+                            &__cell {
+                                padding: 1rem;
+
+                                border: var(--border);
+                                border-width: var(--border-width) 0 0 var(--border-width);
+
+                                text-align: center;
+                            }
+                        }
+                    }
+
+                    &__header {
+                        &__row {
+                            &__cell {
+                                background-color: var(--color--table-header-background);
+                                color: var(--color--table-header-foreground);
+
+                                font-size: 1.2em;
+                                font-weight: 500;
+                            }
+                        }
+                    }
+
+                    &__body {
+                        &__row {
+                            &__cell {
+                                &--dots {
+                                    grid-column: 1 / -1;
+                                }
+                            }
+
+                            &:hover {
+                                background-color: var(--color--table-body-background--hover);
+                                color: var(--color--table-body-foreground--hover);
+                            }
+                        }
+                    }
+                }
+            }
+
+            .sigma-solution {
+            }
+
+            .complexity {
+            }
+        }
+    }
+}
