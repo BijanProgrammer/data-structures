@@ -14,5 +14,7 @@ export class MonacoComponent implements OnInit {
     public async ngOnInit() {
         const res = await fetch(this.codeUrl);
         this.code = await res.text();
+
+        console.log(this.code);
     }
 }

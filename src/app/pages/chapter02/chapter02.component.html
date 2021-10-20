@@ -76,7 +76,9 @@
                 </label>
                 <input [id]="'example' + (exampleIndex + 1) + '-complexity-solution-input'" type="checkbox" />
 
-                <div class="spoiler" [mathjax]="'$f(x) \\in O(' + example.complexity + ')$'"></div>
+                <div class="spoiler">
+                    <app-latex [lines]="['$f(x) \\in O(' + example.complexity + ')$']"></app-latex>
+                </div>
             </div>
         </div>
     </section>
