@@ -2,7 +2,7 @@
 :root {
     --base-hue: 220;
 
-    --color--primary: hsl(var(--base-hue), 45%, 30%);
+    --color--primary: hsl(var(--base-hue), 100%, 60%);
     --color--primary-opposite: hsl(0, 0%, 98%);
 
     --color--body-background: hsl(0, 0%, 98%);
@@ -21,20 +21,21 @@
     --color--header-nav-background--hover: hsl(var(--base-hue), 0%, 94%);
     --color--header-nav-foreground--hover: var(--color--header-nav-foreground);
     --color--header-nav-background--active: var(--color--header-nav-background);
-    --color--header-nav-foreground--active: hsl(var(--base-hue), 100%, 60%);
+    --color--header-nav-foreground--active: var(--color--primary);
     --color--header-nav-background--active-hover: hsl(var(--base-hue), 50%, 94%);
     --color--header-nav-foreground--active-hover: var(--color--header-nav-foreground--active);
 
     --color--footer-background: hsl(var(--base-hue), 18%, 16%);
     --color--footer-foreground: hsl(0, 0%, 98%);
 
-    --color--table-border: hsl(var(--base-hue), 30%, 90%);
-    //--color--table-border: hsl(var(--base-hue), 30%, 40%);
+    --color--table-border: hsl(var(--base-hue), 30%, 80%);
     --color--table-header-background: var(--color--table-border);
     --color--table-header-foreground: inherit;
-    //--color--table-header-foreground: hsl(0, 0%, 98%);
-    --color--table-body-background--hover: hsl(var(--base-hue), 30%, 80%);
+    --color--table-body-background--hover: hsl(var(--base-hue), 30%, 90%);
     --color--table-body-foreground--hover: inherit;
+
+    --color--main-spoiler-headline-background: var(--color--primary);
+    --color--main-spoiler-headline-foreground: var(--color--primary-opposite);
 
     --full-width: 120rem;
     --full-width-padding-inline: calc(max(100% - var(--full-width), 4rem) / 2);

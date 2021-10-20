@@ -2,52 +2,81 @@
     <h1>Chapter 02</h1>
 
     <section *ngFor="let example of chapter02Service.EXAMPLES; let exampleIndex = index">
-        <h2>Example {{ exampleIndex }}</h2>
+        <label [for]="'example' + (exampleIndex + 1) + '-input'">
+            <h2>Example {{ exampleIndex + 1 }}</h2>
+        </label>
+        <input [id]="'example' + (exampleIndex + 1) + '-input'" type="checkbox" />
 
         <div class="spoiler">
             <div class="code">
-                {{ example.code }}
+                <label [for]="'example' + (exampleIndex + 1) + '-code-input'">
+                    <h3>Code</h3>
+                </label>
+                <input [id]="'example' + (exampleIndex + 1) + '-code-input'" type="checkbox" />
+
+                <div class="spoiler">
+                    {{ example.code }}
+                </div>
             </div>
 
             <div class="table-solution">
-                <div class="table" [style.--grid-template-columns]="example.tableSolution.gridTemplateColumns">
-                    <div class="table__header">
-                        <div class="table__header__row">
-                            <div
-                                *ngFor="let header of example.tableSolution.headers"
-                                class="table__header__row__cell"
-                                [mathjax]="header"
-                            ></div>
+                <label [for]="'example' + (exampleIndex + 1) + '-table-solution-input'">
+                    <h3>Table Solution</h3>
+                </label>
+                <input [id]="'example' + (exampleIndex + 1) + '-table-solution-input'" type="checkbox" />
+
+                <div class="spoiler">
+                    <div class="table" [style.--grid-template-columns]="example.tableSolution.gridTemplateColumns">
+                        <div class="table__header">
+                            <div class="table__header__row">
+                                <div
+                                    *ngFor="let header of example.tableSolution.headers"
+                                    class="table__header__row__cell"
+                                    [mathjax]="header"
+                                ></div>
+                            </div>
+                        </div>
+                        <div class="table__body">
+                            <div *ngFor="let row of example.tableSolution.rows" class="table__body__row">
+                                <div *ngFor="let cell of row" class="table__body__row__cell" [mathjax]="cell"></div>
+                            </div>
+
+                            <div class="table__body__row table__body__row--dots">
+                                <div class="table__body__row__cell table__body__row__cell--dots" mathjax="$...$"></div>
+                            </div>
+
+                            <div class="table__body__row">
+                                <div
+                                    *ngFor="let cell of example.tableSolution.lastRow"
+                                    class="table__body__row__cell"
+                                    [mathjax]="cell"
+                                ></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="table__body">
-                        <div *ngFor="let row of example.tableSolution.rows" class="table__body__row">
-                            <div *ngFor="let cell of row" class="table__body__row__cell" [mathjax]="cell"></div>
-                        </div>
 
-                        <div class="table__body__row table__body__row--dots">
-                            <div class="table__body__row__cell table__body__row__cell--dots" mathjax="$...$"></div>
-                        </div>
-
-                        <div class="table__body__row">
-                            <div
-                                *ngFor="let cell of example.tableSolution.lastRow"
-                                class="table__body__row__cell"
-                                [mathjax]="cell"
-                            ></div>
-                        </div>
-                    </div>
+                    <app-latex [lines]="example.tableSolution.lines"></app-latex>
                 </div>
-
-                <app-latex [lines]="example.tableSolution.lines"></app-latex>
             </div>
 
             <div class="sigma-solution">
-                <app-latex [lines]="example.sigmaSolution.lines"></app-latex>
+                <label [for]="'example' + (exampleIndex + 1) + '-sigma-solution-input'">
+                    <h3>Sigma Solution</h3>
+                </label>
+                <input [id]="'example' + (exampleIndex + 1) + '-sigma-solution-input'" type="checkbox" />
+
+                <div class="spoiler">
+                    <app-latex [lines]="example.sigmaSolution.lines"></app-latex>
+                </div>
             </div>
 
             <div class="complexity">
-                {{ example.complexity }}
+                <label [for]="'example' + (exampleIndex + 1) + '-complexity-solution-input'">
+                    <h3>Complexity</h3>
+                </label>
+                <input [id]="'example' + (exampleIndex + 1) + '-complexity-solution-input'" type="checkbox" />
+
+                <div class="spoiler" [mathjax]="'$f(x) \\in O(' + example.complexity + ')$'"></div>
             </div>
         </div>
     </section>
