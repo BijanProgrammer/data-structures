@@ -5,6 +5,9 @@
     --color--primary: hsl(var(--base-hue), 100%, 60%);
     --color--primary-opposite: hsl(0, 0%, 98%);
 
+    --color--secondary: hsl(var(--base-hue), 50%, 50%);
+    --color--secondary-opposite: hsl(0, 0%, 98%);
+
     --color--body-background: hsl(0, 0%, 98%);
     --color--body-foreground: hsl(0, 0%, 10%);
 
@@ -28,14 +31,19 @@
     --color--footer-background: hsl(var(--base-hue), 18%, 16%);
     --color--footer-foreground: hsl(0, 0%, 98%);
 
-    --color--table-border: hsl(var(--base-hue), 30%, 80%);
+    --color--table-border: hsl(var(--base-hue), 40%, 80%);
     --color--table-header-background: var(--color--table-border);
     --color--table-header-foreground: inherit;
-    --color--table-body-background--hover: hsl(var(--base-hue), 30%, 90%);
+    --color--table-body-background--hover: hsl(var(--base-hue), 40%, 90%);
     --color--table-body-foreground--hover: inherit;
 
-    --color--main-spoiler-headline-background: var(--color--primary);
-    --color--main-spoiler-headline-foreground: var(--color--primary-opposite);
+    --color--outer-spoiler-border: var(--color--secondary);
+    --color--outer-spoiler-headline-background: var(--color--outer-spoiler-border);
+    --color--outer-spoiler-headline-foreground: var(--color--secondary-opposite);
+
+    --color--inner-spoiler-border: var(--color--primary);
+    --color--inner-spoiler-headline-background: var(--color--inner-spoiler-border);
+    --color--inner-spoiler-headline-foreground: var(--color--primary-opposite);
 
     --full-width: 120rem;
     --full-width-padding-inline: calc(max(100% - var(--full-width), 4rem) / 2);
