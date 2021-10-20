@@ -15,7 +15,7 @@
                 <input [id]="'example' + (exampleIndex + 1) + '-code-input'" type="checkbox" checked="checked" />
 
                 <div class="spoiler">
-                    {{ example.code }}
+                    <app-monaco [codeUrl]="example.codeUrl"></app-monaco>
                 </div>
             </div>
 

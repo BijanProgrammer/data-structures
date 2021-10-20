@@ -7,7 +7,7 @@ import {Chapter02Example} from '../../models/chapter02-example';
 export class Chapter02Service {
     public readonly EXAMPLES: Chapter02Example[] = [
         {
-            code: 'some code is here ... ',
+            codeUrl: 'assets/data/chapter02/src/Example01.java',
             tableSolution: {
                 gridTemplateColumns: 'repeat(3, 1fr)',
                 headers: ['i', 'j', 'count'],
