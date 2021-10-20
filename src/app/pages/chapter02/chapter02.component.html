@@ -38,17 +38,10 @@
                         </div>
                         <div class="table__body">
                             <div *ngFor="let row of example.tableSolution.rows" class="table__body__row">
-                                <div *ngFor="let cell of row" class="table__body__row__cell" [mathjax]="cell"></div>
-                            </div>
-
-                            <div class="table__body__row table__body__row--dots">
-                                <div class="table__body__row__cell table__body__row__cell--dots" mathjax="$...$"></div>
-                            </div>
-
-                            <div class="table__body__row">
                                 <div
-                                    *ngFor="let cell of example.tableSolution.lastRow"
+                                    *ngFor="let cell of row"
                                     class="table__body__row__cell"
+                                    [ngClass]="{fill: row.length === 1}"
                                     [mathjax]="cell"
                                 ></div>
                             </div>

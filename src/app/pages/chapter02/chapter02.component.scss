@@ -95,7 +95,7 @@
                         &__body {
                             &__row {
                                 &__cell {
-                                    &--dots {
+                                    &.fill {
                                         grid-column: 1 / -1;
                                     }
                                 }
