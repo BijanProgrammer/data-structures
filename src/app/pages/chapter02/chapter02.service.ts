@@ -515,5 +515,156 @@ export class Chapter02Service {
                 },
             ],
         },
+        {
+            solution: [
+                {
+                    lines: [
+                        generateLatexLine('$T(0) = 0$'),
+                        generateLatexLine('$T(n) = T(n-2) + 1$'),
+                        {
+                            isRtl: true,
+                            parts: [
+                                {
+                                    content:
+                                        'معادلۀ بالا یک معادلۀ خطی ناهمگن است که جواب بخش همگن آن به شکل زیر بدست می‌آید:',
+                                    mode: TextMode.NORMAL,
+                                },
+                            ],
+                        },
+                        {
+                            isRtl: false,
+                            parts: [
+                                {
+                                    content:
+                                        '$' +
+                                        [
+                                            'x^n = x^{n-2}',
+                                            '\\Rightarrow x^n - x^{n-2} = 0',
+                                            '\\Rightarrow x^{n-2}(x^2-1) = 0',
+                                            '\\Rightarrow x_1 = 1 \\ , x_2 = -1',
+                                        ].join(' ') +
+                                        '$',
+                                    mode: TextMode.LATEX,
+                                },
+                            ],
+                        },
+                        {
+                            isRtl: true,
+                            parts: [
+                                {
+                                    content: 'همچنین جواب بخش ناهمگن آن به شکل زیر بدست می‌آید:',
+                                    mode: TextMode.NORMAL,
+                                },
+                            ],
+                        },
+                        generateLatexLine('$b = 1, p(n) = 1, d = 0 \\Rightarrow x = 1$'),
+                        {
+                            isRtl: true,
+                            parts: [
+                                {
+                                    content: 'بنابراین معادلۀ نهایی به شکل زیر خواهد بود:',
+                                    mode: TextMode.NORMAL,
+                                },
+                            ],
+                        },
+                        generateLatexLine('$T(n) = c_1 + c_2 n + c_3 (-1)^n$'),
+                        {
+                            isRtl: true,
+                            parts: [
+                                {
+                                    content: 'در نهایت با اعمال شرایط اولیه، ثابت‌ها را بدست می‌آوریم.',
+                                    mode: TextMode.NORMAL,
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            solution: [
+                {
+                    lines: [
+                        {
+                            isRtl: true,
+                            parts: [
+                                {
+                                    content:
+                                        'مرتبه پیچیدگی سوال 7 از اردر نمایی است، در صورتی که مرتبه پیچیدگی سوال 8 از اردر خطی است. بنابراین به وضوح مشخص است که الگوریتم سوال 8 به مراتب بهینه‌تر از الگوریتم سوال 7 می‌باشد.',
+                                    mode: TextMode.NORMAL,
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            solution: [
+                {
+                    lines: [
+                        generateLatexLine('$T(1) = 0$'),
+                        generateLatexLine('$T(2) = 0$'),
+                        generateLatexLine('$T(n) = T(n-2) + 2T(n-4) + 2$'),
+                        {
+                            isRtl: true,
+                            parts: [
+                                {
+                                    content:
+                                        'معادلۀ بالا یک معادلۀ خطی ناهمگن است که جواب بخش همگن آن به شکل زیر بدست می‌آید:',
+                                    mode: TextMode.NORMAL,
+                                },
+                            ],
+                        },
+                        {
+                            isRtl: false,
+                            parts: [
+                                {
+                                    content:
+                                        '$' +
+                                        [
+                                            'x^n = x^{n-2} + 2x^{n-4}',
+                                            '\\Rightarrow x^n - x^{n-2} - 2x^{n-4} = 0',
+                                            '\\Rightarrow x^{n-4}(x^4 - x^2 - 2) = 0',
+                                            '\\Rightarrow x_1 = +\\sqrt{2} \\ , x_2 = -\\sqrt{2}',
+                                        ].join(' ') +
+                                        '$',
+                                    mode: TextMode.LATEX,
+                                },
+                            ],
+                        },
+                        {
+                            isRtl: true,
+                            parts: [
+                                {
+                                    content: 'همچنین جواب بخش ناهمگن آن به شکل زیر بدست می‌آید:',
+                                    mode: TextMode.NORMAL,
+                                },
+                            ],
+                        },
+                        generateLatexLine('$b = 1, p(n) = 2, d = 0 \\Rightarrow x = 1$'),
+                        {
+                            isRtl: true,
+                            parts: [
+                                {
+                                    content: 'بنابراین معادلۀ نهایی به شکل زیر خواهد بود:',
+                                    mode: TextMode.NORMAL,
+                                },
+                            ],
+                        },
+                        generateLatexLine('$T(n) = c_1 + c_2 (\\sqrt{2})^n + c_3 (-\\sqrt{2})^n$'),
+                        {
+                            isRtl: true,
+                            parts: [
+                                {
+                                    content: 'در نهایت با اعمال شرایط اولیه، ثابت‌ها را بدست می‌آوریم.',
+                                    mode: TextMode.NORMAL,
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        },
     ];
 }

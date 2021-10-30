@@ -20,6 +20,8 @@
                     display: inline-flex;
                     flex-direction: column;
                     justify-content: center;
+	                
+	                text-align: start;
 
                     &.mode {
                         &--normal {
