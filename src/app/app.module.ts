@@ -12,9 +12,18 @@ import {Chapter02Component} from './pages/chapter02/chapter02.component';
 import {LatexComponent} from './components/latex/latex.component';
 import {MonacoComponent} from './components/monaco/monaco.component';
 import {FormsModule} from '@angular/forms';
+import {PlaygroundComponent} from './pages/playground/playground.component';
 
 @NgModule({
-    declarations: [AppComponent, HeaderComponent, HomeComponent, Chapter02Component, LatexComponent, MonacoComponent],
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        HomeComponent,
+        Chapter02Component,
+        LatexComponent,
+        MonacoComponent,
+        PlaygroundComponent,
+    ],
     imports: [BrowserModule, AppRoutingModule, MonacoEditorModule.forRoot(), MathjaxModule.forRoot(), FormsModule],
     providers: [],
     bootstrap: [AppComponent],
