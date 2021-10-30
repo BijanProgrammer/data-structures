@@ -9,4 +9,5 @@ import {Chapter02Problem} from '../../../models/chapter02-problem';
 export class ProblemComponent {
     @Input() public problem!: Chapter02Problem;
     @Input() public problemIndex!: number;
+    @Input() public isLast!: boolean;
 }

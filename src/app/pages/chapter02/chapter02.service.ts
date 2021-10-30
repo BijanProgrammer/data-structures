@@ -264,6 +264,59 @@ export class Chapter02Service {
                                 },
                             ],
                         },
+                        {
+                            isRtl: false,
+                            parts: [
+                                {
+                                    content: '$\\log{n} \\in O(\\sqrt{n})$',
+                                    mode: TextMode.LATEX,
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            solution: [
+                {
+                    lines: [
+                        {
+                            isRtl: false,
+                            parts: [
+                                {
+                                    content:
+                                        '$' +
+                                        [
+                                            '\\lim_{n \\to \\infty} {n! \\over n^3}',
+                                            '= \\lim_{n \\to \\infty} {{n(n-1)(n-2) \\times (n-3)!} \\over n^3}',
+                                            '= \\lim_{n \\to \\infty} {{(n^3 - 3n^2 + 2n) \\over n^3} (n-3)!}',
+                                            '= \\lim_{n \\to \\infty} {(n-3)!}',
+                                            '= \\infty',
+                                        ].join(' ') +
+                                        '$',
+                                    mode: TextMode.LATEX,
+                                },
+                            ],
+                        },
+                        {
+                            isRtl: true,
+                            parts: [
+                                {
+                                    content: 'بنابراین می‌توان نتیجه گرفت که ...',
+                                    mode: TextMode.NORMAL,
+                                },
+                            ],
+                        },
+                        {
+                            isRtl: false,
+                            parts: [
+                                {
+                                    content: '$n^3 \\in O(n!)$',
+                                    mode: TextMode.LATEX,
+                                },
+                            ],
+                        },
                     ],
                 },
             ],

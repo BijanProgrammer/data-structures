@@ -8,6 +8,10 @@
 
     <h2 id="problems">Problems</h2>
     <ng-container *ngFor="let problem of chapter02Service.PROBLEMS; let problemIndex = index">
-        <app-problem [problem]="problem" [problemIndex]="problemIndex"></app-problem>
+        <app-problem
+            [problem]="problem"
+            [problemIndex]="problemIndex"
+            [isLast]="problemIndex === chapter02Service.PROBLEMS.length - 1"
+        ></app-problem>
     </ng-container>
 </div>
