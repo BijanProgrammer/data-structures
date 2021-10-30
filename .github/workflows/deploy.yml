@@ -18,8 +18,8 @@ jobs:
           script: |
             cd /repos/data-structures
             git fetch
-            git checkout production
-            git pull origin production
+            git checkout master
+            git pull origin master
             npm i
             ng build
             cp -a dist/data-structures/. /var/ta/bijanprogrammer.com/html/data-structures
