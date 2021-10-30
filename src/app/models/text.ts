@@ -24,3 +24,15 @@ export interface Part {
     addons?: TextAddon[];
     style?: {[klass: string]: any};
 }
+
+export function generateLatexLine(content: string): Line {
+    return {
+        isRtl: false,
+        parts: [
+            {
+                content,
+                mode: TextMode.LATEX,
+            },
+        ],
+    };
+}

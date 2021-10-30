@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Chapter02Example} from '../../models/chapter02-example';
 import {Chapter02Problem} from '../../models/chapter02-problem';
-import {TextMode} from '../../models/text';
+import {generateLatexLine, TextMode} from '../../models/text';
 
 @Injectable({
     providedIn: 'root',
@@ -436,6 +436,72 @@ export class Chapter02Service {
                                 },
                             ],
                         },
+                        {
+                            isRtl: true,
+                            parts: [
+                                {
+                                    content: 'در نهایت با اعمال شرایط اولیه، ثابت‌ها را بدست می‌آوریم.',
+                                    mode: TextMode.NORMAL,
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            solution: [
+                {
+                    lines: [
+                        generateLatexLine('$T(0) = 0$'),
+                        generateLatexLine('$T(n) = 2T(n-2) + 1$'),
+                        {
+                            isRtl: true,
+                            parts: [
+                                {
+                                    content:
+                                        'معادلۀ بالا یک معادلۀ خطی ناهمگن است که جواب بخش همگن آن به شکل زیر بدست می‌آید:',
+                                    mode: TextMode.NORMAL,
+                                },
+                            ],
+                        },
+                        {
+                            isRtl: false,
+                            parts: [
+                                {
+                                    content:
+                                        '$' +
+                                        [
+                                            'x^n = 2x^{n-2}',
+                                            '\\Rightarrow x^n - 2x^{n-2} = 0',
+                                            '\\Rightarrow x^{n-2}(x^2-2) = 0',
+                                            '\\Rightarrow x_1 = +\\sqrt{2} \\ , x_2 = -\\sqrt{2}',
+                                        ].join(' ') +
+                                        '$',
+                                    mode: TextMode.LATEX,
+                                },
+                            ],
+                        },
+                        {
+                            isRtl: true,
+                            parts: [
+                                {
+                                    content: 'همچنین جواب بخش ناهمگن آن به شکل زیر بدست می‌آید:',
+                                    mode: TextMode.NORMAL,
+                                },
+                            ],
+                        },
+                        generateLatexLine('$b = 1, p(n) = 1, d = 0 \\Rightarrow x = 1$'),
+                        {
+                            isRtl: true,
+                            parts: [
+                                {
+                                    content: 'بنابراین معادلۀ نهایی به شکل زیر خواهد بود:',
+                                    mode: TextMode.NORMAL,
+                                },
+                            ],
+                        },
+                        generateLatexLine('$T(n) = c_1 + c_2 (\\sqrt{2})^n + c_3 (-\\sqrt{2})^n$'),
                         {
                             isRtl: true,
                             parts: [
