@@ -1,6 +1,6 @@
 export enum TextMode {
-    NORMAL,
-    LATEX,
+    NORMAL = 'normal',
+    LATEX = 'latex',
 }
 
 export enum TextAddon {

@@ -6,9 +6,18 @@
             </div>
 
             <div *ngIf="!!line.parts" class="parts" [dir]="line.isRtl ? 'rtl' : 'ltr'">
-                <span *ngFor="let part of line.parts" class="part">
-                    {{ part.content }}
-                </span>
+                <ng-container *ngFor="let part of line.parts">
+                    <ng-container [ngSwitch]="part.mode">
+                        <ng-container *ngSwitchCase="TextMode.LATEX">
+                            <span class="part mode--latex" [mathjax]="part.content"></span>
+                        </ng-container>
+                        <ng-container *ngSwitchDefault>
+                            <span class="part mode--normal">
+                                {{ part.content }}
+                            </span>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
             </div>
         </li>
     </ul>

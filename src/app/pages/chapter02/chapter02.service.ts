@@ -222,5 +222,51 @@ export class Chapter02Service {
                 },
             ],
         },
+        {
+            solution: [
+                {
+                    lines: [
+                        {
+                            isRtl: false,
+                            parts: [
+                                {
+                                    content:
+                                        '$\\lim_{n \\to \\infty} {\\sqrt{n} \\over \\log{n}} = \\lim_{n \\to \\infty} {\\infty \\over \\infty}$',
+                                    mode: TextMode.LATEX,
+                                },
+                            ],
+                        },
+                        {
+                            isRtl: true,
+                            parts: [
+                                {
+                                    content: 'از قاعدۀ HOP استفاده میکنیم (از صورت و مخرج کسر مشتق می‌گیریم):',
+                                    mode: TextMode.NORMAL,
+                                },
+                            ],
+                        },
+                        {
+                            isRtl: false,
+                            parts: [
+                                {
+                                    content:
+                                        '= $\\lim_{n \\to \\infty} {{1 \\over 2\\sqrt{n}} \\over {1 \\over n \\times \\ln{10}}} = \\lim_{n \\to \\infty} {{n} \\over {\\sqrt{n}}} = \\lim_{n \\to \\infty} {\\sqrt{n}} = \\infty$',
+                                    mode: TextMode.LATEX,
+                                },
+                            ],
+                        },
+                        {
+                            isRtl: true,
+                            parts: [
+                                {
+                                    content: 'بنابراین می‌توان نتیجه گرفت که ...',
+                                    mode: TextMode.NORMAL,
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        },
     ];
 }

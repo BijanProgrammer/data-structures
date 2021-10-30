@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {TextBlock} from '../../models/text';
+import {TextBlock, TextMode} from '../../models/text';
 
 @Component({
     selector: 'app-text-parser',
@@ -7,5 +7,7 @@ import {TextBlock} from '../../models/text';
     styleUrls: ['./text-parser.component.scss'],
 })
 export class TextParserComponent {
+    public TextMode = TextMode;
+
     @Input() public textBlocks!: TextBlock[];
 }
