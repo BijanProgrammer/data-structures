@@ -1,25 +1,25 @@
 name: Deployment Workflow
 on:
-  push:
-    branches: [production]
+    push:
+        branches: [production]
 
 jobs:
-  deply_job:
-    name: Deploy
-    runs-on: ubuntu-latest
-    steps:
-      - name: Establish a Connection to Server and Update Website
-        uses: appleboy/ssh-action@master
-        with:
-          host: 130.185.76.173
-          username: root
-          key: ${{secrets.SSH_KEY}}
-          port: 22
-          script: |
-            cd /repos/data-structures
-            git fetch
-            git checkout production
-            git pull origin production
-            npm i
-            ng build
-            cp -a dist/data-structures/. /var/ta/bijanprogrammer.com/html/data-structures
+    deply_job:
+        name: Deploy
+        runs-on: ubuntu-latest
+        steps:
+            - name: Establish a Connection to Server and Update Website
+              uses: appleboy/ssh-action@master
+              with:
+                  host: 130.185.76.173
+                  username: root
+                  key: ${{secrets.SSH_KEY}}
+                  port: 22
+                  script: |
+                      cd /repos/data-structures
+                      git fetch
+                      git checkout production
+                      git pull origin production
+                      npm i
+                      ng build --prod --base-href=/data-structures/
+                      cp -a dist/data-structures/. /var/ta/bijanprogrammer.com/html/data-structures
