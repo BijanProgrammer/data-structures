@@ -1,0 +1,15 @@
+<div class="wrapper">
+    <ul *ngFor="let text of textBlocks" class="text">
+        <li *ngFor="let line of text.lines" class="line">
+            <div *ngIf="!!line.codeUrl" class="code">
+                <app-monaco [codeUrl]="line.codeUrl"></app-monaco>
+            </div>
+
+            <div *ngIf="!!line.parts" class="parts" [dir]="line.isRtl ? 'rtl' : 'ltr'">
+                <span *ngFor="let part of line.parts" class="part">
+                    {{ part.content }}
+                </span>
+            </div>
+        </li>
+    </ul>
+</div>

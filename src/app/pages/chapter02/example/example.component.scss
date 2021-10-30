@@ -1,0 +1,120 @@
+section {
+    h3,
+    h4,
+    .spoiler {
+        padding: 1rem 2rem;
+    }
+
+    h3,
+    h4 {
+        cursor: pointer;
+    }
+
+    h3 {
+        background-color: var(--color--outer-spoiler-headline-background);
+        color: var(--color--outer-spoiler-headline-foreground);
+    }
+
+    h4 {
+        background-color: var(--color--inner-spoiler-headline-background);
+        color: var(--color--inner-spoiler-headline-foreground);
+    }
+
+    input {
+        display: none;
+
+        &:not(:checked) {
+            + .spoiler {
+                display: none;
+            }
+        }
+
+        &:checked {
+            + .spoiler {
+                display: flex;
+            }
+        }
+    }
+
+    .spoiler {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        .code {
+        }
+
+        .table-solution {
+            .spoiler {
+                .table {
+                    --border: 0 solid var(--color--table-border);
+                    --border-width: 3px;
+
+                    display: flex;
+                    flex-direction: column;
+
+                    border: var(--border);
+                    border-width: 0 var(--border-width) var(--border-width) 0;
+
+                    &__header,
+                    &__body {
+                        &__row {
+                            display: grid;
+                            grid-template-columns: var(--grid-template-columns);
+
+                            &__cell {
+                                padding: 1rem;
+
+                                border: var(--border);
+                                border-width: var(--border-width) 0 0 var(--border-width);
+
+                                text-align: center;
+                            }
+                        }
+                    }
+
+                    &__header {
+                        &__row {
+                            &__cell {
+                                background-color: var(--color--table-header-background);
+                                color: var(--color--table-header-foreground);
+
+                                font-size: 1.2em;
+                                font-weight: 500;
+                            }
+                        }
+                    }
+
+                    &__body {
+                        &__row {
+                            &__cell {
+                                &.fill {
+                                    grid-column: 1 / -1;
+                                }
+                            }
+
+                            &:hover {
+                                background-color: var(--color--table-body-background--hover);
+                                color: var(--color--table-body-foreground--hover);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .sigma-solution {
+        }
+
+        .complexity {
+        }
+    }
+
+    > .spoiler {
+        border: 2px solid var(--color--outer-spoiler-border);
+
+        > .spoiler {
+            border: 2px solid var(--color--inner-spoiler-border);
+        }
+    }
+}

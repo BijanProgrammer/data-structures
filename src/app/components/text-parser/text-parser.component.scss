@@ -1,0 +1,39 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        li {
+            .code {
+                height: 24rem;
+            }
+
+            .parts {
+                display: flex;
+                gap: 0.5rem;
+
+                .part {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+
+    > * + * {
+        &::before {
+            content: '';
+
+            background-color: var(--color--table-border);
+
+            display: block;
+
+            height: 3px;
+
+            margin-block: 4rem;
+        }
+    }
+}

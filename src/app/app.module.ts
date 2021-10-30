@@ -13,6 +13,9 @@ import {LatexComponent} from './components/latex/latex.component';
 import {MonacoComponent} from './components/monaco/monaco.component';
 import {FormsModule} from '@angular/forms';
 import {PlaygroundComponent} from './pages/playground/playground.component';
+import {ExampleComponent} from './pages/chapter02/example/example.component';
+import {ProblemComponent} from './pages/chapter02/problem/problem.component';
+import {TextParserComponent} from './components/text-parser/text-parser.component';
 
 @NgModule({
     declarations: [
@@ -23,6 +26,9 @@ import {PlaygroundComponent} from './pages/playground/playground.component';
         LatexComponent,
         MonacoComponent,
         PlaygroundComponent,
+        ExampleComponent,
+        ProblemComponent,
+        TextParserComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, MonacoEditorModule.forRoot(), MathjaxModule.forRoot(), FormsModule],
     providers: [],

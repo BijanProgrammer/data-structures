@@ -1,5 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Chapter02Example} from '../../models/chapter02-example';
+import {Chapter02Problem} from '../../models/chapter02-problem';
+import {TextMode} from '../../models/text';
 
 @Injectable({
     providedIn: 'root',
@@ -149,6 +151,76 @@ export class Chapter02Service {
                 ],
             },
             complexity: 'n^3',
+        },
+    ];
+
+    public readonly PROBLEMS: Chapter02Problem[] = [
+        {
+            solution: [
+                {
+                    lines: [
+                        {
+                            isRtl: false,
+                            codeUrl: 'assets/data/chapter02/src/Problem1Section1.java',
+                        },
+                        {
+                            isRtl: true,
+                            parts: [
+                                {
+                                    content:
+                                        'از آنجایی که برای جمع‌زدن اعضا، باید هر دو آرایه را به طور کامل پیمایش کنیم، این الگوریتم وابسته به حالت ورودی نیست.',
+                                    mode: TextMode.NORMAL,
+                                },
+                            ],
+                        },
+                    ],
+                },
+                {
+                    lines: [
+                        {
+                            isRtl: false,
+                            codeUrl: 'assets/data/chapter02/src/Problem1Section2.java',
+                        },
+                        {
+                            isRtl: true,
+                            parts: [
+                                {
+                                    content:
+                                        'از آنجایی که تمامِ اعضای هر کدام از آرایه‌ها باید بررسی شوند، این الگوریتم وابسته به حالت ورودی نیست.',
+                                    mode: TextMode.NORMAL,
+                                },
+                            ],
+                        },
+                    ],
+                },
+                {
+                    lines: [
+                        {
+                            isRtl: false,
+                            codeUrl: 'assets/data/chapter02/src/Problem1Section3.java',
+                        },
+                        {
+                            isRtl: true,
+                            parts: [
+                                {
+                                    content:
+                                        'با توجه به موقعیت عدد مورد نظر، در بهترین حالت با یک مقایسه و در بدترین حالت با ',
+                                    mode: TextMode.NORMAL,
+                                },
+                                {
+                                    content: '$n$',
+                                    mode: TextMode.LATEX,
+                                },
+                                {
+                                    content:
+                                        ' به جواب مورد نظر می‌رسیم. بنابراین این الگوریتم وابسته به حالت ورودی می‌باشد.',
+                                    mode: TextMode.NORMAL,
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
         },
     ];
 }

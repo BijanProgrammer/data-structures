@@ -1,0 +1,74 @@
+<section>
+    <label [for]="'example' + (exampleIndex + 1) + '-input'">
+        <h3>Example {{ exampleIndex + 1 }}</h3>
+    </label>
+    <input [id]="'example' + (exampleIndex + 1) + '-input'" type="checkbox" checked="checked" />
+
+    <div class="spoiler">
+        <div class="code">
+            <label [for]="'example' + (exampleIndex + 1) + '-code-input'">
+                <h4>Code</h4>
+            </label>
+            <input [id]="'example' + (exampleIndex + 1) + '-code-input'" type="checkbox" checked="checked" />
+
+            <div class="spoiler">
+                <app-monaco [codeUrl]="example.codeUrl"></app-monaco>
+            </div>
+        </div>
+
+        <div class="table-solution">
+            <label [for]="'example' + (exampleIndex + 1) + '-table-solution-input'">
+                <h4>Table Solution</h4>
+            </label>
+            <input [id]="'example' + (exampleIndex + 1) + '-table-solution-input'" type="checkbox" />
+
+            <div class="spoiler">
+                <div class="table" [style.--grid-template-columns]="example.tableSolution.gridTemplateColumns">
+                    <div class="table__header">
+                        <div class="table__header__row">
+                            <div
+                                *ngFor="let header of example.tableSolution.headers"
+                                class="table__header__row__cell"
+                                [mathjax]="header"
+                            ></div>
+                        </div>
+                    </div>
+                    <div class="table__body">
+                        <div *ngFor="let row of example.tableSolution.rows" class="table__body__row">
+                            <div
+                                *ngFor="let cell of row"
+                                class="table__body__row__cell"
+                                [ngClass]="{fill: row.length === 1}"
+                                [mathjax]="cell"
+                            ></div>
+                        </div>
+                    </div>
+                </div>
+
+                <app-latex [lines]="example.tableSolution.lines"></app-latex>
+            </div>
+        </div>
+
+        <div class="sigma-solution">
+            <label [for]="'example' + (exampleIndex + 1) + '-sigma-solution-input'">
+                <h4>Sigma Solution</h4>
+            </label>
+            <input [id]="'example' + (exampleIndex + 1) + '-sigma-solution-input'" type="checkbox" />
+
+            <div class="spoiler">
+                <app-latex [lines]="example.sigmaSolution.lines"></app-latex>
+            </div>
+        </div>
+
+        <div class="complexity">
+            <label [for]="'example' + (exampleIndex + 1) + '-complexity-solution-input'">
+                <h4>Complexity</h4>
+            </label>
+            <input [id]="'example' + (exampleIndex + 1) + '-complexity-solution-input'" type="checkbox" />
+
+            <div class="spoiler">
+                <app-latex [lines]="['$f(x) \\in O(' + example.complexity + ')$']"></app-latex>
+            </div>
+        </div>
+    </div>
+</section>
