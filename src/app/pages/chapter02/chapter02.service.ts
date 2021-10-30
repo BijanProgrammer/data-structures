@@ -321,5 +321,133 @@ export class Chapter02Service {
                 },
             ],
         },
+        {
+            solution: [
+                {
+                    lines: [
+                        {
+                            isRtl: true,
+                            parts: [
+                                {
+                                    content:
+                                        'تمام توابعی که هیچ وابستگی‌ای به n نداشته باشند، تابع ثابت محسوب می‌شوند و از O(1) هستند.',
+                                    mode: TextMode.NORMAL,
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            solution: [
+                {
+                    lines: [
+                        {
+                            isRtl: false,
+                            parts: [
+                                {
+                                    content: 'N/A',
+                                    mode: TextMode.NORMAL,
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            solution: [
+                {
+                    lines: [
+                        {
+                            isRtl: false,
+                            parts: [
+                                {
+                                    content:
+                                        '$' +
+                                        ['S(n) = 1^2 + 2^2 + 3^2 + ... + (n-1)^2 + n^2', '= S(n-1) + n^2'].join(' ') +
+                                        '$',
+                                    mode: TextMode.LATEX,
+                                },
+                            ],
+                        },
+                        {
+                            isRtl: true,
+                            parts: [
+                                {
+                                    content:
+                                        'معادلۀ بالا یک معادلۀ خطی ناهمگن است که جواب بخش همگن آن به شکل زیر بدست می‌آید:',
+                                    mode: TextMode.NORMAL,
+                                },
+                            ],
+                        },
+                        {
+                            isRtl: false,
+                            parts: [
+                                {
+                                    content:
+                                        '$' +
+                                        [
+                                            'x^n = x^{n-1}',
+                                            '\\Rightarrow x^n - x^{n-1} = 0',
+                                            '\\Rightarrow x^{n-1}(x - 1) = 0',
+                                            '\\Rightarrow x = 1',
+                                        ].join(' ') +
+                                        '$',
+                                    mode: TextMode.LATEX,
+                                },
+                            ],
+                        },
+                        {
+                            isRtl: true,
+                            parts: [
+                                {
+                                    content: 'همچنین جواب بخش ناهمگن آن به شکل زیر بدست می‌آید:',
+                                    mode: TextMode.NORMAL,
+                                },
+                            ],
+                        },
+                        {
+                            isRtl: false,
+                            parts: [
+                                {
+                                    content:
+                                        '$' + ['b = 1, p(n) = n^2, d = 2', '\\Rightarrow (x-1)^3 = 0'].join(' ') + '$',
+                                    mode: TextMode.LATEX,
+                                },
+                            ],
+                        },
+                        {
+                            isRtl: true,
+                            parts: [
+                                {
+                                    content: 'بنابراین معادلۀ نهایی به شکل زیر خواهد بود:',
+                                    mode: TextMode.NORMAL,
+                                },
+                            ],
+                        },
+                        {
+                            isRtl: false,
+                            parts: [
+                                {
+                                    content: '$' + ['S(n) = c_1 + c_2 n + c_3 n^2 + c_4 n^3 + c_5 n^4'].join(' ') + '$',
+                                    mode: TextMode.LATEX,
+                                },
+                            ],
+                        },
+                        {
+                            isRtl: true,
+                            parts: [
+                                {
+                                    content: 'در نهایت با اعمال شرایط اولیه، ثابت‌ها را بدست می‌آوریم.',
+                                    mode: TextMode.NORMAL,
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        },
     ];
 }
