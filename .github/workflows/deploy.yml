@@ -1,7 +1,7 @@
 name: Deployment Workflow
 on:
   push:
-    branches: [master]
+    branches: [production]
 
 jobs:
   deply_job:
@@ -18,8 +18,8 @@ jobs:
           script: |
             cd /repos/data-structures
             git fetch
-            git checkout master
-            git pull origin master
+            git checkout production
+            git pull origin production
             npm i
             ng build
             cp -a dist/data-structures/. /var/ta/bijanprogrammer.com/html/data-structures
