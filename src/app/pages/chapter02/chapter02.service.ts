@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Chapter02Example} from '../../models/chapter02-example';
 import {Chapter02Problem} from '../../models/chapter02-problem';
-import {generateLatexLine, TextMode} from '../../models/text';
+import {generateLatexLine, generateNormalLine, TextMode} from '../../models/text';
 
 @Injectable({
     providedIn: 'root',
@@ -661,6 +661,53 @@ export class Chapter02Service {
                                     mode: TextMode.NORMAL,
                                 },
                             ],
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            solution: [
+                {
+                    lines: [
+                        generateLatexLine('$T(2) = 1$'),
+                        generateLatexLine('$T(n) = {T(\\sqrt{n}) \\over \\sqrt{n}} + {\\log_2{n} \\over n}$'),
+                        generateNormalLine('ابتدا طرفین معادله را در n ضرب می‌کنیم:'),
+                        generateLatexLine('$n.T(n) = {\\sqrt{n}.T(\\sqrt{n})} + {\\log_2{n}}$'),
+                        generateNormalLine('با توجه به عبارت زیر، تابع T را به تابع t تبدیل می‌کنیم:'),
+                        generateLatexLine('$t(n) = n.T(n)$'),
+                        generateLatexLine('$t(n) = t(\\sqrt{n}) + \\log_2{n}$'),
+                        generateNormalLine('حالبا توجه به عبارت زیر، n را جایگزین می‌کنیم:'),
+                        generateLatexLine('$n = 2^{2^k}$'),
+                        generateLatexLine('$t(2^{2^k}) = t(2^{2^{k-1}}) + 2^k$'),
+                        generateNormalLine('با توجه به عبارت زیر، تابع t را به تابع f تبدیل می‌کنیم:'),
+                        generateLatexLine('$f(k) = t(2^{2^k})$'),
+                        generateLatexLine('$f(k) = f(k-1) + 2^k$'),
+                        generateNormalLine('معادلۀ بالا یک معادلۀ خطی ناهمگن است که جواب آن به شکل زیر بدست می‌آید:'),
+                        generateLatexLine('$x_1 = 1 \\ , x_2 = 2$'),
+                        generateNormalLine('بنابراین معادلۀ نهایی به شکل زیر خواهد بود:'),
+                        generateLatexLine('$f(k) = c_1 2^k + c_2$'),
+                        generateNormalLine('با اعمال شرایط اولیه، ثابت‌ها را بدست می‌آوریم:'),
+                        generateLatexLine('$c_1 = 2 \\ , c_2 = -1$'),
+                        generateLatexLine('$\\Rightarrow f(k) = 2^{k+1} - 1$'),
+                        generateNormalLine('حال باید جواب معادله را بر حسب n بدست آوریم:'),
+                        generateLatexLine('$n = 2^{2^k} \\Rightarrow k = \\log_2{log_2{n}}$'),
+                        generateLatexLine(
+                            '$f(k) = t(2^{2^k}) = 2 \\times 2^{\\log_2{log_2{n}}} - 1 = 2 \\times (\\log_2{n})^{log_2{2}} - 1$'
+                        ),
+                        generateLatexLine('$\\Rightarrow t(n) = t(2^{2^k}) = 2\\log_2{n} - 1$'),
+                        generateLatexLine('$\\Rightarrow T(n) = {t(n) \\over n} = {2\\log_2{n} - 1 \\over n}$'),
+                    ],
+                },
+            ],
+        },
+        {
+            solution: [
+                {
+                    lines: [
+                        {
+                            isRtl: false,
+                            codeUrl: 'assets/data/chapter02/src/Problem12.java',
                         },
                     ],
                 },

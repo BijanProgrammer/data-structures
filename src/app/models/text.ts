@@ -25,6 +25,18 @@ export interface Part {
     style?: {[klass: string]: any};
 }
 
+export function generateNormalLine(content: string, isRtl: boolean = true): Line {
+    return {
+        isRtl,
+        parts: [
+            {
+                content,
+                mode: TextMode.NORMAL,
+            },
+        ],
+    };
+}
+
 export function generateLatexLine(content: string): Line {
     return {
         isRtl: false,
