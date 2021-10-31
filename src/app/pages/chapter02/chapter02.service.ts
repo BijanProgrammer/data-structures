@@ -339,23 +339,7 @@ export class Chapter02Service {
                 },
             ],
         },
-        {
-            solution: [
-                {
-                    lines: [
-                        {
-                            isRtl: false,
-                            parts: [
-                                {
-                                    content: 'N/A',
-                                    mode: TextMode.NORMAL,
-                                },
-                            ],
-                        },
-                    ],
-                },
-            ],
-        },
+        Chapter02Service.generateNaProblem(),
         {
             solution: [
                 {
@@ -741,5 +725,79 @@ export class Chapter02Service {
                 },
             ],
         },
+        Chapter02Service.generateNaProblem(),
+        {
+            solution: [
+                {
+                    lines: [
+                        generateLatexLine(
+                            '$' +
+                                [
+                                    '\\log{(n!)}',
+                                    '= \\log{(n \\times (n-1) \\times (n-2) \\times ... \\times 2 \\times 1)}',
+                                    '= \\log{(n)} + \\log{(n-1)} + \\log{(n-2)} + ... + \\log{(2)} + \\log{(1)}',
+                                    '= \\sum\\limits^{n}_{i=1}{\\log{i}}',
+                                ].join(' ') +
+                                '$'
+                        ),
+                    ],
+                },
+                {
+                    lines: [
+                        generateLatexLine(
+                            '$' +
+                                [
+                                    '\\sum\\limits^{n}_{i=1}{\\log{i}}',
+                                    '\\leq \\sum\\limits^{n}_{i=1}{\\log{n}}',
+                                    '= n\\log{n}',
+                                ].join(' ') +
+                                '$'
+                        ),
+                        generateLatexLine('$\\Rightarrow \\log{(n!)} \\in O(n\\log{n})$'),
+                    ],
+                },
+                {
+                    lines: [
+                        generateLatexLine(
+                            '$' +
+                                [
+                                    '\\sum\\limits^{n}_{i=1}{\\log{i}}',
+                                    '\\geq \\sum\\limits^{n}_{i={n \\over 2}+1}{\\log{({n \\over 2}+1)}}',
+                                    '= {n \\over 2} \\log{({n \\over 2}+1)}',
+                                    '\\geq {n \\over 2} \\log{({n \\over 2})}',
+                                    '\\geq {n \\over 2} \\log{(\\sqrt{n})}',
+                                    '= {n \\over 2} \\log{(n^{1 \\over 2})}',
+                                    '= {1 \\over 4} n\\log{n}',
+                                ].join(' ') +
+                                '$'
+                        ),
+                        generateLatexLine('$\\Rightarrow \\log{(n!)} \\in \\Omega(n\\log{n})$'),
+                    ],
+                },
+                {
+                    lines: [generateLatexLine('$\\Rightarrow \\log{(n!)} \\in \\Theta(n\\log{n})$')],
+                },
+            ],
+        },
     ];
+
+    private static generateNaProblem(): Chapter02Problem {
+        return {
+            solution: [
+                {
+                    lines: [
+                        {
+                            isRtl: false,
+                            parts: [
+                                {
+                                    content: 'N/A',
+                                    mode: TextMode.NORMAL,
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        };
+    }
 }
