@@ -672,14 +672,26 @@ export class Chapter02Service {
                     lines: [
                         generateLatexLine('$T(2) = 1$'),
                         generateLatexLine('$T(n) = {T(\\sqrt{n}) \\over \\sqrt{n}} + {\\log_2{n} \\over n}$'),
+                    ],
+                },
+                {
+                    lines: [
                         generateNormalLine('ابتدا طرفین معادله را در n ضرب می‌کنیم:'),
                         generateLatexLine('$n.T(n) = {\\sqrt{n}.T(\\sqrt{n})} + {\\log_2{n}}$'),
                         generateNormalLine('با توجه به عبارت زیر، تابع T را به تابع t تبدیل می‌کنیم:'),
                         generateLatexLine('$t(n) = n.T(n)$'),
                         generateLatexLine('$t(n) = t(\\sqrt{n}) + \\log_2{n}$'),
-                        generateNormalLine('حالبا توجه به عبارت زیر، n را جایگزین می‌کنیم:'),
+                    ],
+                },
+                {
+                    lines: [
+                        generateNormalLine('حال با توجه به عبارت زیر، n را جایگزین می‌کنیم:'),
                         generateLatexLine('$n = 2^{2^k}$'),
                         generateLatexLine('$t(2^{2^k}) = t(2^{2^{k-1}}) + 2^k$'),
+                    ],
+                },
+                {
+                    lines: [
                         generateNormalLine('با توجه به عبارت زیر، تابع t را به تابع f تبدیل می‌کنیم:'),
                         generateLatexLine('$f(k) = t(2^{2^k})$'),
                         generateLatexLine('$f(k) = f(k-1) + 2^k$'),
@@ -690,6 +702,10 @@ export class Chapter02Service {
                         generateNormalLine('با اعمال شرایط اولیه، ثابت‌ها را بدست می‌آوریم:'),
                         generateLatexLine('$c_1 = 2 \\ , c_2 = -1$'),
                         generateLatexLine('$\\Rightarrow f(k) = 2^{k+1} - 1$'),
+                    ],
+                },
+                {
+                    lines: [
                         generateNormalLine('حال باید جواب معادله را بر حسب n بدست آوریم:'),
                         generateLatexLine('$n = 2^{2^k} \\Rightarrow k = \\log_2{log_2{n}}$'),
                         generateLatexLine(
@@ -708,6 +724,18 @@ export class Chapter02Service {
                         {
                             isRtl: false,
                             codeUrl: 'assets/data/chapter02/src/Problem12.java',
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            solution: [
+                {
+                    lines: [
+                        {
+                            isRtl: false,
+                            codeUrl: 'assets/data/chapter02/src/Problem13.java',
                         },
                     ],
                 },
