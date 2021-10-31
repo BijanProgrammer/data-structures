@@ -2,7 +2,7 @@
     <label [for]="'problem' + (problemIndex + 1) + '-input'">
         <h3>Problem {{ problemIndex + 1 }}</h3>
     </label>
-    <input [id]="'problem' + (problemIndex + 1) + '-input'" type="checkbox" [checked]="isLast ? 'checked' : false" />
+    <input [id]="'problem' + (problemIndex + 1) + '-input'" type="checkbox" [checked]="isLast ? false : false" />
 
     <div class="spoiler">
         <app-text-parser [textBlocks]="problem.solution"></app-text-parser>
