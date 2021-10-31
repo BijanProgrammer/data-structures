@@ -8,7 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class MonacoComponent implements OnInit {
     @Input() public codeUrl: string = '';
 
-    public editorOptions = {theme: 'vs', language: 'java', fontSize: 20};
+    public editorOptions = {theme: 'vs', language: 'java', fontSize: 20, automaticLayout: true};
     public code: String = '';
 
     public async ngOnInit() {
