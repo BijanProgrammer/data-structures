@@ -21,6 +21,8 @@
                     flex-direction: column;
                     justify-content: center;
 
+                    min-height: 1em;
+
                     text-align: start;
 
                     &.mode {
@@ -48,7 +50,7 @@
 
             height: 3px;
 
-            margin-block: 4rem;
+            margin-block: 3rem;
         }
     }
 }

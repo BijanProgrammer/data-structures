@@ -779,6 +779,52 @@ export class Chapter02Service {
                 },
             ],
         },
+        Chapter02Service.generateNaProblem(),
+        {
+            solution: [
+                {
+                    lines: [
+                        generateLatexLine('$T(n)=aT({n \\over b}) + cn^k$'),
+                        generateLatexLine('$n = b^m$'),
+                        generateLatexLine('$m = \\log_b{n}$'),
+                        generateLatexLine('$\\Rightarrow T(b^m) = aT(b^{m-1}) + cb^{mk}$'),
+                    ],
+                },
+                {
+                    lines: [
+                        generateLatexLine('$t(m) = T(n^m)$'),
+                        generateLatexLine('$\\Rightarrow t(m) = at(m-1) + cb^{mk}$'),
+                        generateLatexLine('جواب قسمت همگن: ' + '$x = a$'),
+                        generateLatexLine('جواب قسمت ناهمگن: ' + '$x = b^k$'),
+                    ],
+                },
+                {
+                    lines: [
+                        generateLatexLine('if $a = b^k$ ...'),
+                        generateNormalLine(''),
+                        generateLatexLine('$t(m) = c_1b^{mk} + c_2mb^{mk}$'),
+                        generateLatexLine('$\\Rightarrow t(m) = b^{mk}(c_1 + c_2m)$'),
+                        generateLatexLine('$\\Rightarrow t(b^m) = n^k(c_1 + c_2\\log_b{n})$'),
+                        generateLatexLine('$\\Rightarrow T(n) \\in O(n^k\\log_b{n})$'),
+                    ],
+                },
+                {
+                    lines: [
+                        generateLatexLine('else ...'),
+                        generateNormalLine(''),
+                        generateLatexLine('$t(m) = c_1a^m + c_2b^{mk}$'),
+                        generateLatexLine('$\\Rightarrow T(b^m) = c_1a^{\\log_b{n}} + c_2(b^k)^{\\log_b{n}}$'),
+                        generateLatexLine('$\\Rightarrow T(n) = c_1n^{\\log_b{a}} + c_2n^{\\log_b{b^k}}$'),
+                        generateNormalLine(''),
+                        generateLatexLine('if $a < b^k$ ...'),
+                        generateLatexLine('$\\Rightarrow T(n) \\in O(n^k)$'),
+                        generateNormalLine(''),
+                        generateLatexLine('if $a > b^k$ ...'),
+                        generateLatexLine('$\\Rightarrow T(n) \\in O(n^{\\log_b{a}})$'),
+                    ],
+                },
+            ],
+        },
     ];
 
     private static generateNaProblem(): Chapter02Problem {
