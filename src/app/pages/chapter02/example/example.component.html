@@ -26,21 +26,21 @@
                 <div class="table" [style.--grid-template-columns]="example.tableSolution.gridTemplateColumns">
                     <div class="table__header">
                         <div class="table__header__row">
-                            <div
+                            <app-tex
                                 *ngFor="let header of example.tableSolution.headers"
                                 class="table__header__row__cell"
-                                [mathjax]="header"
-                            ></div>
+                                [equation]="header"
+                            ></app-tex>
                         </div>
                     </div>
                     <div class="table__body">
                         <div *ngFor="let row of example.tableSolution.rows" class="table__body__row">
-                            <div
+                            <app-tex
                                 *ngFor="let cell of row"
                                 class="table__body__row__cell"
                                 [ngClass]="{fill: row.length === 1}"
-                                [mathjax]="cell"
-                            ></div>
+                                [equation]="cell"
+                            ></app-tex>
                         </div>
                     </div>
                 </div>
