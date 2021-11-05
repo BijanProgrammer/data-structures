@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {MonacoEditorModule} from 'ngx-monaco-editor';
-import {MathjaxModule} from 'mathjax-angular';
+import {KatexModule} from 'ng-katex';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -30,7 +30,7 @@ import {TextParserComponent} from './components/text-parser/text-parser.componen
         ProblemComponent,
         TextParserComponent,
     ],
-    imports: [BrowserModule, AppRoutingModule, MonacoEditorModule.forRoot(), MathjaxModule.forRoot(), FormsModule],
+    imports: [BrowserModule, AppRoutingModule, MonacoEditorModule.forRoot(), KatexModule.ngModuleDef, FormsModule],
     providers: [],
     bootstrap: [AppComponent],
 })
