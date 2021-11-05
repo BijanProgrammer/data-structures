@@ -11,7 +11,7 @@ export class MonacoComponent implements OnInit {
     public editorOptions = {theme: 'vs', language: 'java', fontSize: 20, automaticLayout: true};
     public code: String = '';
 
-    public async ngOnInit() {
+    public async ngOnInit(): void {
         const res = await fetch(this.codeUrl);
         this.code = await res.text();
     }
