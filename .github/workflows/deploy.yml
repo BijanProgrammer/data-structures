@@ -17,9 +17,9 @@ jobs:
                   port: 22
                   script: |
                       cd /repos/data-structures
-                      git clean
                       git fetch
                       git checkout production
+                      git reset --hard HEAD
                       git pull origin production
                       npm i
                       ng build --prod --base-href=/data-structures/
