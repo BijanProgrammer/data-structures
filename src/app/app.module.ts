@@ -30,7 +30,7 @@ import {TextParserComponent} from './components/text-parser/text-parser.componen
         ProblemComponent,
         TextParserComponent,
     ],
-    imports: [BrowserModule, AppRoutingModule, MonacoEditorModule.forRoot(), KatexModule.ngModuleDef, FormsModule],
+    imports: [BrowserModule, AppRoutingModule, MonacoEditorModule.forRoot(), KatexModule, FormsModule],
     providers: [],
     bootstrap: [AppComponent],
 })
