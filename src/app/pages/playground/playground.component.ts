@@ -7,6 +7,8 @@ import {Component} from '@angular/core';
 })
 export class PlaygroundComponent {
     public lines: string[] = `
-        $Playground$
-    `.split('\n');
+        Playground
+    `
+        .split('\n')
+        .filter((line) => !!line.trim());
 }

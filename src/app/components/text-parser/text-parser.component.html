@@ -9,7 +9,7 @@
                 <ng-container *ngFor="let part of line.parts">
                     <ng-container [ngSwitch]="part.mode">
                         <ng-container *ngSwitchCase="TextMode.LATEX">
-                            <span class="part mode--latex" [mathjax]="part.content"></span>
+                            <app-tex class="part mode--latex" [equation]="part.content"></app-tex>
                         </ng-container>
                         <ng-container *ngSwitchDefault>
                             <span class="part mode--normal">

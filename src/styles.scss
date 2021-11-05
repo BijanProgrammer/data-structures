@@ -1,3 +1,21 @@
+// FONT FACES
+@font-face {
+    font-family: 'Samim';
+    src: local('Samim'), url(./assets/fonts/samim-font-v4.0.5/samim.woff2) format('woff2');
+}
+
+@font-face {
+    font-family: 'Samim';
+    src: local('Samim'), url(./assets/fonts/samim-font-v4.0.5/samim-medium.woff2) format('woff2');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Samim';
+    src: local('Samim'), url(./assets/fonts/samim-font-v4.0.5/samim-bold.woff2) format('woff2');
+    font-weight: 700;
+}
+
 // VARIABLES
 :root {
     --base-hue: 220;
@@ -57,12 +75,11 @@
 
     margin: 0;
     padding: 0;
-
-    font-family: Consolas, sans-serif;
 }
 
 html {
     font-size: 62.5%;
+    font-family: Samim, Consolas, sans-serif;
 }
 
 ul {
