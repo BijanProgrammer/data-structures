@@ -31,14 +31,14 @@
                         "style": "kebab-case"
                     }
                 ],
-                "prettier/prettier": "error"
+                "prettier/prettier": ["error", {"endOfLine": "auto"}]
             }
         },
         {
             "files": ["*.html"],
             "extends": ["plugin:@angular-eslint/template/recommended", "prettier"],
             "plugins": ["prettier"],
-            "rules": {"prettier/prettier": "error"}
+            "rules": {"prettier/prettier": ["error", {"endOfLine": "auto"}]}
         }
     ]
 }

@@ -16,6 +16,7 @@ import {PlaygroundComponent} from './pages/playground/playground.component';
 import {ExampleComponent} from './pages/chapter02/example/example.component';
 import {ProblemComponent} from './pages/chapter02/problem/problem.component';
 import {TextParserComponent} from './components/text-parser/text-parser.component';
+import {MergeSortComponent} from './pages/merge-sort/merge-sort.component';
 
 @NgModule({
     declarations: [
@@ -29,6 +30,7 @@ import {TextParserComponent} from './components/text-parser/text-parser.componen
         ExampleComponent,
         ProblemComponent,
         TextParserComponent,
+        MergeSortComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, MonacoEditorModule.forRoot(), MathjaxModule.forRoot(), FormsModule],
     providers: [],
