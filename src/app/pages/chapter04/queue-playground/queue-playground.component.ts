@@ -7,7 +7,7 @@ import {Cell, Queue} from '../../../models/queue';
     styleUrls: ['./queue-playground.component.scss'],
 })
 export class QueuePlaygroundComponent {
-    @Input() public queue: Queue = new Queue();
+    @Input() public queue!: Queue;
 
     @Output() public resetEventEmitter: EventEmitter<void> = new EventEmitter<void>();
 
@@ -18,6 +18,7 @@ export class QueuePlaygroundComponent {
         try {
             const randomNumber: number = Math.floor(Math.random() * 10);
             this.queue.enqueue(new Cell(randomNumber));
+            this.error = '';
         } catch (e) {
             this.error = e;
         }
@@ -26,6 +27,7 @@ export class QueuePlaygroundComponent {
     public dequeueButtonClickHandler(): void {
         try {
             this.dequeuedCell = this.queue.dequeue();
+            this.error = '';
         } catch (e) {
             this.error = e;
         }
@@ -33,5 +35,6 @@ export class QueuePlaygroundComponent {
 
     public resetButtonClickHandler(): void {
         this.resetEventEmitter.emit();
+        this.error = '';
     }
 }

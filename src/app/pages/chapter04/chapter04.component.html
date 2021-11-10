@@ -2,11 +2,20 @@
     <h1>Chapter 04</h1>
 
     <section class="linear-queue-wrapper">
-        <h2 id="problems">Liner Queue</h2>
+        <h2 id="linear-queue">Liner Queue</h2>
 
         <app-queue-playground
             [queue]="linearQueue"
             (resetEventEmitter)="linearQueueResetEventEmitterHandler()"
+        ></app-queue-playground>
+    </section>
+
+    <section class="circular-queue-wrapper">
+        <h2 id="circular-queue">Circular Queue</h2>
+
+        <app-queue-playground
+            [queue]="circularQueue"
+            (resetEventEmitter)="circularQueueResetEventEmitterHandler()"
         ></app-queue-playground>
     </section>
 </div>

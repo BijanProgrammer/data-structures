@@ -20,7 +20,7 @@ import {Chapter04Component} from './pages/chapter04/chapter04.component';
 import {QueuePlaygroundComponent} from './pages/chapter04/queue-playground/queue-playground.component';
 
 import {HeaderComponent} from './components/header/header.component';
-import {LinearQueueComponent} from './components/linear-queue/linear-queue.component';
+import {QueueComponent} from './components/queue/queue.component';
 import {MonacoComponent} from './components/monaco/monaco.component';
 import {MultiTexComponent} from './components/multi-tex/multi-tex.component';
 import {TexComponent} from './components/tex/tex.component';
@@ -41,7 +41,7 @@ import {TextParserComponent} from './components/text-parser/text-parser.componen
         TexComponent,
         Chapter04Component,
         QueuePlaygroundComponent,
-        LinearQueueComponent,
+        QueueComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, FormsModule, MonacoEditorModule.forRoot(), KatexModule],
     providers: [],

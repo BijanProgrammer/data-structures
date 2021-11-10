@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
-import {Cell, Queue} from '../../models/queue';
+import {CircularQueue, LinearQueue} from '../../models/queue';
+import {Chapter04Service} from './chapter04.service';
 
 @Component({
     selector: 'app-chapter04',
@@ -7,23 +8,19 @@ import {Cell, Queue} from '../../models/queue';
     styleUrls: ['./chapter04.component.scss'],
 })
 export class Chapter04Component {
-    public linearQueue: Queue = new Queue(10, [
-        new Cell(4),
-        new Cell(8),
-        new Cell(15),
-        new Cell(16),
-        new Cell(23),
-        new Cell(42),
-    ]);
+    public linearQueue: LinearQueue;
+    public circularQueue: CircularQueue;
+
+    public constructor(private chapter04Service: Chapter04Service) {
+        this.linearQueue = this.chapter04Service.generateLinearQueue();
+        this.circularQueue = this.chapter04Service.generateCircularQueue();
+    }
 
     public linearQueueResetEventEmitterHandler(): void {
-        this.linearQueue = new Queue(10, [
-            new Cell(4),
-            new Cell(8),
-            new Cell(15),
-            new Cell(16),
-            new Cell(23),
-            new Cell(42),
-        ]);
+        this.linearQueue = this.chapter04Service.generateLinearQueue();
+    }
+
+    public circularQueueResetEventEmitterHandler(): void {
+        this.circularQueue = this.chapter04Service.generateCircularQueue();
     }
 }

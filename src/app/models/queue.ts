@@ -1,14 +1,36 @@
-export class Queue {
+export abstract class Queue {
     public front: number = 0;
-    public rear: number;
+    public rear!: number;
 
+    protected constructor(public size: number = 5, public cells: Cell[] = []) {}
+
+    public abstract isFull(): boolean;
+
+    public abstract isEmpty(): boolean;
+
+    public abstract dequeue(): Cell;
+
+    public abstract enqueue(cell: Cell): void;
+
+    public clone(): Queue {
+        return {...this};
+    }
+
+    protected addEmptyCellsToQueueIfNeeded(): void {
+        this.cells.push(...Array(this.size - this.cells.length).fill(new Cell()));
+    }
+}
+
+export class LinearQueue extends Queue {
     private filledCellsCount: number;
 
     public constructor(public size: number = 5, public cells: Cell[] = []) {
+        super(size, cells);
+
         this.rear = this.cells.length - 1;
         this.filledCellsCount = this.cells.length;
 
-        this.cells.push(...Array(this.size - this.cells.length).fill(new Cell()));
+        this.addEmptyCellsToQueueIfNeeded();
     }
 
     public isFull(): boolean {
@@ -63,6 +85,45 @@ export class Queue {
 
         this.front -= amount;
         this.rear -= amount;
+    }
+}
+
+export class CircularQueue extends Queue {
+    public constructor(public size: number = 5, public cells: Cell[] = []) {
+        super(size, cells);
+
+        this.rear = this.cells.length - 1;
+
+        this.addEmptyCellsToQueueIfNeeded();
+    }
+
+    public isFull(): boolean {
+        return (this.rear + 2) % this.size === this.front;
+    }
+
+    public isEmpty(): boolean {
+        return (this.rear + 1) % this.size === this.front;
+    }
+
+    public dequeue(): Cell {
+        if (this.isEmpty()) throw new Error('Queue is empty!');
+
+        const result: Cell = {...this.cells[this.front]};
+        this.cells[this.front] = new Cell();
+        this.front = (this.front + 1) % this.size;
+
+        return {...result};
+    }
+
+    public enqueue(cell: Cell): void {
+        if (this.isFull()) throw new Error('Queue is full!');
+
+        this.rear = (this.rear + 1) % this.size;
+        this.cells[this.rear] = {...cell};
+    }
+
+    public clone(): Queue {
+        return {...this};
     }
 }
 

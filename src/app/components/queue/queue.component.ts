@@ -5,12 +5,12 @@ import {createPopper, Instance, Placement, VirtualElement} from '@popperjs/core'
 import {Queue} from '../../models/queue';
 
 @Component({
-    selector: 'app-linear-queue',
-    templateUrl: './linear-queue.component.html',
-    styleUrls: ['./linear-queue.component.scss'],
+    selector: 'app-queue',
+    templateUrl: './queue.component.html',
+    styleUrls: ['./queue.component.scss'],
 })
-export class LinearQueueComponent implements AfterViewInit, OnChanges {
-    @Input() public queue: Queue = new Queue();
+export class QueueComponent implements AfterViewInit, OnChanges {
+    @Input() public queue!: Queue;
 
     @ViewChild('queueRef') public queueRef!: ElementRef;
     @ViewChild('frontPopperContentRef') public frontPopperContentRef!: ElementRef;
@@ -44,20 +44,12 @@ export class LinearQueueComponent implements AfterViewInit, OnChanges {
     private updatePoppers(): void {
         if (this.frontHtmlElement) {
             if (this.frontPopper) this.frontPopper.destroy();
-            this.frontPopper = LinearQueueComponent.createPopper(
-                this.frontHtmlElement,
-                this.frontPopperContentRef,
-                'top'
-            );
+            this.frontPopper = QueueComponent.createPopper(this.frontHtmlElement, this.frontPopperContentRef, 'top');
         }
 
         if (this.rearHtmlElement) {
             if (this.rearPopper) this.rearPopper.destroy();
-            this.rearPopper = LinearQueueComponent.createPopper(
-                this.rearHtmlElement,
-                this.rearPopperContentRef,
-                'bottom'
-            );
+            this.rearPopper = QueueComponent.createPopper(this.rearHtmlElement, this.rearPopperContentRef, 'bottom');
         }
     }
 
