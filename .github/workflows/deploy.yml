@@ -19,6 +19,7 @@ jobs:
                       cd /repos/data-structures
                       git fetch
                       git checkout production
+                      git reset --hard HEAD
                       git pull origin production
                       npm i
                       ng build --prod --base-href=/data-structures/

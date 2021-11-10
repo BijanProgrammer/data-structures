@@ -1,0 +1,11 @@
+<div class="wrapper">
+    <app-queue [queue]="queue.clone()"></app-queue>
+
+    <div class="command-palette">
+        <button class="enqueue" (click)="enqueueButtonClickHandler()">enqueue</button>
+        <button class="dequeue" (click)="dequeueButtonClickHandler()">dequeue</button>
+        <button class="reset" (click)="resetButtonClickHandler()">reset</button>
+    </div>
+
+    <div *ngIf="error" class="error">{{ error }}</div>
+</div>
