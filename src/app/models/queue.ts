@@ -50,6 +50,10 @@ export class Queue {
         this.filledCellsCount++;
     }
 
+    public clone(): Queue {
+        return {...this};
+    }
+
     private shiftToBeginning(): void {
         const amount = this.front;
         for (let i = this.front; i <= this.rear; i++) {

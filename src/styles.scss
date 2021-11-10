@@ -77,6 +77,9 @@
     --color--command-palette-reset-button-background: var(--color--danger);
     --color--command-palette-reset-button-foreground: var(--color--danger-opposite);
 
+    --color--popper-background: hsl(0, 0%, 20%);
+    --color--popper-foreground: hsl(0, 0%, 98%);
+
     --full-width: 120rem;
     --full-width-padding-inline: calc(max(100% - var(--full-width), 4rem) / 2);
 }

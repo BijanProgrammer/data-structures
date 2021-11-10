@@ -2,6 +2,10 @@
     --border: 0 solid var(--color--table-border);
     --border-width: 3px;
 
+    position: relative;
+
+    padding-block: 4rem;
+
     .queue {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
@@ -30,6 +34,21 @@
                 background-color: var(--color--table-body-background--hover);
                 color: var(--color--table-body-foreground--hover);
             }
+        }
+    }
+
+    .popper {
+        background-color: var(--color--popper-background);
+        color: var(--color--popper-foreground);
+
+        position: absolute;
+
+        padding: 0.5rem 1rem;
+
+        &--front {
+        }
+
+        &--rear {
         }
     }
 }

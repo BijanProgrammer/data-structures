@@ -1,7 +1,5 @@
 <div class="wrapper">
-    <div class="temp">{{ queue | json }}</div>
-
-    <app-linear-queue [queue]="queue"></app-linear-queue>
+    <app-linear-queue [queue]="queue.clone()"></app-linear-queue>
 
     <div class="command-palette">
         <button class="enqueue" (click)="enqueueButtonClickHandler()">enqueue</button>

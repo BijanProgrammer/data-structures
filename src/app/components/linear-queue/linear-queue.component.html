@@ -1,8 +1,15 @@
 <div class="wrapper">
-    <div class="queue" [style.--queue-size]="queue.size">
-        <div *ngFor="let cell of queue.cells; let index = index" class="cell">
+    <div #queueRef class="queue" [style.--queue-size]="queue.size">
+        <div
+            *ngFor="let cell of queue.cells; let index = index"
+            class="cell"
+            [ngClass]="{front: index === queue.front, rear: index === queue.rear}"
+        >
             <div class="cell__value">{{ cell.value.toString() || '&nbsp;' }}</div>
             <div class="cell__index">{{ index }}</div>
         </div>
     </div>
+
+    <div #frontPopperContentRef class="popper popper--front">front: {{ queue.front.toString() }}</div>
+    <div #rearPopperContentRef class="popper popper--rear">rear: {{ queue.rear.toString() }}</div>
 </div>
