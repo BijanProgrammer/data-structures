@@ -1,0 +1,8 @@
+<div class="wrapper">
+    <div class="queue" [style.--queue-size]="queue.size">
+        <div *ngFor="let cell of queue.cells; let index = index" class="cell">
+            <div class="cell__value">{{ cell.value }}</div>
+            <div class="cell__index">{{ index }}</div>
+        </div>
+    </div>
+</div>

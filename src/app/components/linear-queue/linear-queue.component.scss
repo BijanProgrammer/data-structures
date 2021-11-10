@@ -1,0 +1,35 @@
+.wrapper {
+    --border: 0 solid var(--color--table-border);
+    --border-width: 3px;
+
+    .queue {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+        gap: 1rem;
+
+        .cell {
+	        display: flex;
+	        flex-direction: column;
+	        
+            &__value,
+            &__index {
+                border: var(--border);
+	            
+	            text-align: center;
+            }
+
+            &__value {
+                border-width: var(--border-width);
+            }
+
+            &__index {
+                border-width: 0 var(--border-width) var(--border-width) var(--border-width);
+            }
+
+            &:hover {
+                background-color: var(--color--table-body-background--hover);
+                color: var(--color--table-body-foreground--hover);
+            }
+        }
+    }
+}

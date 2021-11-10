@@ -26,6 +26,12 @@
     --color--secondary: hsl(var(--base-hue), 50%, 50%);
     --color--secondary-opposite: hsl(0, 0%, 98%);
 
+    --color--warning: hsl(20, 100%, 40%);
+    --color--warning-opposite: hsl(0, 0%, 98%);
+
+    --color--danger: hsl(0, 100%, 30%);
+    --color--danger-opposite: hsl(0, 0%, 98%);
+
     --color--body-background: hsl(0, 0%, 98%);
     --color--body-foreground: hsl(0, 0%, 10%);
 
@@ -63,6 +69,13 @@
     --color--inner-spoiler-headline-background: var(--color--inner-spoiler-border);
     --color--inner-spoiler-headline-foreground: var(--color--primary-opposite);
 
+    --color--command-palette-enqueue-button-background: var(--color--primary);
+    --color--command-palette-enqueue-button-foreground: var(--color--primary-opposite);
+    --color--command-palette-dequeue-button-background: var(--color--warning);
+    --color--command-palette-dequeue-button-foreground: var(--color--warning-opposite);
+    --color--command-palette-reset-button-background: var(--color--danger);
+    --color--command-palette-reset-button-foreground: var(--color--danger-opposite);
+
     --full-width: 120rem;
     --full-width-padding-inline: calc(max(100% - var(--full-width), 4rem) / 2);
 }
@@ -93,7 +106,10 @@ a {
 }
 
 button {
+    padding: 1rem 2rem;
+
     border: none;
+    border-radius: 999rem;
 
     cursor: pointer;
 

@@ -1,0 +1,9 @@
+<div class="wrapper">
+    <app-linear-queue [queue]="queue"></app-linear-queue>
+
+    <div class="command-palette">
+        <button class="enqueue" (click)="enqueueButtonClickHandler()">enqueue</button>
+        <button class="dequeue" (click)="dequeueButtonClickHandler()">dequeue</button>
+        <button class="reset" (click)="resetButtonClickHandler()">reset</button>
+    </div>
+</div>

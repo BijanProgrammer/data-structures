@@ -17,6 +17,9 @@ import {ExampleComponent} from './pages/chapter02/example/example.component';
 import {ProblemComponent} from './pages/chapter02/problem/problem.component';
 import {TextParserComponent} from './components/text-parser/text-parser.component';
 import {TexComponent} from './components/tex/tex.component';
+import {Chapter04Component} from './pages/chapter04/chapter04.component';
+import {QueuePlaygroundComponent} from './pages/chapter04/queue-playground/queue-playground.component';
+import {LinearQueueComponent} from './components/linear-queue/linear-queue.component';
 
 @NgModule({
     declarations: [
@@ -31,6 +34,9 @@ import {TexComponent} from './components/tex/tex.component';
         ProblemComponent,
         TextParserComponent,
         TexComponent,
+        Chapter04Component,
+        QueuePlaygroundComponent,
+        LinearQueueComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, MonacoEditorModule.forRoot(), KatexModule, FormsModule],
     providers: [],
