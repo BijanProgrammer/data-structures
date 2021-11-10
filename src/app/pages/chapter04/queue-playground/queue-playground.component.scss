@@ -1,9 +1,9 @@
 .wrapper {
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+	gap: 2rem;
 
-    padding-block: 4rem;
+    padding-block: 2rem;
 
     .command-palette {
         display: flex;
@@ -26,5 +26,12 @@
                 color: var(--color--command-palette-reset-button-foreground);
             }
         }
+    }
+
+    .error {
+        background-color: var(--color--danger-fade);
+        color: var(--color--danger);
+
+        padding: 1rem;
     }
 }

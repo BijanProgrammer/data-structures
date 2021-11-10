@@ -8,14 +8,14 @@
         gap: 1rem;
 
         .cell {
-	        display: flex;
-	        flex-direction: column;
-	        
+            display: flex;
+            flex-direction: column;
+
             &__value,
             &__index {
                 border: var(--border);
-	            
-	            text-align: center;
+
+                text-align: center;
             }
 
             &__value {
