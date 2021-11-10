@@ -18,48 +18,54 @@
 
 // VARIABLES
 :root {
-    --base-hue: 220;
+    --primary-hue: 220;
+    --secondary-hue: 180;
+    --warning-hue: 20;
+    --danger-hue: 0;
 
-    --color--primary: hsl(var(--base-hue), 100%, 60%);
+    --color--primary: hsl(var(--primary-hue), 100%, 60%);
+    --color--primary-fade: hsl(var(--primary-hue), 100%, 94%);
     --color--primary-opposite: hsl(0, 0%, 98%);
 
-    --color--secondary: hsl(var(--base-hue), 50%, 50%);
+    --color--secondary: hsl(var(--secondary-hue), 50%, 50%);
+    --color--secondary-fade: hsl(var(--secondary-hue), 50%, 50%);
     --color--secondary-opposite: hsl(0, 0%, 98%);
 
-    --color--warning: hsl(20, 100%, 40%);
+    --color--warning: hsl(var(--warning-hue), 100%, 40%);
+    --color--warning-fade: hsl(var(--warning-hue), 100%, 40%);
     --color--warning-opposite: hsl(0, 0%, 98%);
 
-    --color--danger: hsl(0, 100%, 30%);
-    --color--danger-fade: hsl(0, 100%, 90%);
+    --color--danger: hsl(var(--danger-hue), 100%, 30%);
+    --color--danger-fade: hsl(var(--danger-hue), 100%, 90%);
     --color--danger-opposite: hsl(0, 0%, 98%);
 
     --color--body-background: hsl(0, 0%, 98%);
     --color--body-foreground: hsl(0, 0%, 10%);
 
-    --color--main-background: hsl(var(--base-hue), 18%, 12%);
+    --color--main-background: hsl(var(--primary-hue), 18%, 12%);
     --color--main-foreground: hsl(0, 0%, 98%);
 
     --color--header-logo-background: transparent;
     --color--header-logo-foreground: inherit;
     --color--header-logo-background--hover: transparent;
-    --color--header-logo-foreground--hover: hsl(var(--base-hue), 100%, 60%);
+    --color--header-logo-foreground--hover: hsl(var(--primary-hue), 100%, 60%);
 
     --color--header-nav-background: transparent;
     --color--header-nav-foreground: inherit;
-    --color--header-nav-background--hover: hsl(var(--base-hue), 0%, 94%);
+    --color--header-nav-background--hover: hsl(var(--primary-hue), 0%, 94%);
     --color--header-nav-foreground--hover: var(--color--header-nav-foreground);
     --color--header-nav-background--active: var(--color--header-nav-background);
     --color--header-nav-foreground--active: var(--color--primary);
-    --color--header-nav-background--active-hover: hsl(var(--base-hue), 50%, 94%);
+    --color--header-nav-background--active-hover: hsl(var(--primary-hue), 50%, 94%);
     --color--header-nav-foreground--active-hover: var(--color--header-nav-foreground--active);
 
-    --color--footer-background: hsl(var(--base-hue), 18%, 16%);
+    --color--footer-background: hsl(var(--primary-hue), 18%, 16%);
     --color--footer-foreground: hsl(0, 0%, 98%);
 
-    --color--table-border: hsl(var(--base-hue), 40%, 80%);
+    --color--table-border: hsl(var(--primary-hue), 40%, 80%);
     --color--table-header-background: var(--color--table-border);
     --color--table-header-foreground: inherit;
-    --color--table-body-background--hover: hsl(var(--base-hue), 40%, 90%);
+    --color--table-body-background--hover: hsl(var(--primary-hue), 40%, 90%);
     --color--table-body-foreground--hover: inherit;
 
     --color--outer-spoiler-border: var(--color--secondary);

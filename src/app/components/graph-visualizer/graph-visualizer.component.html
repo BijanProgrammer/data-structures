@@ -1,0 +1,18 @@
+<div class="wrapper">
+    <div #graphElementRef id="graph-container"></div>
+
+    <div class="settings">
+        <div class="button-group">
+            <span class="title">Layout: </span>
+            <button [ngClass]="{active: activeLayout === 'grid'}" (click)="layoutButtonClickHandler('grid')">
+                grid
+            </button>
+            <button
+                [ngClass]="{active: activeLayout === 'sequential'}"
+                (click)="layoutButtonClickHandler('sequential')"
+            >
+                sequential
+            </button>
+        </div>
+    </div>
+</div>
