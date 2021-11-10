@@ -18,4 +18,13 @@
             (resetEventEmitter)="circularQueueResetEventEmitterHandler()"
         ></app-queue-playground>
     </section>
+
+    <section class="priority-queue-wrapper">
+        <h2 id="priority-queue">Priority Queue</h2>
+
+        <app-queue-playground
+            [queue]="priorityQueue"
+            (resetEventEmitter)="priorityQueueResetEventEmitterHandler()"
+        ></app-queue-playground>
+    </section>
 </div>

@@ -10,10 +10,12 @@ import {Chapter04Service} from './chapter04.service';
 export class Chapter04Component {
     public linearQueue: LinearQueue;
     public circularQueue: CircularQueue;
+    public priorityQueue: CircularQueue;
 
     public constructor(private chapter04Service: Chapter04Service) {
         this.linearQueue = this.chapter04Service.generateLinearQueue();
         this.circularQueue = this.chapter04Service.generateCircularQueue();
+        this.priorityQueue = this.chapter04Service.generatePriorityQueue();
     }
 
     public linearQueueResetEventEmitterHandler(): void {
@@ -22,5 +24,9 @@ export class Chapter04Component {
 
     public circularQueueResetEventEmitterHandler(): void {
         this.circularQueue = this.chapter04Service.generateCircularQueue();
+    }
+
+    public priorityQueueResetEventEmitterHandler(): void {
+        this.priorityQueue = this.chapter04Service.generatePriorityQueue();
     }
 }
