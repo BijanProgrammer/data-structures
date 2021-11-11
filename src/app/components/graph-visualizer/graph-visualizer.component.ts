@@ -27,6 +27,10 @@ export class GraphVisualizerComponent implements OnInit {
         this.initGraph();
     }
 
+    public getNode(nodeId: any): any {
+        return this.ogma.getNode(nodeId);
+    }
+
     public setGraph(nodes: any[], edges: any[]): void {
         this.ogma.setGraph({nodes, edges});
 

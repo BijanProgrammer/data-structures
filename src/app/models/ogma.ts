@@ -8,4 +8,5 @@ export enum Layout {
 
 export enum ClassName {
     IDLE = 'IDLE',
+    PATH = 'PATH',
 }

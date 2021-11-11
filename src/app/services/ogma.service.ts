@@ -8,7 +8,8 @@ import {Layout, ClassName} from '../models/ogma';
     providedIn: 'root',
 })
 export class OgmaService {
-    private readonly COLOR_PRIMARY: string = '#3377ff';
+    private readonly COLOR_IDLE: string = '#3377ff';
+    private readonly COLOR_PATH: string = '#cc4400';
     private readonly COLOR_LIGHT: string = '#fafafa';
     private readonly COLOR_DARK: string = '#1a1a1a';
 
@@ -36,11 +37,20 @@ export class OgmaService {
     public attachClasses(ogma: Ogma, isDirected: boolean): void {
         ogma.styles.createClass({
             name: ClassName.IDLE,
-            nodeAttributes: {color: this.COLOR_PRIMARY, radius: 24, shape: 'circle', text: this.DEFAULT_ATTRIBUTE_TEXT},
+            nodeAttributes: {color: this.COLOR_IDLE, radius: 24, shape: 'circle', text: this.DEFAULT_ATTRIBUTE_TEXT},
             edgeAttributes: {
                 color: this.COLOR_DARK,
                 shape: isDirected ? 'arrow' : 'line',
                 width: 3,
+            },
+        });
+
+        ogma.styles.createClass({
+            name: ClassName.PATH,
+            nodeAttributes: {color: this.COLOR_PATH},
+            edgeAttributes: {
+                color: this.COLOR_PATH,
+                width: 5,
             },
         });
     }
@@ -49,7 +59,7 @@ export class OgmaService {
         const nodeAttributes = {
             outline: false,
             outerStroke: {
-                color: this.COLOR_PRIMARY,
+                color: this.COLOR_IDLE,
             },
             text: {
                 backgroundColor: null,
@@ -57,7 +67,7 @@ export class OgmaService {
         };
 
         const edgeAttributes = {
-            color: this.COLOR_PRIMARY,
+            color: this.COLOR_IDLE,
         };
 
         ogma.styles.setHoveredNodeAttributes(nodeAttributes);

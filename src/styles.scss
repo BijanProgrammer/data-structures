@@ -20,6 +20,7 @@
 :root {
     --primary-hue: 220;
     --secondary-hue: 180;
+    --success-hue: 120;
     --warning-hue: 20;
     --danger-hue: 0;
 
@@ -34,6 +35,10 @@
     --color--warning: hsl(var(--warning-hue), 100%, 40%);
     --color--warning-fade: hsl(var(--warning-hue), 100%, 40%);
     --color--warning-opposite: hsl(0, 0%, 98%);
+
+    --color--success: hsl(var(--success-hue), 100%, 40%);
+    --color--success-fade: hsl(var(--success-hue), 100%, 40%);
+    --color--success-opposite: hsl(0, 0%, 98%);
 
     --color--danger: hsl(var(--danger-hue), 100%, 30%);
     --color--danger-fade: hsl(var(--danger-hue), 100%, 90%);
@@ -82,6 +87,9 @@
     --color--command-palette-dequeue-button-foreground: var(--color--warning-opposite);
     --color--command-palette-reset-button-background: var(--color--danger);
     --color--command-palette-reset-button-foreground: var(--color--danger-opposite);
+
+    --color--animation-control-panel-play-button-background: var(--color--success);
+    --color--animation-control-panel-play-button-foreground: var(--color--success-opposite);
 
     --color--popper-background: hsl(0, 0%, 20%);
     --color--popper-foreground: hsl(0, 0%, 98%);
