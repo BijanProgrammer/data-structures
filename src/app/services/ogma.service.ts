@@ -68,8 +68,6 @@ export class OgmaService {
     }
 
     public async setLayout(ogma: Ogma, layout: Layout, centralNode?: any): Promise<void> {
-        console.log(centralNode);
-
         switch (layout) {
             case Layout.FORCE:
                 await ogma.layouts.force({
