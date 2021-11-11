@@ -1,0 +1,18 @@
+<div class="wrapper">
+    <h1>Depth-first Search</h1>
+
+    <section id="graph-section">
+        <header>
+            <h2>Graph</h2>
+            <div class="animation-control-panel">
+                <button class="button button--play" (click)="playButtonClickHandler()">play</button>
+            </div>
+        </header>
+
+        <app-graph-visualizer
+            [layout]="Layout.RADIAL"
+            [isDirected]="true"
+            #graphVisualizerComponent
+        ></app-graph-visualizer>
+    </section>
+</div>

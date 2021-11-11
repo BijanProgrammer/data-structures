@@ -19,12 +19,16 @@ import {ProblemComponent} from './pages/chapter02/problem/problem.component';
 import {Chapter04Component} from './pages/chapter04/chapter04.component';
 import {QueuePlaygroundComponent} from './pages/chapter04/queue-playground/queue-playground.component';
 
+import {DfsComponent} from './pages/dfs/dfs.component';
+import {RggComponent} from './pages/rgg/rgg.component';
+
 import {HeaderComponent} from './components/header/header.component';
 import {QueueComponent} from './components/queue/queue.component';
 import {MonacoComponent} from './components/monaco/monaco.component';
 import {MultiTexComponent} from './components/multi-tex/multi-tex.component';
 import {TexComponent} from './components/tex/tex.component';
 import {TextParserComponent} from './components/text-parser/text-parser.component';
+import {GraphVisualizerComponent} from './components/graph-visualizer/graph-visualizer.component';
 
 @NgModule({
     declarations: [
@@ -42,6 +46,9 @@ import {TextParserComponent} from './components/text-parser/text-parser.componen
         Chapter04Component,
         QueuePlaygroundComponent,
         QueueComponent,
+        GraphVisualizerComponent,
+        DfsComponent,
+        RggComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, FormsModule, MonacoEditorModule.forRoot(), KatexModule],
     providers: [],

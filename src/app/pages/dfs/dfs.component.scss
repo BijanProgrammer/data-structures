@@ -1,0 +1,29 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+
+    padding-block: 4rem;
+
+    #graph-section {
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            h2 {
+            }
+
+            .animation-control-panel {
+                .button {
+                    font-weight: 700;
+
+                    &--play {
+                        background-color: var(--color--animation-control-panel-play-button-background);
+                        color: var(--color--animation-control-panel-play-button-foreground);
+                    }
+                }
+            }
+        }
+    }
+}
