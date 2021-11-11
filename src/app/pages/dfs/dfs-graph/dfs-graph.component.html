@@ -1,0 +1,14 @@
+<header>
+    <h2>{{ title }}</h2>
+    <button *ngIf="isRegenerationEnabled" class="button button--regenerate" (click)="regenerateButtonClickHandler()">
+        regenerate
+    </button>
+    <app-graph-animator #graphAnimatorComponent></app-graph-animator>
+</header>
+
+<app-graph-visualizer
+    #graphVisualizerComponent
+    [graphId]="graphId"
+    [layout]="Layout.RADIAL"
+    [isDirected]="true"
+></app-graph-visualizer>

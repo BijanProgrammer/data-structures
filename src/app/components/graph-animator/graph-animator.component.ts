@@ -11,8 +11,8 @@ export class GraphAnimatorComponent {
     private graphVisualizerComponent!: GraphVisualizerComponent;
 
     private steps!: AnimationStep[];
-    private currentStep: number = -1;
-    private isPlaying: boolean = false;
+    private currentStep!: number;
+    private isPlaying!: boolean;
 
     private isInitialized: boolean = false;
 
@@ -41,6 +41,8 @@ export class GraphAnimatorComponent {
     public init(graphVisualizerComponent: GraphVisualizerComponent, steps: AnimationStep[]): void {
         this.graphVisualizerComponent = graphVisualizerComponent;
         this.steps = steps;
+        this.currentStep = -1;
+        this.isPlaying = false;
 
         this.isInitialized = !!this.graphVisualizerComponent && !!this.steps?.length;
 

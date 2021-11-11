@@ -18,16 +18,20 @@
         </p>
     </section>
 
-    <section id="graph-section">
-        <header>
-            <h2>Graph</h2>
-            <app-graph-animator #graphAnimatorComponent></app-graph-animator>
-        </header>
+    <section id="simple-graph-section">
+        <app-dfs-graph
+            title="Simple Graph"
+            graphId="simple-graph"
+            [graphGenerator]="simpleDfsGraphGenerator"
+        ></app-dfs-graph>
+    </section>
 
-        <app-graph-visualizer
-            #graphVisualizerComponent
-            [layout]="Layout.RADIAL"
-            [isDirected]="true"
-        ></app-graph-visualizer>
+    <section id="random-graph-section">
+        <app-dfs-graph
+            title="Random Graph"
+            graphId="random-graph"
+            [graphGenerator]="randomGraphGenerator"
+            [isRegenerationEnabled]="true"
+        ></app-dfs-graph>
     </section>
 </div>

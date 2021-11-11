@@ -4,4 +4,10 @@
     gap: 4rem;
 
     padding-block: 4rem;
+
+    header {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+    }
 }

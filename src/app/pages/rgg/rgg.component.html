@@ -1,8 +1,12 @@
 <div class="wrapper">
     <h1>Random Graph Generator</h1>
 
-    <section class="graph-section">
-        <h2 id="graph">Graph</h2>
+    <section id="graph-section">
+        <header>
+            <h2>Graph</h2>
+            <button class="button button--regenerate" (click)="regenerateButtonClickHandler()">regenerate</button>
+        </header>
+
         <app-graph-visualizer
             #graphVisualizerComponent
             [layout]="Layout.RADIAL"

@@ -91,6 +91,9 @@
     --color--command-palette-reset-button-background: var(--color--danger);
     --color--command-palette-reset-button-foreground: var(--color--danger-opposite);
 
+    --color--graph-regenerate-button-background: var(--color--danger-fade);
+    --color--graph-regenerate-button-foreground: var(--color--danger);
+
     --color--animation-control-panel-reset-button-background: var(--color--danger);
     --color--animation-control-panel-reset-button-foreground: var(--color--danger-opposite);
     --color--animation-control-panel-step-back-button-background: var(--color--secondary);
@@ -164,4 +167,13 @@ body {
     padding-inline: var(--full-width-padding-inline);
 
     font-size: 1.6rem;
+}
+
+.button {
+    font-weight: 700;
+
+    &--regenerate {
+        background-color: var(--color--graph-regenerate-button-background);
+        color: var(--color--graph-regenerate-button-foreground);
+    }
 }
