@@ -59,9 +59,10 @@ export class GraphVisualizerComponent implements OnInit {
         this.ogmaService.attachClasses(this.ogma, this.isDirected);
         this.ogmaService.setStateAttributes(this.ogma);
 
-        this.ogma.tools.tooltip.onNodeHover((node: any) => {
-            return '<p>' + node.getId() + '</p>';
-        });
+        // TODO: tooltip
+        // this.ogma.tools.tooltip.onNodeHover((node: any) => {
+        //     return '<p>' + node.getId() + '</p>';
+        // });
     }
 
     public async layoutButtonClickHandler(layout: Layout): Promise<void> {

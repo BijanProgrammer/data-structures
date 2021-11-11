@@ -1,8 +1,9 @@
-import {Component, AfterViewInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
 
 import {GraphVisualizerComponent} from '../../components/graph-visualizer/graph-visualizer.component';
 
-import {ClassName, Layout} from 'src/app/models/ogma';
+import {AnimationActionType, AnimationStep, ClassName, Layout} from 'src/app/models/ogma';
+import {GraphAnimatorComponent} from '../../components/graph-animator/graph-animator.component';
 
 @Component({
     selector: 'app-dfs',
@@ -15,73 +16,96 @@ export class DfsComponent implements AfterViewInit {
     @ViewChild('graphVisualizerComponent', {read: GraphVisualizerComponent})
     public graphVisualizerComponent!: GraphVisualizerComponent;
 
+    @ViewChild('graphAnimatorComponent', {read: GraphAnimatorComponent})
+    public graphAnimatorComponent!: GraphAnimatorComponent;
+
     private readonly NODES: any[] = [
-        {id: 1, attributes: {text: 1}},
-        {id: 2, attributes: {text: 2}},
-        {id: 3, attributes: {text: 3}},
-        {id: 4, attributes: {text: 4}},
-        {id: 5, attributes: {text: 5}},
-        {id: 6, attributes: {text: 6}},
-        {id: 7, attributes: {text: 7}},
+        {id: 1, attributes: {text: 1}, data: {visited: false}},
+        {id: 2, attributes: {text: 2}, data: {visited: false}},
+        {id: 3, attributes: {text: 3}, data: {visited: false}},
+        {id: 4, attributes: {text: 4}, data: {visited: false}},
+        {id: 5, attributes: {text: 5}, data: {visited: false}},
+        {id: 6, attributes: {text: 6}, data: {visited: false}},
+        {id: 7, attributes: {text: 7}, data: {visited: false}},
     ];
     private readonly EDGES: any[] = [
-        {id: 1, source: 1, target: 2},
-        {id: 3, source: 1, target: 5},
+        {id: 1, source: 1, target: 2, data: {visited: false}},
+        {id: 3, source: 1, target: 5, data: {visited: false}},
 
-        {id: 5, source: 2, target: 3},
-        {id: 7, source: 2, target: 4},
+        {id: 5, source: 2, target: 3, data: {visited: false}},
+        {id: 7, source: 2, target: 4, data: {visited: false}},
 
-        {id: 9, source: 3, target: 6},
+        {id: 9, source: 3, target: 6, data: {visited: false}},
 
-        {id: 11, source: 4, target: 6},
+        {id: 11, source: 4, target: 6, data: {visited: false}},
 
-        {id: 13, source: 5, target: 7},
+        {id: 13, source: 5, target: 7, data: {visited: false}},
 
-        {id: 15, source: 6, target: 7},
+        {id: 15, source: 6, target: 7, data: {visited: false}},
     ];
+
+    private animationSteps: AnimationStep[] = [];
 
     public ngAfterViewInit(): void {
         this.populateGraph();
+        this.generateAnimationSteps();
+
+        this.graphAnimatorComponent.init(this.graphVisualizerComponent, this.animationSteps);
     }
 
     private populateGraph(): void {
         this.graphVisualizerComponent.setGraph(this.NODES, this.EDGES);
     }
 
-    public async playButtonClickHandler(): Promise<void> {
+    private generateAnimationSteps(): void {
         const startNode: any = this.graphVisualizerComponent.getNode(1);
         const targetNode: any = this.graphVisualizerComponent.getNode(5);
 
-        await this.dfs(startNode, targetNode);
+        this.dfs(startNode, targetNode);
     }
 
-    private async dfs(currentNode: any, targetNode: any): Promise<boolean> {
-        currentNode.addClass(ClassName.PATH);
-        await this.waitForIt();
+    private dfs(currentNode: any, targetNode: any): boolean {
+        this.generateAddClassNameStep(currentNode);
 
         if (currentNode === targetNode) return true;
 
         const edges: any[] = currentNode.getAdjacentEdges({direction: 'out'}).toArray();
         for (const edge of edges) {
-            edge.addClass(ClassName.PATH);
-            await this.waitForIt();
+            if (edge.getData('visited')) continue;
 
-            const found = await this.dfs(edge.getTarget(), targetNode);
+            const nextNode = edge.getTarget();
+            if (nextNode.getData('visited')) {
+                this.generateAddClassNameStep(edge, ClassName.DISABLED);
+                continue;
+            }
+
+            this.generateAddClassNameStep(edge);
+
+            const found = this.dfs(nextNode, targetNode);
             if (found) return true;
 
-            edge.removeClass(ClassName.PATH);
-            await this.waitForIt();
+            this.generateRemoveClassNameStep(edge);
+            edge.setData('visited', true);
         }
 
-        currentNode.removeClass(ClassName.PATH);
-        await this.waitForIt();
+        this.generateRemoveClassNameStep(currentNode);
+        currentNode.setData('visited', true);
 
         return false;
     }
 
-    private async waitForIt(duration: number = 500): Promise<void> {
-        return new Promise((resolve) => {
-            setTimeout(resolve, duration);
+    private generateAddClassNameStep(element: any, className: ClassName = ClassName.PATH): void {
+        this.animationSteps.push({
+            actions: [{element, actionType: AnimationActionType.ADD_CLASS, actionData: {className}}],
+        });
+    }
+
+    private generateRemoveClassNameStep(element: any): void {
+        this.animationSteps.push({
+            actions: [
+                {element, actionType: AnimationActionType.REMOVE_CLASS, actionData: {className: ClassName.PATH}},
+                {element, actionType: AnimationActionType.ADD_CLASS, actionData: {className: ClassName.DISABLED}},
+            ],
         });
     }
 }

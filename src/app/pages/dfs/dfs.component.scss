@@ -10,20 +10,6 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-
-            h2 {
-            }
-
-            .animation-control-panel {
-                .button {
-                    font-weight: 700;
-
-                    &--play {
-                        background-color: var(--color--animation-control-panel-play-button-background);
-                        color: var(--color--animation-control-panel-play-button-foreground);
-                    }
-                }
-            }
         }
     }
 }

@@ -67,6 +67,9 @@
     --color--footer-background: hsl(var(--primary-hue), 18%, 16%);
     --color--footer-foreground: hsl(0, 0%, 98%);
 
+    --color--button-disabled-background: hsl(0, 0%, 70%);
+    --color--button-disabled-foreground: hsl(0, 0%, 10%);
+
     --color--table-border: hsl(var(--primary-hue), 40%, 80%);
     --color--table-header-background: var(--color--table-border);
     --color--table-header-foreground: inherit;
@@ -88,8 +91,16 @@
     --color--command-palette-reset-button-background: var(--color--danger);
     --color--command-palette-reset-button-foreground: var(--color--danger-opposite);
 
+    --color--animation-control-panel-reset-button-background: var(--color--danger);
+    --color--animation-control-panel-reset-button-foreground: var(--color--danger-opposite);
+    --color--animation-control-panel-step-back-button-background: var(--color--secondary);
+    --color--animation-control-panel-step-back-button-foreground: var(--color--secondary-opposite);
     --color--animation-control-panel-play-button-background: var(--color--success);
     --color--animation-control-panel-play-button-foreground: var(--color--success-opposite);
+    --color--animation-control-panel-pause-button-background: var(--color--warning);
+    --color--animation-control-panel-pause-button-foreground: var(--color--warning-opposite);
+    --color--animation-control-panel-step-forward-button-background: var(--color--secondary);
+    --color--animation-control-panel-step-forward-button-foreground: var(--color--secondary-opposite);
 
     --color--popper-background: hsl(0, 0%, 20%);
     --color--popper-foreground: hsl(0, 0%, 98%);
@@ -124,15 +135,22 @@ a {
 }
 
 button {
-    padding: 1rem 2rem;
+    padding: 0.75rem 1.5rem;
 
     border: none;
     border-radius: 999rem;
 
-    cursor: pointer;
+    &:not([disabled]) {
+        cursor: pointer;
 
-    &:hover {
-        filter: brightness(90%);
+        &:hover {
+            filter: brightness(90%);
+        }
+    }
+
+    &[disabled] {
+        background-color: var(--color--button-disabled-background) !important;
+        color: var(--color--button-disabled-foreground) !important;
     }
 }
 
