@@ -1,5 +1,8 @@
 import {Component, AfterViewInit, ViewChild} from '@angular/core';
+
 import {GraphVisualizerComponent} from '../../components/graph-visualizer/graph-visualizer.component';
+
+import {Layout} from 'src/app/models/ogma';
 
 @Component({
     selector: 'app-dfs',
@@ -7,18 +10,29 @@ import {GraphVisualizerComponent} from '../../components/graph-visualizer/graph-
     styleUrls: ['./dfs.component.scss'],
 })
 export class DfsComponent implements AfterViewInit {
+    public Layout = Layout;
+
     @ViewChild('graphVisualizerComponent', {read: GraphVisualizerComponent})
     public graphVisualizerComponent!: GraphVisualizerComponent;
 
     public ngAfterViewInit(): void {
+        this.populateGraph();
+    }
+
+    private populateGraph(): void {
         const nodesMaximumCount = 20;
         const edgesMaximumCount = 30;
 
-        const width = 800;
-        const height = 600;
-
         const nodesCount = Math.floor(Math.random() * nodesMaximumCount) + 1;
         const edgesCount = Math.floor(Math.random() * edgesMaximumCount);
+
+        this.graphVisualizerComponent.addNodes(DfsComponent.generateNodes(nodesCount));
+        this.graphVisualizerComponent.addEdges(DfsComponent.generateEdges(nodesCount, edgesCount));
+    }
+
+    private static generateNodes(nodesCount: number): any[] {
+        const width = 800;
+        const height = 600;
 
         const nodes = [];
         for (let i = 0; i < nodesCount; i++) {
@@ -32,6 +46,10 @@ export class DfsComponent implements AfterViewInit {
             nodes.push(node);
         }
 
+        return nodes;
+    }
+
+    private static generateEdges(nodesCount: number, edgesCount: number): any[] {
         const edges = [];
         for (let i = 0; i < edgesCount; i++) {
             const sourceId = 'n' + Math.floor(Math.random() * nodesCount);
@@ -45,7 +63,6 @@ export class DfsComponent implements AfterViewInit {
             edges.push({id: 'e' + i, source: sourceId, target: targetId, data: {name: `edge #${i}`}});
         }
 
-        this.graphVisualizerComponent.addNodes(nodes);
-        this.graphVisualizerComponent.addEdges(edges);
+        return edges;
     }
 }

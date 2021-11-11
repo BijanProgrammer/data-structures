@@ -4,12 +4,12 @@
     <div class="settings">
         <div class="button-group">
             <span class="title">Layout: </span>
-            <button [ngClass]="{active: activeLayout === 'grid'}" (click)="layoutButtonClickHandler('grid')">
+            <button [ngClass]="{active: layout === Layout.GRID}" (click)="layoutButtonClickHandler(Layout.GRID)">
                 grid
             </button>
             <button
-                [ngClass]="{active: activeLayout === 'sequential'}"
-                (click)="layoutButtonClickHandler('sequential')"
+                [ngClass]="{active: layout === Layout.SEQUENTIAL}"
+                (click)="layoutButtonClickHandler(Layout.SEQUENTIAL)"
             >
                 sequential
             </button>

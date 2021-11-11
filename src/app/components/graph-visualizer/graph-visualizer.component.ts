@@ -1,9 +1,10 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 
 import {OgmaClassName, OgmaService} from '../../services/ogma.service';
 
 // @ts-ignore
 import * as Ogma from '../../../scripts/ogma.min';
+import {Layout} from '../../models/ogma';
 
 @Component({
     selector: 'app-graph-visualizer',
@@ -11,9 +12,11 @@ import * as Ogma from '../../../scripts/ogma.min';
     styleUrls: ['./graph-visualizer.component.scss'],
 })
 export class GraphVisualizerComponent implements OnInit {
+    public Layout = Layout;
+
     @ViewChild('graphElementRef') public graphElementRef!: ElementRef;
 
-    public activeLayout: string = 'grid';
+    @Input() public layout: Layout = Layout.GRID;
 
     private ogma: Ogma;
 
@@ -27,14 +30,14 @@ export class GraphVisualizerComponent implements OnInit {
         this.ogma.addNodes(nodes);
         this.ogma.getNodes().addClass(OgmaClassName.IDLE);
 
-        this.layoutButtonClickHandler(this.activeLayout).then();
+        this.layoutButtonClickHandler(this.layout).then();
     }
 
     public addEdges(edges: any[]): void {
         this.ogma.addEdges(edges);
         this.ogma.getEdges().addClass(OgmaClassName.IDLE);
 
-        this.layoutButtonClickHandler(this.activeLayout).then();
+        this.layoutButtonClickHandler(this.layout).then();
     }
 
     private initGraph(): void {
@@ -47,15 +50,15 @@ export class GraphVisualizerComponent implements OnInit {
         });
     }
 
-    public async layoutButtonClickHandler(layout: string): Promise<void> {
+    public async layoutButtonClickHandler(layout: Layout): Promise<void> {
         switch (layout) {
-            case 'grid':
+            case Layout.GRID:
                 await this.ogma.layouts.grid({
                     duration: this.ogmaService.ANIMATION_DURATION,
                     locate: true,
                 });
                 break;
-            case 'sequential':
+            case Layout.SEQUENTIAL:
                 await this.ogma.layouts.sequential({
                     arrangeComponents: 'grid',
                     componentDistance: this.ogmaService.COMPONENT_DISTANCE,
@@ -71,6 +74,6 @@ export class GraphVisualizerComponent implements OnInit {
                 return;
         }
 
-        this.activeLayout = layout;
+        this.layout = layout;
     }
 }
