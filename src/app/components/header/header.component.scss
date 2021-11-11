@@ -22,14 +22,14 @@ header {
         ul {
             display: flex;
             align-items: center;
-            gap: 2rem;
+            gap: 1rem;
 
             li {
                 a {
                     background-color: var(--color--header-nav-background);
                     color: var(--color--header-nav-foreground);
 
-                    padding: 0.5rem 1rem;
+                    padding: 0.5rem 1.5rem;
 
                     border-radius: 999rem;
 

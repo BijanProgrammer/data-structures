@@ -1,21 +1,22 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/core';
 
 import {OgmaService} from '../../services/ogma.service';
 
 // @ts-ignore
 import * as Ogma from '../../../scripts/ogma.min';
-import {Layout, ClassName} from '../../models/ogma';
+import {ClassName, Layout} from '../../models/ogma';
 
 @Component({
     selector: 'app-graph-visualizer',
     templateUrl: './graph-visualizer.component.html',
     styleUrls: ['./graph-visualizer.component.scss'],
 })
-export class GraphVisualizerComponent implements OnInit {
+export class GraphVisualizerComponent implements AfterViewInit {
     public Layout = Layout;
 
     @ViewChild('graphElementRef') public graphElementRef!: ElementRef;
 
+    @Input() public graphId: string = 'graph-container';
     @Input() public layout: Layout = Layout.GRID;
     @Input() public isDirected: boolean = false;
 
@@ -23,7 +24,7 @@ export class GraphVisualizerComponent implements OnInit {
 
     public constructor(public ogmaService: OgmaService) {}
 
-    public ngOnInit(): void {
+    public ngAfterViewInit(): void {
         this.initGraph();
     }
 
@@ -55,13 +56,14 @@ export class GraphVisualizerComponent implements OnInit {
     }
 
     private initGraph(): void {
-        this.ogma = new Ogma({container: 'graph-container', options: {directedEdges: false}});
+        this.ogma = new Ogma({container: this.graphId, options: {directedEdges: false}});
         this.ogmaService.attachClasses(this.ogma, this.isDirected);
         this.ogmaService.setStateAttributes(this.ogma);
 
-        this.ogma.tools.tooltip.onNodeHover((node: any) => {
-            return '<p>' + node.getId() + '</p>';
-        });
+        // TODO: tooltip
+        // this.ogma.tools.tooltip.onNodeHover((node: any) => {
+        //     return '<p>' + node.getId() + '</p>';
+        // });
     }
 
     public async layoutButtonClickHandler(layout: Layout): Promise<void> {

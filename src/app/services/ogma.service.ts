@@ -12,6 +12,7 @@ export class OgmaService {
     private readonly COLOR_PATH: string = '#cc4400';
     private readonly COLOR_LIGHT: string = '#fafafa';
     private readonly COLOR_DARK: string = '#1a1a1a';
+    private readonly COLOR_DISABLED: string = '#b3b3b3';
 
     public readonly ANIMATION_DURATION: number = 300;
     public readonly CHARGE: number = 50;
@@ -52,6 +53,12 @@ export class OgmaService {
                 color: this.COLOR_PATH,
                 width: 5,
             },
+        });
+
+        ogma.styles.createClass({
+            name: ClassName.DISABLED,
+            nodeAttributes: {color: this.COLOR_DISABLED},
+            edgeAttributes: {color: this.COLOR_DISABLED},
         });
     }
 

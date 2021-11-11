@@ -29,6 +29,8 @@ import {MultiTexComponent} from './components/multi-tex/multi-tex.component';
 import {TexComponent} from './components/tex/tex.component';
 import {TextParserComponent} from './components/text-parser/text-parser.component';
 import {GraphVisualizerComponent} from './components/graph-visualizer/graph-visualizer.component';
+import {GraphAnimatorComponent} from './components/graph-animator/graph-animator.component';
+import {DfsGraphComponent} from './pages/dfs/dfs-graph/dfs-graph.component';
 
 @NgModule({
     declarations: [
@@ -49,6 +51,8 @@ import {GraphVisualizerComponent} from './components/graph-visualizer/graph-visu
         GraphVisualizerComponent,
         DfsComponent,
         RggComponent,
+        GraphAnimatorComponent,
+        DfsGraphComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, FormsModule, MonacoEditorModule.forRoot(), KatexModule],
     providers: [],

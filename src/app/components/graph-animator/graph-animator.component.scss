@@ -1,0 +1,34 @@
+.animation-control-panel {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .button {
+        font-weight: 700;
+
+        &--reset {
+            background-color: var(--color--animation-control-panel-reset-button-background);
+            color: var(--color--animation-control-panel-reset-button-foreground);
+        }
+
+        &--step-back {
+            background-color: var(--color--animation-control-panel-step-back-button-background);
+            color: var(--color--animation-control-panel-step-back-button-foreground);
+        }
+
+        &--play {
+            background-color: var(--color--animation-control-panel-play-button-background);
+            color: var(--color--animation-control-panel-play-button-foreground);
+        }
+
+        &--pause {
+            background-color: var(--color--animation-control-panel-pause-button-background);
+            color: var(--color--animation-control-panel-pause-button-foreground);
+        }
+
+        &--step-forward {
+            background-color: var(--color--animation-control-panel-step-forward-button-background);
+            color: var(--color--animation-control-panel-step-forward-button-foreground);
+        }
+    }
+}
