@@ -22,5 +22,6 @@ jobs:
                       git reset --hard HEAD
                       git pull origin production
                       npm i
-                      ng build --prod --base-href=/data-structures/
+                      ng build --base-href=/data-structures/
+                      rm -rf /var/ta/bijanprogrammer.com/html/data-structures
                       cp -a dist/data-structures/. /var/ta/bijanprogrammer.com/html/data-structures
