@@ -20,49 +20,36 @@ export class DfsComponent implements AfterViewInit {
     }
 
     private populateGraph(): void {
-        const nodesMaximumCount = 20;
-        const edgesMaximumCount = 30;
-
-        const nodesCount = Math.floor(Math.random() * nodesMaximumCount) + 1;
-        const edgesCount = Math.floor(Math.random() * edgesMaximumCount);
-
-        this.graphVisualizerComponent.addNodes(DfsComponent.generateNodes(nodesCount));
-        this.graphVisualizerComponent.addEdges(DfsComponent.generateEdges(nodesCount, edgesCount));
+        this.graphVisualizerComponent.setGraph(DfsComponent.generateNodes(), DfsComponent.generateEdges());
     }
 
-    private static generateNodes(nodesCount: number): any[] {
-        const width = 800;
-        const height = 600;
-
-        const nodes = [];
-        for (let i = 0; i < nodesCount; i++) {
-            const randomX = Math.random() * width - width / 2;
-            const randomY = Math.random() * height - height / 2;
-
-            const data = {name: `node #${i}`};
-            const attributes = {x: randomX, y: randomY, text: i};
-
-            const node: any = {id: 'n' + i, data, attributes};
-            nodes.push(node);
-        }
-
-        return nodes;
+    private static generateNodes(): any[] {
+        return [
+            {id: 1, attributes: {text: 1}},
+            {id: 2, attributes: {text: 2}},
+            {id: 3, attributes: {text: 3}},
+            {id: 4, attributes: {text: 4}},
+            {id: 5, attributes: {text: 5}},
+            {id: 6, attributes: {text: 6}},
+            {id: 7, attributes: {text: 7}},
+        ];
     }
 
-    private static generateEdges(nodesCount: number, edgesCount: number): any[] {
-        const edges = [];
-        for (let i = 0; i < edgesCount; i++) {
-            const sourceId = 'n' + Math.floor(Math.random() * nodesCount);
-            const targetId = 'n' + Math.floor(Math.random() * nodesCount);
+    private static generateEdges(): any[] {
+        return [
+            {id: 1, source: 1, target: 2},
+            {id: 3, source: 1, target: 5},
 
-            if (sourceId === targetId && nodesCount !== 1) {
-                i--;
-                continue;
-            }
+            {id: 5, source: 2, target: 3},
+            {id: 7, source: 2, target: 4},
 
-            edges.push({id: 'e' + i, source: sourceId, target: targetId, data: {name: `edge #${i}`}});
-        }
+            {id: 9, source: 3, target: 6},
 
-        return edges;
+            {id: 11, source: 4, target: 6},
+
+            {id: 13, source: 5, target: 7},
+
+            {id: 15, source: 6, target: 7},
+        ];
     }
 }

@@ -1,5 +1,8 @@
 import {Component, AfterViewInit, ViewChild} from '@angular/core';
+
 import {GraphVisualizerComponent} from '../../components/graph-visualizer/graph-visualizer.component';
+
+import {Layout} from 'src/app/models/ogma';
 
 @Component({
     selector: 'app-dfs',
@@ -7,6 +10,8 @@ import {GraphVisualizerComponent} from '../../components/graph-visualizer/graph-
     styleUrls: ['./rgg.component.scss'],
 })
 export class RggComponent implements AfterViewInit {
+    public Layout = Layout;
+
     @ViewChild('graphVisualizerComponent', {read: GraphVisualizerComponent})
     public graphVisualizerComponent!: GraphVisualizerComponent;
 

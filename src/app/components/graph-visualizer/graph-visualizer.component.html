@@ -4,8 +4,14 @@
     <div class="settings">
         <div class="button-group">
             <span class="title">Layout: </span>
+            <button [ngClass]="{active: layout === Layout.FORCE}" (click)="layoutButtonClickHandler(Layout.FORCE)">
+                force
+            </button>
             <button [ngClass]="{active: layout === Layout.GRID}" (click)="layoutButtonClickHandler(Layout.GRID)">
                 grid
+            </button>
+            <button [ngClass]="{active: layout === Layout.RADIAL}" (click)="layoutButtonClickHandler(Layout.RADIAL)">
+                radial
             </button>
             <button
                 [ngClass]="{active: layout === Layout.SEQUENTIAL}"

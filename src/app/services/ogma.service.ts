@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 
 // @ts-ignore
 import * as Ogma from '../../../scripts/ogma.min';
+import {Layout, ClassName} from '../models/ogma';
 
 @Injectable({
     providedIn: 'root',
@@ -12,10 +13,16 @@ export class OgmaService {
     private readonly COLOR_DARK: string = '#1a1a1a';
 
     public readonly ANIMATION_DURATION: number = 300;
+    public readonly CHARGE: number = 50;
     public readonly COMPONENT_DISTANCE: number = 200;
-    public readonly NODE_DISTANCE: number = 200;
+    public readonly EDGE_LENGTH: number = 200;
+    public readonly EDGE_STRENGTH: number = 0.5;
+    public readonly NODE_DISTANCE: number = 250;
     public readonly GRID_DISTANCE: number = 150;
     public readonly LEVEL_DISTANCE: number = 150;
+    public readonly NODE_GAP: number = 150;
+    public readonly RADIUS_DELTA: number = 150;
+    public readonly REPULSION: number = 20;
 
     private readonly DEFAULT_ATTRIBUTE_TEXT = {
         color: this.COLOR_LIGHT,
@@ -26,13 +33,13 @@ export class OgmaService {
         scaling: true,
     };
 
-    public attachClasses(ogma: Ogma): void {
+    public attachClasses(ogma: Ogma, isDirected: boolean): void {
         ogma.styles.createClass({
-            name: OgmaClassName.IDLE,
+            name: ClassName.IDLE,
             nodeAttributes: {color: this.COLOR_PRIMARY, radius: 24, shape: 'circle', text: this.DEFAULT_ATTRIBUTE_TEXT},
             edgeAttributes: {
                 color: this.COLOR_DARK,
-                shape: 'arrow',
+                shape: isDirected ? 'arrow' : 'line',
                 width: 3,
             },
         });
@@ -59,8 +66,60 @@ export class OgmaService {
         ogma.styles.setSelectedNodeAttributes(nodeAttributes);
         ogma.styles.setSelectedEdgeAttributes(edgeAttributes);
     }
-}
 
-export enum OgmaClassName {
-    IDLE = 'IDLE',
+    public async setLayout(ogma: Ogma, layout: Layout, centralNode?: any): Promise<void> {
+        console.log(centralNode);
+
+        switch (layout) {
+            case Layout.FORCE:
+                await ogma.layouts.force({
+                    charge: this.CHARGE,
+                    duration: this.ANIMATION_DURATION,
+                    edgeLength: this.EDGE_LENGTH,
+                    edgeStrength: this.EDGE_STRENGTH,
+                    locate: true,
+                });
+                break;
+            case Layout.FORCE_LINK:
+                await ogma.layouts.forceLink({
+                    duration: this.ANIMATION_DURATION,
+                    locate: true,
+                });
+                break;
+            case Layout.GRID:
+                await ogma.layouts.grid({
+                    duration: this.ANIMATION_DURATION,
+                    locate: true,
+                });
+                break;
+            case Layout.RADIAL:
+                await ogma.layouts.radial({
+                    centerX: centralNode.getPosition().x,
+                    centerY: centralNode.getPosition().y,
+                    centralNode: centralNode,
+                    duration: this.ANIMATION_DURATION,
+                    locate: true,
+                    nodeGap: this.NODE_GAP,
+                    radiusDelta: this.RADIUS_DELTA,
+                    repulsion: this.REPULSION,
+                });
+                break;
+            case Layout.SEQUENTIAL:
+                await ogma.layouts.sequential({
+                    arrangeComponents: 'grid',
+                    componentDistance: this.COMPONENT_DISTANCE,
+                    direction: 'TB',
+                    duration: this.ANIMATION_DURATION,
+                    gridDistance: this.GRID_DISTANCE,
+                    levelDistance: this.LEVEL_DISTANCE,
+                    locate: true,
+                    nodeDistance: this.NODE_DISTANCE,
+                });
+                break;
+            default:
+                return;
+        }
+
+        ogma.getNodes().locate({duration: this.ANIMATION_DURATION});
+    }
 }

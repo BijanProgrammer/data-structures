@@ -1,10 +1,10 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 
-import {OgmaClassName, OgmaService} from '../../services/ogma.service';
+import {OgmaService} from '../../services/ogma.service';
 
 // @ts-ignore
 import * as Ogma from '../../../scripts/ogma.min';
-import {Layout} from '../../models/ogma';
+import {Layout, ClassName} from '../../models/ogma';
 
 @Component({
     selector: 'app-graph-visualizer',
@@ -17,6 +17,7 @@ export class GraphVisualizerComponent implements OnInit {
     @ViewChild('graphElementRef') public graphElementRef!: ElementRef;
 
     @Input() public layout: Layout = Layout.GRID;
+    @Input() public isDirected: boolean = false;
 
     private ogma: Ogma;
 
@@ -26,23 +27,32 @@ export class GraphVisualizerComponent implements OnInit {
         this.initGraph();
     }
 
+    public setGraph(nodes: any[], edges: any[]): void {
+        this.ogma.setGraph({nodes, edges});
+
+        this.ogma.getNodes().addClass(ClassName.IDLE);
+        this.ogma.getEdges().addClass(ClassName.IDLE);
+
+        this.layoutButtonClickHandler(this.layout).then();
+    }
+
     public addNodes(nodes: any[]): void {
         this.ogma.addNodes(nodes);
-        this.ogma.getNodes().addClass(OgmaClassName.IDLE);
+        this.ogma.getNodes().addClass(ClassName.IDLE);
 
         this.layoutButtonClickHandler(this.layout).then();
     }
 
     public addEdges(edges: any[]): void {
         this.ogma.addEdges(edges);
-        this.ogma.getEdges().addClass(OgmaClassName.IDLE);
+        this.ogma.getEdges().addClass(ClassName.IDLE);
 
         this.layoutButtonClickHandler(this.layout).then();
     }
 
     private initGraph(): void {
-        this.ogma = new Ogma({container: 'graph-container'});
-        this.ogmaService.attachClasses(this.ogma);
+        this.ogma = new Ogma({container: 'graph-container', options: {directedEdges: false}});
+        this.ogmaService.attachClasses(this.ogma, this.isDirected);
         this.ogmaService.setStateAttributes(this.ogma);
 
         this.ogma.tools.tooltip.onNodeHover((node: any) => {
@@ -51,29 +61,7 @@ export class GraphVisualizerComponent implements OnInit {
     }
 
     public async layoutButtonClickHandler(layout: Layout): Promise<void> {
-        switch (layout) {
-            case Layout.GRID:
-                await this.ogma.layouts.grid({
-                    duration: this.ogmaService.ANIMATION_DURATION,
-                    locate: true,
-                });
-                break;
-            case Layout.SEQUENTIAL:
-                await this.ogma.layouts.sequential({
-                    arrangeComponents: 'grid',
-                    componentDistance: this.ogmaService.COMPONENT_DISTANCE,
-                    direction: 'TB',
-                    duration: this.ogmaService.ANIMATION_DURATION,
-                    gridDistance: this.ogmaService.GRID_DISTANCE,
-                    levelDistance: this.ogmaService.LEVEL_DISTANCE,
-                    locate: true,
-                    nodeDistance: this.ogmaService.NODE_DISTANCE,
-                });
-                break;
-            default:
-                return;
-        }
-
         this.layout = layout;
+        await this.ogmaService.setLayout(this.ogma, this.layout, this.ogma.getNodes().get(0));
     }
 }

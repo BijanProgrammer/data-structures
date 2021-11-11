@@ -3,6 +3,10 @@
 
     <section class="graph-section">
         <h2 id="graph">Graph</h2>
-        <app-graph-visualizer #graphVisualizerComponent></app-graph-visualizer>
+        <app-graph-visualizer
+            [layout]="Layout.RADIAL"
+            [isDirected]="true"
+            #graphVisualizerComponent
+        ></app-graph-visualizer>
     </section>
 </div>
