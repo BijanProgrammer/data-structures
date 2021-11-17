@@ -1,25 +1,5 @@
-<div class="animation-control-panel">
-    <button class="button button--reset" [disabled]="isResetButtonDisabled" (click)="resetButtonClickHandler()">
-        reset
-    </button>
-    <button
-        class="button button--step-back"
-        [disabled]="isStepBackButtonDisabled"
-        (click)="stepBackButtonClickHandler()"
-    >
-        step back
-    </button>
-    <button class="button button--play" [disabled]="isPlayButtonDisabled" (click)="playButtonClickHandler()">
-        play
-    </button>
-    <button class="button button--pause" [disabled]="isPauseButtonDisabled" (click)="pauseButtonClickHandler()">
-        pause
-    </button>
-    <button
-        class="button button--step-forward"
-        [disabled]="isStepForwardButtonDisabled"
-        (click)="stepForwardButtonClickHandler()"
-    >
-        step forward
-    </button>
-</div>
+<app-animator
+    #animator
+    (performActions)="performActions($event)"
+    (performReverseActions)="performReverseActions($event)"
+></app-animator>

@@ -13,7 +13,7 @@
         grid-template-rows: repeat(auto-fill, minmax(var(--cell-size), 1fr));
         gap: var(--gap);
 
-        transform: translateY(calc(-1 * (var(--cell-size) + var(--gap))));
+        //transform: translateY(calc(-1 * (var(--cell-size) + var(--gap))));
 
         .cell {
             display: grid;

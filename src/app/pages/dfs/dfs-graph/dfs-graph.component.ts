@@ -2,7 +2,7 @@ import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
 
 import {GraphVisualizerComponent} from '../../../components/graph-visualizer/graph-visualizer.component';
 
-import {AnimationActionType, AnimationStep, ClassName, Layout} from 'src/app/models/ogma';
+import {OgmaAnimationActionType, OgmaAnimationStep, ClassName, Layout} from 'src/app/models/ogma';
 import {GraphAnimatorComponent} from '../../../components/graph-animator/graph-animator.component';
 import {GraphGenerator} from '../../../models/graph-generator';
 
@@ -25,7 +25,7 @@ export class DfsGraphComponent implements AfterViewInit {
     @ViewChild('graphAnimatorComponent', {read: GraphAnimatorComponent})
     public graphAnimatorComponent!: GraphAnimatorComponent;
 
-    private animationSteps: AnimationStep[] = [];
+    private animationSteps: OgmaAnimationStep[] = [];
 
     public ngAfterViewInit(): void {
         this.init();
@@ -39,7 +39,7 @@ export class DfsGraphComponent implements AfterViewInit {
         this.populateGraph();
         this.generateAnimationSteps();
 
-        this.graphAnimatorComponent.init(this.graphVisualizerComponent, this.animationSteps);
+        this.graphAnimatorComponent.init(this.animationSteps);
     }
 
     private populateGraph(): void {
@@ -88,15 +88,15 @@ export class DfsGraphComponent implements AfterViewInit {
 
     private generateAddClassNameStep(element: any, className: ClassName = ClassName.PATH): void {
         this.animationSteps.push({
-            actions: [{element, actionType: AnimationActionType.ADD_CLASS, actionData: {className}}],
+            actions: [{element, actionType: OgmaAnimationActionType.ADD_CLASS, actionData: {className}}],
         });
     }
 
     private generateRemoveClassNameStep(element: any): void {
         this.animationSteps.push({
             actions: [
-                {element, actionType: AnimationActionType.REMOVE_CLASS, actionData: {className: ClassName.PATH}},
-                {element, actionType: AnimationActionType.ADD_CLASS, actionData: {className: ClassName.DISABLED}},
+                {element, actionType: OgmaAnimationActionType.REMOVE_CLASS, actionData: {className: ClassName.PATH}},
+                {element, actionType: OgmaAnimationActionType.ADD_CLASS, actionData: {className: ClassName.DISABLED}},
             ],
         });
     }

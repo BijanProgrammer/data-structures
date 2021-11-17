@@ -1,8 +1,16 @@
 <header>
     <h2>Infix to Suffix</h2>
-    <!--    <app-graph-animator #animatorComponent></app-graph-animator>-->
+    <app-animator
+        #animator
+        (performActions)="performActions($event)"
+        (performReverseActions)="performReverseActions($event)"
+    ></app-animator>
 </header>
 
 <main>
-    <app-stack [stack]="stack"></app-stack>
+    <app-stack [stack]="stack.clone()"></app-stack>
+
+    <div>{{ stack | json }}</div>
+    <div>{{ infix | json }}</div>
+    <div>{{ suffix | json }}</div>
 </main>

@@ -35,6 +35,7 @@ import {Chapter05Component} from './pages/chapter05/chapter05.component';
 import {InfixToSuffixComponent} from './pages/chapter05/infix-to-suffix/infix-to-suffix.component';
 import {StackComponent} from './components/stack/stack.component';
 import {ReversePipe} from './pipes/reverse.pipe';
+import {AnimatorComponent} from './components/animator/animator.component';
 
 @NgModule({
     declarations: [
@@ -61,6 +62,7 @@ import {ReversePipe} from './pipes/reverse.pipe';
         InfixToSuffixComponent,
         StackComponent,
         ReversePipe,
+        AnimatorComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, FormsModule, MonacoEditorModule.forRoot(), KatexModule],
     providers: [],

@@ -1,0 +1,9 @@
+header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    app-animator {
+        margin-inline-start: auto;
+    }
+}
