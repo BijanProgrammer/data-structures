@@ -1,4 +1,6 @@
 .wrapper {
+    --cell-width: 5ch;
+    --gap: 1rem;
     --border: 0 solid var(--color--table-border);
     --border-width: 3px;
 
@@ -8,12 +10,18 @@
 
     .queue {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
-        gap: 1rem;
+        grid-template-columns: repeat(auto-fill, minmax(var(--cell-width), 1fr));
+        gap: var(--gap);
+
+        transform: translateX(calc(-1 * (var(--cell-width) + var(--gap))));
 
         .cell {
             display: flex;
             flex-direction: column;
+
+            &--hidden {
+                visibility: hidden;
+            }
 
             &__value,
             &__index {

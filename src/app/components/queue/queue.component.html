@@ -1,5 +1,10 @@
 <div class="wrapper">
     <div #queueRef class="queue" [style.--queue-size]="queue.size">
+        <div class="cell cell--hidden" [ngClass]="{rear: queue.rear === -1}">
+            <div class="cell__value">&nbsp;</div>
+            <div class="cell__index">&nbsp;</div>
+        </div>
+
         <div
             *ngFor="let cell of queue.cells; let index = index"
             class="cell"
