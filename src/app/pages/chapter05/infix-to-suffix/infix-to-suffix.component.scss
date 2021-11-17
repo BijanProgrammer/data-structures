@@ -7,3 +7,16 @@ header {
         margin-inline-start: auto;
     }
 }
+
+main {
+    display: flex;
+    gap: 2rem;
+
+    app-stack {
+        min-width: 30rem;
+    }
+
+    .expressions {
+        flex: 1;
+    }
+}

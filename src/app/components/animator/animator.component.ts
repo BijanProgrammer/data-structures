@@ -27,11 +27,11 @@ export class AnimatorComponent {
     }
 
     public get isPlayButtonDisabled(): boolean {
-        return !this.isInitialized || this.isPlaying;
+        return this.isStepForwardButtonDisabled || this.isPlaying;
     }
 
     public get isPauseButtonDisabled(): boolean {
-        return !this.isInitialized || !this.isPlaying;
+        return this.isStepForwardButtonDisabled || !this.isPlaying;
     }
 
     public get isStepForwardButtonDisabled(): boolean {

@@ -1,5 +1,4 @@
 .wrapper {
-    --stack-size: 1;
     --cell-size: 5ch;
     --gap: 1rem;
     --border: 0 solid var(--color--table-border);
@@ -9,18 +8,19 @@
 
     padding-block: 4rem;
 
-    .stack {
+    .expression {
         display: grid;
-        grid-template-rows: repeat(var(--stack-size + 1), var(--cell-size));
-        gap: var(--gap);
+        grid-template-columns: repeat(auto-fill, minmax(var(--cell-size), 1fr));
+
+        transform: translateX(calc(-1 * (var(--cell-size) + var(--gap))));
 
         .cell {
-            display: grid;
-
-            width: var(--cell-size);
-
             &--hidden {
                 visibility: hidden;
+            }
+
+            &.target {
+                color: red;
             }
 
             &__value {

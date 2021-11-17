@@ -10,7 +10,8 @@
 <main>
     <app-stack [stack]="stack.clone()"></app-stack>
 
-    <div>{{ stack | json }}</div>
-    <div>{{ infix | json }}</div>
-    <div>{{ suffix | json }}</div>
+    <div class="expressions">
+        <app-expression [expression]="infix | clone" [target]="currentIndex"></app-expression>
+        <app-expression [expression]="suffix"></app-expression>
+    </div>
 </main>

@@ -36,6 +36,10 @@ import {InfixToSuffixComponent} from './pages/chapter05/infix-to-suffix/infix-to
 import {StackComponent} from './components/stack/stack.component';
 import {ReversePipe} from './pipes/reverse.pipe';
 import {AnimatorComponent} from './components/animator/animator.component';
+import {ExpressionComponent} from './pages/chapter05/expression/expression.component';
+import {ToCharArrayPipe} from './pipes/toCharArray.pipe';
+import {SpreadArrayPipe} from './pipes/spread-array.pipe';
+import {ClonePipe} from './pipes/clone.pipe';
 
 @NgModule({
     declarations: [
@@ -63,6 +67,10 @@ import {AnimatorComponent} from './components/animator/animator.component';
         StackComponent,
         ReversePipe,
         AnimatorComponent,
+        ExpressionComponent,
+        ToCharArrayPipe,
+        SpreadArrayPipe,
+        ClonePipe,
     ],
     imports: [BrowserModule, AppRoutingModule, FormsModule, MonacoEditorModule.forRoot(), KatexModule],
     providers: [],

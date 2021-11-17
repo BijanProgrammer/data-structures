@@ -26,7 +26,6 @@ export class StackComponent implements AfterViewInit, OnChanges {
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
-        console.log(changes);
         if (!this.topPopper || !changes?.stack || changes.stack.firstChange) return;
 
         const {previousValue, currentValue} = changes.stack;

@@ -1,10 +1,10 @@
 import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
-    name: 'reverse',
+    name: 'spreadArray',
 })
-export class ReversePipe implements PipeTransform {
+export class SpreadArrayPipe implements PipeTransform {
     public transform(value: any[], ...args: unknown[]): any[] {
-        return value.reverse();
+        return [...value];
     }
 }

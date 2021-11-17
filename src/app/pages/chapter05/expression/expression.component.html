@@ -1,0 +1,17 @@
+<div class="wrapper">
+    <div #expressionRef class="expression" [style.--expression-size]="10">
+        <div class="cell cell--hidden" [ngClass]="{target: target === -1}">
+            <div class="cell__value">&nbsp;</div>
+        </div>
+
+        <div
+            *ngFor="let cell of expandedExpression; let index = index"
+            class="cell"
+            [ngClass]="{target: index === target}"
+        >
+            <div class="cell__value">{{ cell.trim() || '&nbsp;' }}</div>
+        </div>
+    </div>
+
+    <div *ngIf="target !== undefined" #targetPopperContentRef class="popper popper--target">{{ target }}</div>
+</div>

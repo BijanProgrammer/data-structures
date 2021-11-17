@@ -11,8 +11,9 @@ import {AnimationAction} from '../../../models/animator';
 export class InfixToSuffixComponent implements AfterViewInit {
     @ViewChild('animator', {read: AnimatorComponent}) private animator!: AnimatorComponent;
 
-    public stack = new Stack(10);
-    public infix: string[] = 'a.b+c'.split('');
+    public stack = new Stack(6);
+    // public infix: string[] = 'a.b+c'.split('');
+    public infix: string[] = 'a+((b-c)/d)'.split('');
     public suffix: string[] = [];
     public currentIndex: number = -1;
 
@@ -47,9 +48,9 @@ export class InfixToSuffixComponent implements AfterViewInit {
     }
 
     public performActions(actions: AnimationAction[]): void {
-        console.log(actions[0].actionType, actions[0]?.actionData?.value);
-
         (actions as StackAnimationAction[]).forEach((action) => {
+            if (action.actionType === StackAnimationActionType.PUSH_TO_SUFFIX) console.log(action.actionData.value);
+
             switch (action.actionType) {
                 case StackAnimationActionType.PUSH_TO_STACK:
                     this.stack.push(action.actionData.value);
@@ -77,11 +78,6 @@ export class InfixToSuffixComponent implements AfterViewInit {
         this.animationSteps = [];
 
         this.infixToSuffix(this.stack.clone(), [...this.infix], [...this.suffix]);
-
-        console.log('this.stack', this.stack);
-        console.log('this.infix', this.infix);
-        console.log('this.suffix', this.suffix);
-        console.log('this.animationSteps', this.animationSteps);
     }
 
     private infixToSuffix(stack: Stack, infix: string[], suffix: string[]): void {
@@ -112,7 +108,12 @@ export class InfixToSuffixComponent implements AfterViewInit {
                 continue;
             }
 
-            if (stack.isEmpty() || stack.peek() === '(' || InfixToSuffixComponent.isPrior(character, stack.peek())) {
+            if (
+                stack.isEmpty() ||
+                stack.peek() === '(' ||
+                character === '(' ||
+                InfixToSuffixComponent.isPrior(character, stack.peek())
+            ) {
                 stack.push(character);
                 this.generateStackStep(StackAnimationActionType.PUSH_TO_STACK, character);
                 continue;
@@ -127,8 +128,12 @@ export class InfixToSuffixComponent implements AfterViewInit {
             i--;
         }
 
+        this.generateMoveToIndexStep(infix.length, infix.length - 1);
+
         while (!stack.isEmpty()) {
             topOperator = stack.pop();
+            this.generateStackStep(StackAnimationActionType.POP_FROM_STACK, topOperator);
+
             suffix.push(topOperator);
             this.generateStackStep(StackAnimationActionType.PUSH_TO_SUFFIX, topOperator);
         }
