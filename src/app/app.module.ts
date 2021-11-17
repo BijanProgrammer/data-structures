@@ -31,6 +31,10 @@ import {TextParserComponent} from './components/text-parser/text-parser.componen
 import {GraphVisualizerComponent} from './components/graph-visualizer/graph-visualizer.component';
 import {GraphAnimatorComponent} from './components/graph-animator/graph-animator.component';
 import {DfsGraphComponent} from './pages/dfs/dfs-graph/dfs-graph.component';
+import {Chapter05Component} from './pages/chapter05/chapter05.component';
+import {InfixToSuffixComponent} from './pages/chapter05/infix-to-suffix/infix-to-suffix.component';
+import {StackComponent} from './components/stack/stack.component';
+import {ReversePipe} from './pipes/reverse.pipe';
 
 @NgModule({
     declarations: [
@@ -53,6 +57,10 @@ import {DfsGraphComponent} from './pages/dfs/dfs-graph/dfs-graph.component';
         RggComponent,
         GraphAnimatorComponent,
         DfsGraphComponent,
+        Chapter05Component,
+        InfixToSuffixComponent,
+        StackComponent,
+        ReversePipe,
     ],
     imports: [BrowserModule, AppRoutingModule, FormsModule, MonacoEditorModule.forRoot(), KatexModule],
     providers: [],

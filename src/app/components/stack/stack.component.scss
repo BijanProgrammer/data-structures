@@ -8,34 +8,27 @@
 
     padding-block: 4rem;
 
-    .queue {
+    .stack {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(var(--cell-size), 1fr));
+        grid-template-rows: repeat(auto-fill, minmax(var(--cell-size), 1fr));
         gap: var(--gap);
 
-        transform: translateX(calc(-1 * (var(--cell-size) + var(--gap))));
+        transform: translateY(calc(-1 * (var(--cell-size) + var(--gap))));
 
         .cell {
-            display: flex;
-            flex-direction: column;
-
+            display: grid;
+	
+	        width: var(--cell-size);
+	        
             &--hidden {
                 visibility: hidden;
             }
 
-            &__value,
-            &__index {
+            &__value {
                 border: var(--border);
+                border-width: var(--border-width);
 
                 text-align: center;
-            }
-
-            &__value {
-                border-width: var(--border-width);
-            }
-
-            &__index {
-                border-width: 0 var(--border-width) var(--border-width) var(--border-width);
             }
 
             &:hover {
@@ -52,12 +45,5 @@
         position: absolute;
 
         padding: 0.5rem 1rem;
-
-        &--front {
-        }
-
-        &--rear {
-            transform: translate(-100%, 10px);
-        }
     }
 }

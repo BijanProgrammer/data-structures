@@ -1,0 +1,17 @@
+<div class="wrapper">
+    <div #stackRef class="stack" [style.--stack-size]="stack.size">
+        <div class="cell cell--hidden" [ngClass]="{top: stack.top === -1}">
+            <div class="cell__value">&nbsp;</div>
+        </div>
+
+        <div
+            *ngFor="let cell of stack.cells | reverse; let index = index"
+            class="cell"
+            [ngClass]="{top: stack.size - 1 - index === stack.top}"
+        >
+            <div class="cell__value">{{ cell.value.toString() || '&nbsp;' }}</div>
+        </div>
+    </div>
+
+    <div #topPopperContentRef class="popper popper--top">top: {{ stack.top.toString() }}</div>
+</div>
