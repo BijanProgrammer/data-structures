@@ -206,43 +206,6 @@ export class PriorityQueue extends Queue {
     }
 }
 
-// export class PriorityQueue extends LinearQueue {
-//     public constructor(public size: number = 5, public cells: Cell[] = []) {
-//         super(size, cells);
-//
-//         this.rear = this.cells.length - 1;
-//         this.filledCellsCount = this.cells.length;
-//
-//         this.addEmptyCellsToQueueIfNeeded();
-//     }
-//
-//     public enqueue(cell: Cell): void {
-//         if (this.isFull()) throw new Error('Queue is full!');
-//
-//         if (this.rear === this.size - 1) {
-//             this.shiftToBeginning();
-//         }
-//
-//         if (this.isEmpty()) this.rear = 0;
-//         else this.rear++;
-//
-//         this.cells[this.rear] = {...cell};
-//         this.filledCellsCount++;
-//
-//         this.sort();
-//     }
-//
-//     private sort(): void {
-//         for (let i = this.rear; i > 0; i--) {
-//             if (this.cells[i].value < this.cells[i - 1].value) {
-//                 [this.cells[i], this.cells[i - 1]] = [this.cells[i - 1], this.cells[i]];
-//             } else {
-//                 break;
-//             }
-//         }
-//     }
-// }
-
 export class Cell {
     public constructor(public value: string | number = '') {}
 }
