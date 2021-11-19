@@ -1,7 +1,8 @@
 header {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-	gap: 2rem;
+    gap: 2rem;
 
     app-graph-animator {
         margin-inline-start: auto;
