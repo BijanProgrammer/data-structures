@@ -49,6 +49,8 @@ export class AnimatorComponent {
     }
 
     public async resetButtonClickHandler(): Promise<void> {
+        this.isPlaying = false;
+
         while (this.currentStep > -1) {
             this.stepBack();
         }
@@ -64,6 +66,10 @@ export class AnimatorComponent {
         while (this.isPlaying && this.currentStep + 1 < this.steps.length) {
             this.stepForward();
             await this.waitForIt();
+        }
+
+        if (this.currentStep + 1 >= this.steps.length) {
+            this.isPlaying = false;
         }
     }
 

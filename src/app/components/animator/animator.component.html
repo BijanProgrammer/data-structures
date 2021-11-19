@@ -1,25 +1,25 @@
 <div class="animation-control-panel">
     <button class="button button--reset" [disabled]="isResetButtonDisabled" (click)="resetButtonClickHandler()">
-        reset
+        <icon-reset></icon-reset>
     </button>
     <button
         class="button button--step-back"
         [disabled]="isStepBackButtonDisabled"
         (click)="stepBackButtonClickHandler()"
     >
-        step back
+        <icon-previous></icon-previous>
     </button>
     <button class="button button--play" [disabled]="isPlayButtonDisabled" (click)="playButtonClickHandler()">
-        play
+        <icon-play></icon-play>
     </button>
     <button class="button button--pause" [disabled]="isPauseButtonDisabled" (click)="pauseButtonClickHandler()">
-        pause
+        <icon-pause></icon-pause>
     </button>
     <button
         class="button button--step-forward"
         [disabled]="isStepForwardButtonDisabled"
         (click)="stepForwardButtonClickHandler()"
     >
-        step forward
+        <icon-next></icon-next>
     </button>
 </div>
