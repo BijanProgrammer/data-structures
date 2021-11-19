@@ -41,6 +41,7 @@ import {ToCharArrayPipe} from './pipes/toCharArray.pipe';
 import {SpreadArrayPipe} from './pipes/spread-array.pipe';
 import {ClonePipe} from './pipes/clone.pipe';
 import {IconsModule} from './icons/icons.module';
+import {InstanceOfPipe} from './pipes/instance-of.pipe';
 
 @NgModule({
     declarations: [
@@ -72,6 +73,7 @@ import {IconsModule} from './icons/icons.module';
         ToCharArrayPipe,
         SpreadArrayPipe,
         ClonePipe,
+        InstanceOfPipe,
     ],
     imports: [BrowserModule, AppRoutingModule, FormsModule, MonacoEditorModule.forRoot(), KatexModule, IconsModule],
     providers: [],

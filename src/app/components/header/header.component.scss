@@ -20,86 +20,110 @@ header {
             color: var(--color--header-logo-foreground--hover);
         }
     }
+}
 
-    .overlay {
-        background-color: var(--color--overlay-background);
-        color: var(--color--overlay-foreground);
-        opacity: 0;
+@media (max-width: 74.999rem) {
+    header {
+        .overlay {
+            background-color: var(--color--overlay-background);
+            color: var(--color--overlay-foreground);
+            opacity: 0;
 
-        position: fixed;
-        inset: 0;
+            position: fixed;
+            inset: 0;
 
-        transition: opacity var(--animation--duration--normal) ease-in-out;
+            transition: opacity var(--animation--duration--normal) ease-in-out;
 
-        pointer-events: none;
-    }
-
-    .hamburger {
-        background-color: var(--color--header-hamburger-background);
-        color: var(--color--header-hamburger-foreground);
-
-        z-index: 1;
-
-        display: grid;
-        place-items: center;
-
-        padding: 0.75rem;
-
-        &:hover {
-            background-color: var(--color--header-hamburger-background--hover);
-            color: var(--color--header-hamburger-foreground--hover);
+            pointer-events: none;
         }
-    }
 
-    nav {
-        position: fixed;
-        inset: 0;
+        .hamburger {
+            background-color: var(--color--header-hamburger-background);
+            color: var(--color--header-hamburger-foreground);
 
-        display: none;
-        align-items: center;
+            z-index: 1;
 
-        padding: 2rem;
+            display: grid;
+            place-items: center;
 
-        ul {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+            padding: 0.75rem;
 
-            li {
-                a {
-                    background-color: var(--color--header-nav-background--mobile);
-                    color: var(--color--header-nav-foreground--mobile);
+            font-size: 2.4rem;
 
-                    display: block;
+            &:hover {
+                background-color: var(--color--header-hamburger-background--hover);
+                color: var(--color--header-hamburger-foreground--hover);
+            }
+        }
 
-                    padding: 2rem;
+        nav {
+            position: fixed;
+            inset: 0;
+            overflow: auto;
 
-                    font-size: 2.4rem;
+            display: none;
+            align-items: flex-start;
 
-                    &:hover {
-                        background-color: var(--color--header-nav-background--hover-mobile);
-                        color: var(--color--header-nav-foreground--hover-mobile);
-                    }
+            padding: 8rem 2rem 2rem;
 
-                    &.active {
-                        background-color: var(--color--header-nav-background--active-mobile);
-                        color: var(--color--header-nav-foreground--active-mobile);
+            ul {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
 
-                        font-weight: 700;
+                li {
+                    a,
+                    &.mega .title {
+                        background-color: var(--color--header-nav-background--mobile);
+                        color: var(--color--header-nav-foreground--mobile);
+
+                        display: block;
+
+                        padding: 2rem;
+
+                        font-size: 2.4rem;
 
                         &:hover {
-                            background-color: var(--color--header-nav-background--active-hover-mobile);
-                            color: var(--color--header-nav-foreground--active-hover-mobile);
+                            background-color: var(--color--header-nav-background--hover-mobile);
+                            color: var(--color--header-nav-foreground--hover-mobile);
+                        }
+
+                        &.active {
+                            background-color: var(--color--header-nav-background--active-mobile);
+                            color: var(--color--header-nav-foreground--active-mobile);
+
+                            font-weight: 700;
+
+                            &:hover {
+                                background-color: var(--color--header-nav-background--active-hover-mobile);
+                                color: var(--color--header-nav-foreground--active-hover-mobile);
+                            }
+                        }
+                    }
+
+                    &.mega {
+                        .links {
+                            display: none;
+
+                            padding-inline-start: 4rem;
+
+                            a {
+                                padding: 1rem;
+
+                                font-size: 1.8rem;
+                            }
+                        }
+
+                        &.mega-expanded {
+                            .links {
+                                display: block;
+                            }
                         }
                     }
                 }
             }
         }
-    }
-}
 
-@media (max-width: 74.99rem) {
-    header {
         &.nav-expanded {
             color: var(--color--overlay-foreground);
 
@@ -137,28 +161,16 @@ header {
         }
 
         nav {
-            position: initial;
-
-            display: block;
-
-            padding: 0;
-
             ul {
-                flex-direction: row;
+                display: flex;
                 align-items: center;
+                gap: 1rem;
 
                 li {
-                    a {
+                    a,
+                    &.mega {
                         background-color: var(--color--header-nav-background);
                         color: var(--color--header-nav-foreground);
-
-                        display: inline;
-
-                        padding: 0.5rem 1.5rem;
-
-                        border-radius: 999rem;
-
-                        font-size: 1.6rem;
 
                         &:hover {
                             background-color: var(--color--header-nav-background--hover);
@@ -166,12 +178,67 @@ header {
                         }
 
                         &.active {
-                            background-color: var(--color--header-nav-background--active);
-                            color: var(--color--header-nav-foreground--active);
-
                             &:hover {
                                 background-color: var(--color--header-nav-background--active-hover);
                                 color: var(--color--header-nav-foreground--active-hover);
+                            }
+                        }
+                    }
+
+                    a,
+                    &.mega .title {
+                        padding: 0.5rem 1.5rem;
+
+                        border-radius: 999rem;
+
+                        font-size: 1.6rem;
+
+                        &.active {
+                            background-color: var(--color--header-nav-background--active);
+                            color: var(--color--header-nav-foreground--active);
+                        }
+                    }
+
+                    &.mega {
+                        --border-radius: 1rem;
+
+                        position: relative;
+
+                        border-radius: var(--border-radius) var(--border-radius) 0 0;
+
+                        .title {
+                            cursor: default;
+                        }
+
+                        .links {
+                            background-color: inherit;
+
+                            position: absolute;
+                            right: 0;
+                            overflow: hidden;
+
+                            display: none;
+                            flex-direction: column;
+
+                            width: max-content;
+
+                            border-radius: var(--border-radius) 0 var(--border-radius) var(--border-radius);
+
+                            a {
+                                border-radius: 0;
+
+                                &:not(.active) {
+                                    &:hover {
+                                        background-color: var(--color--header-nav-background--hover-mega);
+                                        color: var(--color--header-nav-foreground--hover-mega);
+                                    }
+                                }
+                            }
+                        }
+
+                        &:hover {
+                            .links {
+                                display: flex;
                             }
                         }
                     }

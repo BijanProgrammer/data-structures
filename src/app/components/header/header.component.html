@@ -1,6 +1,6 @@
 <header [ngClass]="{'nav-expanded': navExpanded}">
     <div class="logo">
-        <a routerLinkActive="active" routerLink="/" [routerLinkActiveOptions]="{exact: true}">Data Structures</a>
+        <a routerLink="/">Data Structures</a>
     </div>
 
     <div class="overlay"></div>
@@ -12,13 +12,41 @@
 
     <nav>
         <ul>
-            <li><a routerLinkActive="active" routerLink="/" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
-            <li><a routerLinkActive="active" routerLink="/playground">Playground</a></li>
-            <li><a routerLinkActive="active" routerLink="/chapter02">Chapter 02</a></li>
-            <li><a routerLinkActive="active" routerLink="/chapter04">Chapter 04</a></li>
-            <li><a routerLinkActive="active" routerLink="/chapter05">Chapter 05</a></li>
-            <li><a routerLinkActive="active" routerLink="/rgg">RGG</a></li>
-            <li><a routerLinkActive="active" routerLink="/dfs">DFS</a></li>
+            <ng-container *ngFor="let navigation of navigations">
+                <ng-container *ngIf="!navigation.isMega">
+                    <li>
+                        <ng-container *ngTemplateOutlet="link; context: {$implicit: navigation}"></ng-container>
+                    </li>
+                </ng-container>
+
+                <ng-container *ngIf="navigation.isMega">
+                    <li class="mega" [ngClass]="{'mega-expanded': navigation.isExpanded}">
+                        <div
+                            class="title"
+                            [ngClass]="{active: !!navigation.isActive}"
+                            (click)="navigation.isExpanded = !navigation.isExpanded"
+                        >
+                            {{ navigation.title }}
+                        </div>
+                        <div class="links">
+                            <ng-container *ngFor="let subNavigation of navigation.subNavigations">
+                                <ng-container
+                                    *ngTemplateOutlet="link; context: {$implicit: subNavigation}"
+                                ></ng-container>
+                            </ng-container>
+                        </div>
+                    </li>
+                </ng-container>
+            </ng-container>
         </ul>
     </nav>
 </header>
+
+<ng-template #link let-navigation>
+    <a
+        routerLinkActive="active"
+        [routerLink]="navigation.routerLink"
+        [routerLinkActiveOptions]="{exact: !!navigation.exact}"
+        >{{ navigation.title }}</a
+    >
+</ng-template>

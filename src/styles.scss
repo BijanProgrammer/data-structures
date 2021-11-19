@@ -62,6 +62,8 @@
     --color--header-nav-foreground: inherit;
     --color--header-nav-background--hover: hsl(var(--primary-hue), 0%, 94%);
     --color--header-nav-foreground--hover: var(--color--header-nav-foreground);
+    --color--header-nav-background--hover-mega: hsl(var(--primary-hue), 0%, 90%);
+    --color--header-nav-foreground--hover-mega: var(--color--header-nav-foreground--hover);
     --color--header-nav-background--active: var(--color--header-nav-background);
     --color--header-nav-foreground--active: var(--color--primary);
     --color--header-nav-background--active-hover: hsl(var(--primary-hue), 50%, 94%);
