@@ -2,6 +2,8 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {CloseComponent} from './close/close.component';
+import {CollapsedComponent} from './collapsed/collapsed.component';
+import {ExpandedComponent} from './expanded/expanded.component';
 import {HamburgerComponent} from './hamburger/hamburger.component';
 import {NextComponent} from './next/next.component';
 import {PauseComponent} from './pause/pause.component';
@@ -13,6 +15,8 @@ import {StopComponent} from './stop/stop.component';
 @NgModule({
     declarations: [
         CloseComponent,
+        CollapsedComponent,
+        ExpandedComponent,
         HamburgerComponent,
         NextComponent,
         PauseComponent,
@@ -24,6 +28,8 @@ import {StopComponent} from './stop/stop.component';
     imports: [CommonModule],
     exports: [
         CloseComponent,
+        CollapsedComponent,
+        ExpandedComponent,
         HamburgerComponent,
         NextComponent,
         PauseComponent,

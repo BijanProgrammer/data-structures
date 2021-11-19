@@ -5,39 +5,28 @@ section {
         padding: 1rem 2rem;
     }
 
-    h3,
-    h4 {
-        cursor: pointer;
-    }
-
     h3 {
         background-color: var(--color--outer-spoiler-headline-background);
         color: var(--color--outer-spoiler-headline-foreground);
-    }
 
-    h4 {
-        background-color: var(--color--inner-spoiler-headline-background);
-        color: var(--color--inner-spoiler-headline-foreground);
-    }
+        display: flex;
+        align-items: center;
+        gap: 1rem;
 
-    input {
-        display: none;
+        cursor: pointer;
 
-        &:not(:checked) {
-            + .spoiler {
-                display: none;
-            }
-        }
-
-        &:checked {
-            + .spoiler {
-                display: flex;
-            }
+        * {
+            font-size: 1.2em;
         }
     }
 
     .spoiler {
+        display: flex;
         flex-direction: column;
+
+        &.collapsed {
+            display: none;
+        }
     }
 
     > .spoiler {

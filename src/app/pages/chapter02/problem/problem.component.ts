@@ -10,4 +10,6 @@ export class ProblemComponent {
     @Input() public problem!: Chapter02Problem;
     @Input() public problemIndex!: number;
     @Input() public isLast!: boolean;
+
+    public checked: boolean = false;
 }

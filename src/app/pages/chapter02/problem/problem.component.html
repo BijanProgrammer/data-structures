@@ -1,10 +1,11 @@
 <section>
-    <label [for]="'problem' + (problemIndex + 1) + '-input'">
-        <h3>Problem {{ problemIndex + 1 }}</h3>
-    </label>
-    <input [id]="'problem' + (problemIndex + 1) + '-input'" type="checkbox" [checked]="isLast ? false : false" />
+    <h3 (click)="checked = !checked">
+        <icon-collapsed *ngIf="!checked"></icon-collapsed>
+        <icon-expanded *ngIf="checked"></icon-expanded>
+        Problem {{ problemIndex + 1 }}
+    </h3>
 
-    <div class="spoiler">
+    <div class="spoiler" [ngClass]="{collapsed: !checked}">
         <app-text-parser [textBlocks]="problem.solution"></app-text-parser>
     </div>
 </section>
