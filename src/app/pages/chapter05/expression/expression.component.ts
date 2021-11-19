@@ -17,7 +17,6 @@ export class ExpressionComponent implements AfterViewInit, OnChanges {
     private targetPopper!: Instance;
 
     public get expandedExpression(): string[] {
-        if (this.target === undefined) console.log(this.expression);
         return [...this.expression, ...Array(14 - this.expression.length).fill(' ')];
     }
 

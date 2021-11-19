@@ -40,6 +40,7 @@ import {ExpressionComponent} from './pages/chapter05/expression/expression.compo
 import {ToCharArrayPipe} from './pipes/toCharArray.pipe';
 import {SpreadArrayPipe} from './pipes/spread-array.pipe';
 import {ClonePipe} from './pipes/clone.pipe';
+import {IconsModule} from './icons/icons.module';
 
 @NgModule({
     declarations: [
@@ -72,7 +73,7 @@ import {ClonePipe} from './pipes/clone.pipe';
         SpreadArrayPipe,
         ClonePipe,
     ],
-    imports: [BrowserModule, AppRoutingModule, FormsModule, MonacoEditorModule.forRoot(), KatexModule],
+    imports: [BrowserModule, AppRoutingModule, FormsModule, MonacoEditorModule.forRoot(), KatexModule, IconsModule],
     providers: [],
     bootstrap: [AppComponent],
 })

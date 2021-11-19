@@ -50,6 +50,9 @@
     --color--main-background: hsl(var(--primary-hue), 18%, 12%);
     --color--main-foreground: hsl(0, 0%, 98%);
 
+    --color--overlay-background: hsla(0, 0%, 0%, 0.94);
+    --color--overlay-foreground: hsl(0, 0%, 98%);
+
     --color--header-logo-background: transparent;
     --color--header-logo-foreground: inherit;
     --color--header-logo-background--hover: transparent;
@@ -63,6 +66,24 @@
     --color--header-nav-foreground--active: var(--color--primary);
     --color--header-nav-background--active-hover: hsl(var(--primary-hue), 50%, 94%);
     --color--header-nav-foreground--active-hover: var(--color--header-nav-foreground--active);
+
+    --color--header-nav-background--mobile: transparent;
+    --color--header-nav-foreground--mobile: inherit;
+    --color--header-nav-background--hover-mobile: hsl(var(--primary-hue), 0%, 16%);
+    --color--header-nav-foreground--hover-mobile: var(--color--header-nav-foreground);
+    --color--header-nav-background--active-mobile: var(--color--header-nav-background);
+    --color--header-nav-foreground--active-mobile: var(--color--primary);
+    --color--header-nav-background--active-hover-mobile: hsl(var(--primary-hue), 20%, 16%);
+    --color--header-nav-foreground--active-hover-mobile: var(--color--header-nav-foreground--active);
+
+    --color--header-hamburger-background: var(--color--header-nav-background);
+    --color--header-hamburger-foreground: var(--color--header-nav-foreground);
+    --color--header-hamburger-background--hover: var(--color--header-nav-background--hover);
+    --color--header-hamburger-foreground--hover: var(--color--header-nav-foreground--hover);
+    --color--header-hamburger-background--expanded: var(--color--header-nav-background--mobile);
+    --color--header-hamburger-foreground--expanded: var(--color--header-nav-foreground--mobile);
+    --color--header-hamburger-background--expanded-hover: var(--color--header-nav-background--hover-mobile);
+    --color--header-hamburger-foreground--expanded-hover: var(--color--header-nav-foreground--hover-mobile);
 
     --color--footer-background: hsl(var(--primary-hue), 18%, 16%);
     --color--footer-foreground: hsl(0, 0%, 98%);
@@ -110,6 +131,10 @@
 
     --full-width: 120rem;
     --full-width-padding-inline: calc(max(100% - var(--full-width), 4rem) / 2);
+
+    --animation--duration--fast: 0.1s;
+    --animation--duration--normal: 0.5s;
+    --animation--duration--slow: 1s;
 }
 
 // RESET
@@ -155,6 +180,12 @@ button {
         background-color: var(--color--button-disabled-background) !important;
         color: var(--color--button-disabled-foreground) !important;
     }
+}
+
+svg {
+    fill: currentColor !important;
+
+    display: block;
 }
 
 // MAIN

@@ -49,8 +49,6 @@ export class InfixToSuffixComponent implements AfterViewInit {
 
     public performActions(actions: AnimationAction[]): void {
         (actions as StackAnimationAction[]).forEach((action) => {
-            if (action.actionType === StackAnimationActionType.PUSH_TO_SUFFIX) console.log(action.actionData.value);
-
             switch (action.actionType) {
                 case StackAnimationActionType.PUSH_TO_STACK:
                     this.stack.push(action.actionData.value);

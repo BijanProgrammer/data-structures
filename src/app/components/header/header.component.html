@@ -1,7 +1,15 @@
-<header>
+<header [ngClass]="{'nav-expanded': navExpanded}">
     <div class="logo">
         <a routerLinkActive="active" routerLink="/" [routerLinkActiveOptions]="{exact: true}">Data Structures</a>
     </div>
+
+    <div class="overlay"></div>
+
+    <button class="hamburger" (click)="navExpanded = !navExpanded">
+        <icon-hamburger *ngIf="!navExpanded"></icon-hamburger>
+        <icon-close *ngIf="navExpanded"></icon-close>
+    </button>
+
     <nav>
         <ul>
             <li><a routerLinkActive="active" routerLink="/" [routerLinkActiveOptions]="{exact: true}">Home</a></li>

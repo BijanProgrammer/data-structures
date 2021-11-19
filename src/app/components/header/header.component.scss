@@ -1,4 +1,7 @@
 header {
+    position: relative;
+    z-index: 1;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -18,37 +21,158 @@ header {
         }
     }
 
+    .overlay {
+        background-color: var(--color--overlay-background);
+        color: var(--color--overlay-foreground);
+        opacity: 0;
+
+        position: fixed;
+        inset: 0;
+
+        transition: opacity var(--animation--duration--normal) ease-in-out;
+
+        pointer-events: none;
+    }
+
+    .hamburger {
+        background-color: var(--color--header-hamburger-background);
+        color: var(--color--header-hamburger-foreground);
+
+        z-index: 1;
+
+        display: grid;
+        place-items: center;
+
+        padding: 0.75rem;
+
+        &:hover {
+            background-color: var(--color--header-hamburger-background--hover);
+            color: var(--color--header-hamburger-foreground--hover);
+        }
+    }
+
     nav {
+        position: fixed;
+        inset: 0;
+
+        display: none;
+        align-items: center;
+
+        padding: 2rem;
+
         ul {
             display: flex;
-            align-items: center;
+            flex-direction: column;
             gap: 1rem;
 
             li {
                 a {
-                    background-color: var(--color--header-nav-background);
-                    color: var(--color--header-nav-foreground);
+                    background-color: var(--color--header-nav-background--mobile);
+                    color: var(--color--header-nav-foreground--mobile);
 
-                    padding: 0.5rem 1.5rem;
+                    display: block;
 
-                    border-radius: 999rem;
+                    padding: 2rem;
 
-                    font-size: 1.6rem;
+                    font-size: 2.4rem;
 
                     &:hover {
-                        background-color: var(--color--header-nav-background--hover);
-                        color: var(--color--header-nav-foreground--hover);
+                        background-color: var(--color--header-nav-background--hover-mobile);
+                        color: var(--color--header-nav-foreground--hover-mobile);
                     }
 
                     &.active {
-                        background-color: var(--color--header-nav-background--active);
-                        color: var(--color--header-nav-foreground--active);
+                        background-color: var(--color--header-nav-background--active-mobile);
+                        color: var(--color--header-nav-foreground--active-mobile);
 
                         font-weight: 700;
 
                         &:hover {
-                            background-color: var(--color--header-nav-background--active-hover);
-                            color: var(--color--header-nav-foreground--active-hover);
+                            background-color: var(--color--header-nav-background--active-hover-mobile);
+                            color: var(--color--header-nav-foreground--active-hover-mobile);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 74.99rem) {
+    header {
+        &.nav-expanded {
+            color: var(--color--overlay-foreground);
+
+            .hamburger {
+                background-color: var(--color--header-hamburger-background--expanded);
+                color: var(--color--header-hamburger-foreground--expanded);
+
+                &:hover {
+                    background-color: var(--color--header-hamburger-background--expanded-hover);
+                    color: var(--color--header-hamburger-foreground--expanded-hover);
+                }
+            }
+
+            .overlay {
+                opacity: 1;
+
+                pointer-events: auto;
+            }
+
+            nav {
+                display: grid;
+            }
+        }
+    }
+}
+
+@media (min-width: 75rem) {
+    header {
+        .hamburger {
+            display: none;
+        }
+
+        .overlay {
+            display: none;
+        }
+
+        nav {
+            position: initial;
+
+            display: block;
+
+            padding: 0;
+
+            ul {
+                flex-direction: row;
+                align-items: center;
+
+                li {
+                    a {
+                        background-color: var(--color--header-nav-background);
+                        color: var(--color--header-nav-foreground);
+
+                        display: inline;
+
+                        padding: 0.5rem 1.5rem;
+
+                        border-radius: 999rem;
+
+                        font-size: 1.6rem;
+
+                        &:hover {
+                            background-color: var(--color--header-nav-background--hover);
+                            color: var(--color--header-nav-foreground--hover);
+                        }
+
+                        &.active {
+                            background-color: var(--color--header-nav-background--active);
+                            color: var(--color--header-nav-foreground--active);
+
+                            &:hover {
+                                background-color: var(--color--header-nav-background--active-hover);
+                                color: var(--color--header-nav-foreground--active-hover);
+                            }
                         }
                     }
                 }
