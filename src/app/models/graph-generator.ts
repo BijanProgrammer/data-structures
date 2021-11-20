@@ -32,7 +32,8 @@ export class SimpleDfsGraphGenerator extends GraphGenerator {
     ];
 
     public generateGraph(): {nodes: any[]; edges: any[]} {
-        return {nodes: SimpleDfsGraphGenerator.NODES, edges: SimpleDfsGraphGenerator.EDGES};
+        const graph = {nodes: SimpleDfsGraphGenerator.NODES, edges: SimpleDfsGraphGenerator.EDGES};
+        return JSON.parse(JSON.stringify(graph));
     }
 }
 
@@ -48,7 +49,7 @@ export class RandomGraphGenerator extends GraphGenerator {
         const nodes: any[] = RandomGraphGenerator.generateNodes(nodesCount);
         const edges: any[] = RandomGraphGenerator.generateEdges(nodesCount, edgesCount);
 
-        return {nodes, edges};
+        return JSON.parse(JSON.stringify({nodes, edges}));
     }
 
     private static generateNodes(nodesCount: number): any[] {

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, ViewChild} from '@angular/core';
 
 import {GraphVisualizerComponent} from '../../../components/graph-visualizer/graph-visualizer.component';
 
@@ -19,13 +19,21 @@ export class DfsGraphComponent implements AfterViewInit {
     @Input() public graphGenerator!: GraphGenerator;
     @Input() public isRegenerationEnabled: boolean = false;
 
-    @ViewChild('graphVisualizerComponent', {read: GraphVisualizerComponent})
-    public graphVisualizerComponent!: GraphVisualizerComponent;
-
     @ViewChild('graphAnimatorComponent', {read: GraphAnimatorComponent})
     public graphAnimatorComponent!: GraphAnimatorComponent;
 
+    @ViewChild('graphVisualizerComponent', {read: GraphVisualizerComponent})
+    public graphVisualizerComponent!: GraphVisualizerComponent;
+
+    @ViewChild('startNodeInput') public startNodeInput!: ElementRef<HTMLInputElement>;
+    @ViewChild('targetNodeInput') public targetNodeInput!: ElementRef<HTMLInputElement>;
+
+    public nodes!: any;
+    public edges!: any;
+
     private animationSteps: OgmaAnimationStep[] = [];
+
+    public constructor(private changeDetectorRef: ChangeDetectorRef) {}
 
     public ngAfterViewInit(): void {
         this.init();
@@ -35,23 +43,50 @@ export class DfsGraphComponent implements AfterViewInit {
         this.init();
     }
 
+    public formSubmitHandler(event: Event): void {
+        event.preventDefault();
+        this.initAnimation();
+    }
+
+    private get startNodeIndex(): number {
+        return +this.startNodeInput.nativeElement.value || 1;
+    }
+
+    private get targetNodeIndex(): number {
+        return +this.targetNodeInput.nativeElement.value || 1;
+    }
+
     private init(): void {
         this.populateGraph();
-        this.generateAnimationSteps();
-
-        this.graphAnimatorComponent.init(this.animationSteps);
+        this.initAnimation();
     }
 
     private populateGraph(): void {
         const {nodes, edges} = this.graphGenerator.generateGraph(this.graphVisualizerComponent);
+
         this.graphVisualizerComponent.setGraph(nodes, edges);
+        this.nodes = this.graphVisualizerComponent.getNodes();
+        this.edges = this.graphVisualizerComponent.getEdges();
+
+        this.changeDetectorRef.detectChanges();
+    }
+
+    private initAnimation(): void {
+        this.resetNodesAndEdges();
+        this.generateAnimationSteps();
+        this.graphAnimatorComponent.init(this.animationSteps);
+    }
+
+    private resetNodesAndEdges(): void {
+        this.nodes.setData('visited', () => false);
+        this.edges.setData('visited', () => false);
     }
 
     private generateAnimationSteps(): void {
         this.animationSteps = [];
 
-        const startNode: any = this.graphVisualizerComponent.getNode(1);
-        const targetNode: any = this.graphVisualizerComponent.getNode(5);
+        const startNode: any = this.graphVisualizerComponent.getNode(this.startNodeIndex);
+        const targetNode: any = this.graphVisualizerComponent.getNode(this.targetNodeIndex);
 
         this.dfs(startNode, targetNode);
     }

@@ -28,8 +28,20 @@ export class GraphVisualizerComponent implements AfterViewInit {
         this.initGraph();
     }
 
+    public getNodes(selector?: any): any {
+        return this.ogma.getNodes(selector);
+    }
+
     public getNode(nodeId: any): any {
         return this.ogma.getNode(nodeId);
+    }
+
+    public getEdges(selector?: any): any {
+        return this.ogma.getEdges(selector);
+    }
+
+    public getEdge(edgeId: any): any {
+        return this.ogma.getEdge(edgeId);
     }
 
     public setGraph(nodes: any[], edges: any[]): void {
