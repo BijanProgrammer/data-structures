@@ -1,4 +1,4 @@
-import {Component, AfterViewInit, ViewChild} from '@angular/core';
+import {Component, AfterViewInit, ViewChild, ElementRef} from '@angular/core';
 
 import {GraphVisualizerComponent} from '../../components/graph-visualizer/graph-visualizer.component';
 
@@ -16,6 +16,8 @@ export class RggComponent implements AfterViewInit {
     @ViewChild('graphVisualizerComponent', {read: GraphVisualizerComponent})
     public graphVisualizerComponent!: GraphVisualizerComponent;
 
+    @ViewChild('fileInput') public fileInput!: ElementRef<HTMLInputElement>;
+
     private graphGenerator: GraphGenerator = new RandomGraphGenerator();
 
     public ngAfterViewInit(): void {
@@ -24,6 +26,25 @@ export class RggComponent implements AfterViewInit {
 
     public regenerateButtonClickHandler(): void {
         this.populateGraph();
+    }
+
+    public async downloadButtonClickHandler(): Promise<void> {
+        await this.graphVisualizerComponent.exportJson();
+    }
+
+    public uploadButtonClickHandler(): void {
+        this.fileInput.nativeElement.click();
+    }
+
+    public fileInputChangeHandler(): void {
+        const {files} = this.fileInput.nativeElement;
+        if (!files || files.length === 0) return;
+
+        const reader = new FileReader();
+        reader.onload = async (e): Promise<void> => {
+            await this.graphVisualizerComponent.importJson(e.target?.result);
+        };
+        reader.readAsText(files[0], 'UTF-8');
     }
 
     private populateGraph(): void {

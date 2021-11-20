@@ -33,11 +33,11 @@
     --color--secondary-opposite: hsl(0, 0%, 98%);
 
     --color--warning: hsl(var(--warning-hue), 100%, 40%);
-    --color--warning-fade: hsl(var(--warning-hue), 100%, 40%);
+    --color--warning-fade: hsl(var(--warning-hue), 100%, 90%);
     --color--warning-opposite: hsl(0, 0%, 98%);
 
     --color--success: hsl(var(--success-hue), 100%, 40%);
-    --color--success-fade: hsl(var(--success-hue), 100%, 40%);
+    --color--success-fade: hsl(var(--success-hue), 100%, 92%);
     --color--success-opposite: hsl(0, 0%, 98%);
 
     --color--danger: hsl(var(--danger-hue), 100%, 30%);
@@ -116,9 +116,6 @@
     --color--command-palette-reset-button-background: var(--color--danger);
     --color--command-palette-reset-button-foreground: var(--color--danger-opposite);
 
-    --color--graph-regenerate-button-background: var(--color--danger-fade);
-    --color--graph-regenerate-button-foreground: var(--color--danger);
-
     --color--animation-control-panel-reset-button-background: var(--color--danger);
     --color--animation-control-panel-reset-button-foreground: var(--color--danger-opposite);
     --color--animation-control-panel-step-back-button-background: var(--color--secondary);
@@ -186,6 +183,12 @@ button {
     }
 }
 
+input {
+    &[type='file'] {
+        display: none;
+    }
+}
+
 svg {
     fill: currentColor !important;
 
@@ -242,7 +245,7 @@ form {
     &.vertical {
         display: flex;
         flex-direction: column;
-	    align-items: flex-start;
+        align-items: flex-start;
         gap: var(--gap);
 
         width: max-content;
@@ -256,10 +259,24 @@ form {
 }
 
 .button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
     font-weight: 700;
 
     &--regenerate {
-        background-color: var(--color--graph-regenerate-button-background);
-        color: var(--color--graph-regenerate-button-foreground);
+        background-color: var(--color--danger-fade);
+        color: var(--color--danger);
+    }
+
+    &--download {
+        background-color: var(--color--success-fade);
+        color: var(--color--success);
+    }
+
+    &--upload {
+        background-color: var(--color--warning-fade);
+        color: var(--color--warning);
     }
 }

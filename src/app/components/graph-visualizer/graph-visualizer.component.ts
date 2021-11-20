@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/core';
 
 import {OgmaService} from '../../services/ogma.service';
 
@@ -26,7 +26,7 @@ export class GraphVisualizerComponent implements AfterViewInit {
 
     private ogma: Ogma;
 
-    public constructor(public ogmaService: OgmaService, private changeDetectorRef: ChangeDetectorRef) {}
+    public constructor(public ogmaService: OgmaService) {}
 
     public ngAfterViewInit(): void {
         this.initGraph();
@@ -101,6 +101,17 @@ export class GraphVisualizerComponent implements AfterViewInit {
 
         if (this.isSnappingEnabled) this.ogma.tools.snapping.enable({tolerance: 100});
         else this.ogma.tools.snapping.disable();
+    }
+
+    public async exportJson(): Promise<string> {
+        return await this.ogma.export.json();
+    }
+
+    public async importJson(content: string | ArrayBuffer | null | undefined): Promise<void> {
+        if (!content) return;
+
+        const graph = await this.ogma.parse.json(content);
+        this.setGraph(graph.nodes, graph.edges);
     }
 
     private initGraph(): void {

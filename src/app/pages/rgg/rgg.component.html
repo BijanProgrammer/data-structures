@@ -4,7 +4,19 @@
     <section id="graph-section">
         <header>
             <h2>Graph</h2>
-            <button class="button button--regenerate" (click)="regenerateButtonClickHandler()">regenerate</button>
+            <button class="button button--regenerate" (click)="regenerateButtonClickHandler()">
+                regenerate
+                <icon-shuffle></icon-shuffle>
+            </button>
+
+            <button class="button button--download" (click)="downloadButtonClickHandler()">
+                download
+                <icon-download></icon-download>
+            </button>
+            <button class="button button--upload" (click)="uploadButtonClickHandler()">
+                upload
+                <icon-upload></icon-upload>
+            </button>
         </header>
 
         <app-graph-visualizer
@@ -14,3 +26,5 @@
         ></app-graph-visualizer>
     </section>
 </div>
+
+<input #fileInput type="file" accept=".json" (change)="fileInputChangeHandler()" />

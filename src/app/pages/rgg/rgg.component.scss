@@ -3,5 +3,11 @@
         display: flex;
         align-items: center;
         gap: 2rem;
+	    
+	    .button {
+		    &--download {
+			    margin-inline-start: auto;
+		    }
+	    }
     }
 }
