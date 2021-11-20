@@ -19,7 +19,7 @@
 // VARIABLES
 :root {
     --primary-hue: 220;
-    --secondary-hue: 180;
+    --secondary-hue: 260;
     --success-hue: 120;
     --warning-hue: 20;
     --danger-hue: 0;
@@ -29,7 +29,7 @@
     --color--primary-opposite: hsl(0, 0%, 98%);
 
     --color--secondary: hsl(var(--secondary-hue), 50%, 50%);
-    --color--secondary-fade: hsl(var(--secondary-hue), 50%, 50%);
+    --color--secondary-fade: hsl(var(--secondary-hue), 100%, 90%);
     --color--secondary-opposite: hsl(0, 0%, 98%);
 
     --color--warning: hsl(var(--warning-hue), 100%, 40%);

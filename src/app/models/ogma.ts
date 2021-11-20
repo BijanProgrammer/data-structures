@@ -8,6 +8,12 @@ export enum Layout {
     SEQUENTIAL,
 }
 
+export enum Selector {
+    DEFAULT,
+    RECTANGLE,
+    LASSO,
+}
+
 export enum ClassName {
     IDLE = 'IDLE',
     PATH = 'PATH',

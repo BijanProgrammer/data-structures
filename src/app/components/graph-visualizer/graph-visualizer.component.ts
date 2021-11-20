@@ -1,10 +1,10 @@
-import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, ViewChild} from '@angular/core';
 
 import {OgmaService} from '../../services/ogma.service';
 
 // @ts-ignore
 import * as Ogma from '../../../scripts/ogma.min';
-import {ClassName, Layout} from '../../models/ogma';
+import {ClassName, Layout, Selector} from '../../models/ogma';
 
 @Component({
     selector: 'app-graph-visualizer',
@@ -13,6 +13,7 @@ import {ClassName, Layout} from '../../models/ogma';
 })
 export class GraphVisualizerComponent implements AfterViewInit {
     public Layout = Layout;
+    public Selector = Selector;
 
     @ViewChild('graphElementRef') public graphElementRef!: ElementRef;
 
@@ -20,9 +21,12 @@ export class GraphVisualizerComponent implements AfterViewInit {
     @Input() public layout: Layout = Layout.GRID;
     @Input() public isDirected: boolean = false;
 
+    public selector: Selector = Selector.DEFAULT;
+    public isSnappingEnabled = false;
+
     private ogma: Ogma;
 
-    public constructor(public ogmaService: OgmaService) {}
+    public constructor(public ogmaService: OgmaService, private changeDetectorRef: ChangeDetectorRef) {}
 
     public ngAfterViewInit(): void {
         this.initGraph();
@@ -50,21 +54,53 @@ export class GraphVisualizerComponent implements AfterViewInit {
         this.ogma.getNodes().addClass(ClassName.IDLE);
         this.ogma.getEdges().addClass(ClassName.IDLE);
 
-        this.layoutButtonClickHandler(this.layout).then();
+        this.setLayout(this.layout).then();
     }
 
     public addNodes(nodes: any[]): void {
         this.ogma.addNodes(nodes);
         this.ogma.getNodes().addClass(ClassName.IDLE);
 
-        this.layoutButtonClickHandler(this.layout).then();
+        this.setLayout(this.layout).then();
     }
 
     public addEdges(edges: any[]): void {
         this.ogma.addEdges(edges);
         this.ogma.getEdges().addClass(ClassName.IDLE);
 
-        this.layoutButtonClickHandler(this.layout).then();
+        this.setLayout(this.layout).then();
+    }
+
+    public async layoutButtonClickHandler(layout: Layout): Promise<void> {
+        if (this.layout === layout) return;
+
+        await this.setLayout(layout);
+    }
+
+    public selectorButtonClickHandler(selector: Selector): void {
+        if (this.selector === selector) return;
+
+        this.selector = selector;
+
+        switch (selector) {
+            case Selector.DEFAULT:
+                this.ogma.tools.rectangleSelect.disable();
+                this.ogma.tools.lasso.disable();
+                break;
+            case Selector.RECTANGLE:
+                this.ogma.tools.rectangleSelect.enable({callback: this.selectorCallback.bind(this)});
+                break;
+            case Selector.LASSO:
+                this.ogma.tools.lasso.enable({callback: this.selectorCallback.bind(this)});
+                break;
+        }
+    }
+
+    public snappingButtonClickHandler(): void {
+        this.isSnappingEnabled = !this.isSnappingEnabled;
+
+        if (this.isSnappingEnabled) this.ogma.tools.snapping.enable({tolerance: 100});
+        else this.ogma.tools.snapping.disable();
     }
 
     private initGraph(): void {
@@ -85,8 +121,15 @@ export class GraphVisualizerComponent implements AfterViewInit {
         // });
     }
 
-    public async layoutButtonClickHandler(layout: Layout): Promise<void> {
+    private async setLayout(layout: Layout): Promise<void> {
         this.layout = layout;
         await this.ogmaService.setLayout(this.ogma, this.layout, this.ogma.getNodes().get(0));
+    }
+
+    private selectorCallback({nodes, edges}: {nodes: any; edges: any}): void {
+        nodes.setSelected(true);
+        edges.setSelected(true);
+
+        this.selector = Selector.DEFAULT;
     }
 }

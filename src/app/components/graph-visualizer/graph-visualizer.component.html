@@ -20,5 +20,34 @@
                 sequential
             </button>
         </div>
+
+        <div class="button-group">
+            <span class="title">Selector: </span>
+            <button
+                [ngClass]="{active: selector === Selector.DEFAULT}"
+                (click)="selectorButtonClickHandler(Selector.DEFAULT)"
+            >
+                default
+            </button>
+            <button
+                [ngClass]="{active: selector === Selector.RECTANGLE}"
+                (click)="selectorButtonClickHandler(Selector.RECTANGLE)"
+            >
+                rectangle
+            </button>
+            <button
+                [ngClass]="{active: selector === Selector.LASSO}"
+                (click)="selectorButtonClickHandler(Selector.LASSO)"
+            >
+                lasso
+            </button>
+        </div>
+
+        <div class="button-group">
+            <span class="title">Snapping: </span>
+            <button [ngClass]="{active: isSnappingEnabled}" (click)="snappingButtonClickHandler()">
+                {{ isSnappingEnabled ? 'enabled' : 'disabled' }}
+            </button>
+        </div>
     </div>
 </div>

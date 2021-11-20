@@ -8,8 +8,10 @@ import {Layout, ClassName} from '../models/ogma';
     providedIn: 'root',
 })
 export class OgmaService {
-    private readonly COLOR_IDLE: string = '#3377ff';
-    private readonly COLOR_PATH: string = '#cc4400';
+    private readonly COLOR_PRIMARY: string = '#3377ff';
+    private readonly COLOR_SECONDARY: string = '#6a40bf';
+    private readonly COLOR_SUCCESS: string = '#00cc00';
+    private readonly COLOR_WARNING: string = '#cc4400';
     private readonly COLOR_LIGHT: string = '#fafafa';
     private readonly COLOR_DARK: string = '#1a1a1a';
     private readonly COLOR_DISABLED: string = '#b3b3b3';
@@ -35,10 +37,39 @@ export class OgmaService {
         scaling: true,
     };
 
+    private readonly HOVERED_NODE_ATTRIBUTES = {
+        outline: false,
+        outerStroke: {
+            color: this.COLOR_PRIMARY,
+        },
+        text: {
+            backgroundColor: null,
+        },
+    };
+
+    private readonly SELECTED_NODE_ATTRIBUTES = {
+        color: this.COLOR_SECONDARY,
+        outline: false,
+        outerStroke: {
+            color: this.COLOR_SECONDARY,
+        },
+        text: {
+            backgroundColor: null,
+        },
+    };
+
+    private readonly HOVERED_EDGE_ATTRIBUTES = {
+        color: this.COLOR_PRIMARY,
+    };
+
+    private readonly SELECTED_EDGE_ATTRIBUTES = {
+        color: this.COLOR_SECONDARY,
+    };
+
     public attachClasses(ogma: Ogma, isDirected: boolean): void {
         ogma.styles.createClass({
             name: ClassName.IDLE,
-            nodeAttributes: {color: this.COLOR_IDLE, radius: 24, shape: 'circle', text: this.DEFAULT_ATTRIBUTE_TEXT},
+            nodeAttributes: {color: this.COLOR_PRIMARY, radius: 24, shape: 'circle', text: this.DEFAULT_ATTRIBUTE_TEXT},
             edgeAttributes: {
                 color: this.COLOR_DARK,
                 shape: isDirected ? 'arrow' : 'line',
@@ -48,9 +79,9 @@ export class OgmaService {
 
         ogma.styles.createClass({
             name: ClassName.PATH,
-            nodeAttributes: {color: this.COLOR_PATH},
+            nodeAttributes: {color: this.COLOR_WARNING},
             edgeAttributes: {
-                color: this.COLOR_PATH,
+                color: this.COLOR_WARNING,
                 width: 5,
             },
         });
@@ -63,25 +94,11 @@ export class OgmaService {
     }
 
     public setStateAttributes(ogma: Ogma): void {
-        const nodeAttributes = {
-            outline: false,
-            outerStroke: {
-                color: this.COLOR_IDLE,
-            },
-            text: {
-                backgroundColor: null,
-            },
-        };
+        ogma.styles.setHoveredNodeAttributes(this.HOVERED_NODE_ATTRIBUTES);
+        ogma.styles.setHoveredEdgeAttributes(this.HOVERED_EDGE_ATTRIBUTES);
 
-        const edgeAttributes = {
-            color: this.COLOR_IDLE,
-        };
-
-        ogma.styles.setHoveredNodeAttributes(nodeAttributes);
-        ogma.styles.setHoveredEdgeAttributes(edgeAttributes);
-
-        ogma.styles.setSelectedNodeAttributes(nodeAttributes);
-        ogma.styles.setSelectedEdgeAttributes(edgeAttributes);
+        ogma.styles.setSelectedNodeAttributes(this.SELECTED_NODE_ATTRIBUTES);
+        ogma.styles.setSelectedEdgeAttributes(this.SELECTED_EDGE_ATTRIBUTES);
     }
 
     public async setLayout(ogma: Ogma, layout: Layout, centralNode?: any): Promise<void> {
