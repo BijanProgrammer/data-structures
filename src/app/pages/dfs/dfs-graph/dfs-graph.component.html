@@ -1,28 +1,34 @@
-<header>
-    <h2>{{ title }}</h2>
-    <button *ngIf="isRegenerationEnabled" class="button button--regenerate" (click)="regenerateButtonClickHandler()">
-        regenerate
-    </button>
-    <app-graph-animator #graphAnimatorComponent></app-graph-animator>
-</header>
+<div class="wrapper">
+    <header>
+        <h2>{{ graphTitle }}</h2>
+        <button
+            *ngIf="isRegenerationEnabled"
+            class="button button--regenerate"
+            (click)="regenerateButtonClickHandler()"
+        >
+            regenerate
+        </button>
+        <app-graph-animator #graphAnimatorComponent></app-graph-animator>
+    </header>
 
-<form (submit)="formSubmitHandler($event)">
-    <label>
-        Start Node
-        <input #startNodeInput type="number" value="1" min="1" [max]="nodes?.size" />
-    </label>
+    <form class="horizontal" (submit)="formSubmitHandler($event)">
+        <label>
+            Start Node
+            <input #startNodeInput type="number" value="1" min="1" [max]="nodes?.size" />
+        </label>
 
-    <label>
-        Target Node
-        <input #targetNodeInput type="number" value="5" min="1" [max]="nodes?.size" />
-    </label>
+        <label>
+            Target Node
+            <input #targetNodeInput type="number" value="5" min="1" [max]="nodes?.size" />
+        </label>
 
-    <button type="submit">Initialize Animation</button>
-</form>
+        <button type="submit">Initialize Animation</button>
+    </form>
 
-<app-graph-visualizer
-    #graphVisualizerComponent
-    [graphId]="graphId"
-    [layout]="Layout.RADIAL"
-    [isDirected]="true"
-></app-graph-visualizer>
+    <app-graph-visualizer
+        #graphVisualizerComponent
+        [graphId]="graphId"
+        [layout]="Layout.RADIAL"
+        [isDirected]="true"
+    ></app-graph-visualizer>
+</div>

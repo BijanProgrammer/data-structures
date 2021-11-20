@@ -1,9 +1,10 @@
 .wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-
-    padding-block: 2rem;
+    --gap: 2rem;
+    --padding-block: 2rem;
+	
+	.graph-container:focus-within {
+        outline: 0.5rem solid var(--color--primary);
+    }
 
     .graph-container {
         min-height: 60rem;

@@ -90,6 +90,8 @@
     --color--footer-background: hsl(var(--primary-hue), 18%, 16%);
     --color--footer-foreground: hsl(0, 0%, 98%);
 
+    --color--input-border: hsl(0, 0%, 80%);
+
     --color--button-disabled-background: hsl(0, 0%, 70%);
     --color--button-disabled-foreground: hsl(0, 0%, 10%);
 
@@ -203,6 +205,54 @@ body {
     padding-inline: var(--full-width-padding-inline);
 
     font-size: 1.6rem;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap, 4rem);
+
+    padding-block: var(--padding-block, 4rem);
+}
+
+form {
+    --gap: 1.2rem;
+
+    label {
+        display: flex;
+        flex-direction: column;
+
+        min-width: 23ch;
+
+        input {
+            padding: 0.5rem;
+
+            border: 1px solid var(--color--input-border);
+            border-radius: 0.3rem;
+        }
+    }
+
+    button {
+        &[type='submit'] {
+            background-color: var(--color--success);
+            color: var(--color--success-opposite);
+        }
+    }
+
+    &.vertical {
+        display: flex;
+        flex-direction: column;
+	    align-items: flex-start;
+        gap: var(--gap);
+
+        width: max-content;
+    }
+
+    &.horizontal {
+        display: flex;
+        align-items: flex-end;
+        gap: var(--gap);
+    }
 }
 
 .button {

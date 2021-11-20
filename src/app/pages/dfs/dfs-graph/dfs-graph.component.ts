@@ -15,7 +15,7 @@ export class DfsGraphComponent implements AfterViewInit {
     public Layout = Layout;
 
     @Input() public graphId: string = 'graph-container';
-    @Input() public title: string = 'Graph';
+    @Input() public graphTitle: string = 'Graph';
     @Input() public graphGenerator!: GraphGenerator;
     @Input() public isRegenerationEnabled: boolean = false;
 
@@ -80,6 +80,11 @@ export class DfsGraphComponent implements AfterViewInit {
     private resetNodesAndEdges(): void {
         this.nodes.setData('visited', () => false);
         this.edges.setData('visited', () => false);
+
+        [...this.nodes.toArray(), ...this.edges.toArray()].forEach((element) => {
+            element.removeClasses(element.getClassList());
+            element.addClass(ClassName.IDLE);
+        });
     }
 
     private generateAnimationSteps(): void {

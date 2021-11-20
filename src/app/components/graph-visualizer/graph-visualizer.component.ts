@@ -68,7 +68,14 @@ export class GraphVisualizerComponent implements AfterViewInit {
     }
 
     private initGraph(): void {
-        this.ogma = new Ogma({container: this.graphId, options: {directedEdges: false}});
+        this.ogma = new Ogma({
+            container: this.graphId,
+            options: {
+                directedEdges: false,
+                interactions: {zoom: {modifier: 1.5, onDoubleClick: true}},
+            },
+        });
+
         this.ogmaService.attachClasses(this.ogma, this.isDirected);
         this.ogmaService.setStateAttributes(this.ogma);
 
