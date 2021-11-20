@@ -237,8 +237,8 @@ form {
 
     button {
         &[type='submit'] {
-            background-color: var(--color--success);
-            color: var(--color--success-opposite);
+            background-color: var(--color--primary);
+            color: var(--color--primary-opposite);
         }
     }
 
@@ -253,6 +253,7 @@ form {
 
     &.horizontal {
         display: flex;
+	    flex-wrap: wrap;
         align-items: flex-end;
         gap: var(--gap);
     }

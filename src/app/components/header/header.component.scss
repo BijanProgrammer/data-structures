@@ -22,7 +22,7 @@ header {
     }
 }
 
-@media (max-width: 74.999rem) {
+@media (max-width: 54.999rem) {
     header {
         .overlay {
             background-color: var(--color--overlay-background);
@@ -150,7 +150,7 @@ header {
     }
 }
 
-@media (min-width: 75rem) {
+@media (min-width: 55rem) {
     header {
         .hamburger {
             display: none;

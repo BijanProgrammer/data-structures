@@ -1,15 +1,22 @@
 .wrapper {
-	--gap: 2rem;
-	
-	header {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		gap: 2rem;
-		
-		app-graph-animator {
-			margin-inline-start: auto;
-		}
-	}
-	
+    --gap: 2rem;
+
+    header,
+    .animation-control-panel {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+
+    header {
+        align-items: center;
+    }
+
+    .animation-control-panel {
+        align-items: flex-end;
+
+        form {
+            margin-inline-end: auto;
+        }
+    }
 }
