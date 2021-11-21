@@ -1,7 +1,8 @@
 import {GraphVisualizerComponent} from '../components/graph-visualizer/graph-visualizer.component';
+import {RawGraph} from './ogma';
 
 export abstract class GraphGenerator {
-    public abstract generateGraph(graphVisualizerComponent: GraphVisualizerComponent): {nodes: any[]; edges: any[]};
+    public abstract generateGraph(graphVisualizerComponent: GraphVisualizerComponent): RawGraph;
 }
 
 export class SimpleDfsGraphGenerator extends GraphGenerator {
@@ -31,7 +32,7 @@ export class SimpleDfsGraphGenerator extends GraphGenerator {
         {id: 15, source: 6, target: 7, data: {visited: false}},
     ];
 
-    public generateGraph(): {nodes: any[]; edges: any[]} {
+    public generateGraph(): RawGraph {
         const graph = {nodes: SimpleDfsGraphGenerator.NODES, edges: SimpleDfsGraphGenerator.EDGES};
         return JSON.parse(JSON.stringify(graph));
     }
@@ -42,7 +43,7 @@ export class RandomGraphGenerator extends GraphGenerator {
         super();
     }
 
-    public generateGraph(): {nodes: any[]; edges: any[]} {
+    public generateGraph(): RawGraph {
         const nodesCount = Math.floor(Math.random() * this.nodesMaximumCount) + 1;
         const edgesCount = Math.floor(Math.random() * this.edgesMaximumCount);
 

@@ -2,22 +2,13 @@
     <h1>Random Graph Generator</h1>
 
     <section id="graph-section">
-        <header>
-            <h2>Graph</h2>
-            <button class="button button--regenerate" (click)="regenerateButtonClickHandler()">
-                regenerate
-                <icon-shuffle></icon-shuffle>
-            </button>
-
-            <button class="button button--download" (click)="downloadButtonClickHandler()">
-                download
-                <icon-download></icon-download>
-            </button>
-            <button class="button button--upload" (click)="uploadButtonClickHandler()">
-                upload
-                <icon-upload></icon-upload>
-            </button>
-        </header>
+        <app-graph-header
+            [graphVisualizerComponent]="graphVisualizerComponent"
+            [regenerateButtonEnabled]="true"
+            [downloadButtonEnabled]="true"
+            [uploadButtonEnabled]="true"
+            (regenerateButtonClick)="regenerateButtonClickHandler()"
+        ></app-graph-header>
 
         <app-graph-visualizer
             #graphVisualizerComponent
@@ -26,5 +17,3 @@
         ></app-graph-visualizer>
     </section>
 </div>
-
-<input #fileInput type="file" accept=".json" (change)="fileInputChangeHandler()" />

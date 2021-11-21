@@ -1,0 +1,11 @@
+header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    .button {
+        &--regenerate {
+            margin-inline-end: auto;
+        }
+    }
+}

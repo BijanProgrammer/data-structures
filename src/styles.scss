@@ -184,6 +184,10 @@ button {
 }
 
 input {
+    &:focus {
+        outline: none;
+    }
+
     &[type='file'] {
         display: none;
     }
@@ -253,7 +257,7 @@ form {
 
     &.horizontal {
         display: flex;
-	    flex-wrap: wrap;
+        flex-wrap: wrap;
         align-items: flex-end;
         gap: var(--gap);
     }

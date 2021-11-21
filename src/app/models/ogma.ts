@@ -1,5 +1,10 @@
 import {AnimationAction, AnimationStep} from './animator';
 
+export class RawGraph {
+    public nodes!: any[];
+    public edges!: any[];
+}
+
 export enum Layout {
     FORCE,
     FORCE_LINK,

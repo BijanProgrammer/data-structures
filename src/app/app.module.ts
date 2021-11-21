@@ -42,6 +42,7 @@ import {SpreadArrayPipe} from './pipes/spread-array.pipe';
 import {ClonePipe} from './pipes/clone.pipe';
 import {IconsModule} from './icons/icons.module';
 import {InstanceOfPipe} from './pipes/instance-of.pipe';
+import {GraphHeaderComponent} from './components/graph-header/graph-header.component';
 
 @NgModule({
     declarations: [
@@ -74,6 +75,7 @@ import {InstanceOfPipe} from './pipes/instance-of.pipe';
         SpreadArrayPipe,
         ClonePipe,
         InstanceOfPipe,
+        GraphHeaderComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, FormsModule, MonacoEditorModule.forRoot(), KatexModule, IconsModule],
     providers: [],

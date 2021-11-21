@@ -1,0 +1,18 @@
+<header>
+    <h2>{{ graphTitle }}</h2>
+    <button *ngIf="regenerateButtonEnabled" class="button button--regenerate" (click)="regenerateButtonClickHandler()">
+        regenerate
+        <icon-shuffle></icon-shuffle>
+    </button>
+
+    <button *ngIf="downloadButtonEnabled" class="button button--download" (click)="downloadButtonClickHandler()">
+        download
+        <icon-download></icon-download>
+    </button>
+    <button *ngIf="uploadButtonEnabled" class="button button--upload" (click)="uploadButtonClickHandler()">
+        upload
+        <icon-upload></icon-upload>
+    </button>
+</header>
+
+<input #fileInput type="file" accept=".json" (change)="fileInputChangeHandler()" />

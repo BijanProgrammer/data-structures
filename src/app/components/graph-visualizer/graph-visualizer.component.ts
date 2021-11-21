@@ -4,7 +4,7 @@ import {OgmaService} from '../../services/ogma.service';
 
 // @ts-ignore
 import * as Ogma from '../../../scripts/ogma.min';
-import {ClassName, Layout, Selector} from '../../models/ogma';
+import {ClassName, Layout, RawGraph, Selector} from '../../models/ogma';
 
 @Component({
     selector: 'app-graph-visualizer',
@@ -48,8 +48,8 @@ export class GraphVisualizerComponent implements AfterViewInit {
         return this.ogma.getEdge(edgeId);
     }
 
-    public setGraph(nodes: any[], edges: any[]): void {
-        this.ogma.setGraph({nodes, edges});
+    public setGraph(rawGraph: RawGraph): void {
+        this.ogma.setGraph(rawGraph);
 
         this.ogma.getNodes().addClass(ClassName.IDLE);
         this.ogma.getEdges().addClass(ClassName.IDLE);
@@ -107,11 +107,13 @@ export class GraphVisualizerComponent implements AfterViewInit {
         return await this.ogma.export.json();
     }
 
-    public async importJson(content: string | ArrayBuffer | null | undefined): Promise<void> {
-        if (!content) return;
+    public async importJson(content: string): Promise<RawGraph | undefined> {
+        if (!content) return undefined;
 
-        const graph = await this.ogma.parse.json(content);
-        this.setGraph(graph.nodes, graph.edges);
+        const rawGraph = await this.ogma.parse.json(content);
+        this.setGraph(rawGraph);
+
+        return rawGraph;
     }
 
     private initGraph(): void {

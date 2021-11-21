@@ -1,15 +1,13 @@
 <div class="wrapper">
-    <header>
-        <h2>{{ graphTitle }}</h2>
-        <button
-            *ngIf="isRegenerationEnabled"
-            class="button button--regenerate"
-            (click)="regenerateButtonClickHandler()"
-        >
-            regenerate
-            <icon-shuffle></icon-shuffle>
-        </button>
-    </header>
+    <app-graph-header
+        [graphTitle]="graphTitle"
+        [graphVisualizerComponent]="graphVisualizerComponent"
+        [regenerateButtonEnabled]="regenerateButtonEnabled"
+        [downloadButtonEnabled]="downloadButtonEnabled"
+        [uploadButtonEnabled]="uploadButtonEnabled"
+        (regenerateButtonClick)="regenerateButtonClickHandler()"
+        (uploadButtonClick)="uploadButtonClickHandler($event)"
+    ></app-graph-header>
 
     <div class="animation-control-panel">
         <form class="horizontal" (submit)="formSubmitHandler($event)">

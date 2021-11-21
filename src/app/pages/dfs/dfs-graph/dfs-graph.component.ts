@@ -2,7 +2,7 @@ import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, ViewChil
 
 import {GraphVisualizerComponent} from '../../../components/graph-visualizer/graph-visualizer.component';
 
-import {OgmaAnimationActionType, OgmaAnimationStep, ClassName, Layout} from 'src/app/models/ogma';
+import {OgmaAnimationActionType, OgmaAnimationStep, ClassName, Layout, RawGraph} from 'src/app/models/ogma';
 import {GraphAnimatorComponent} from '../../../components/graph-animator/graph-animator.component';
 import {GraphGenerator} from '../../../models/graph-generator';
 
@@ -17,7 +17,9 @@ export class DfsGraphComponent implements AfterViewInit {
     @Input() public graphId: string = 'graph-container';
     @Input() public graphTitle: string = 'Graph';
     @Input() public graphGenerator!: GraphGenerator;
-    @Input() public isRegenerationEnabled: boolean = false;
+    @Input() public regenerateButtonEnabled: boolean = false;
+    @Input() public downloadButtonEnabled: boolean = false;
+    @Input() public uploadButtonEnabled: boolean = false;
 
     @ViewChild('graphAnimatorComponent', {read: GraphAnimatorComponent})
     public graphAnimatorComponent!: GraphAnimatorComponent;
@@ -43,6 +45,10 @@ export class DfsGraphComponent implements AfterViewInit {
         this.init();
     }
 
+    public uploadButtonClickHandler(rawGraph: RawGraph): void {
+        this.init(rawGraph);
+    }
+
     public formSubmitHandler(event: Event): void {
         event.preventDefault();
         this.initAnimation();
@@ -56,15 +62,15 @@ export class DfsGraphComponent implements AfterViewInit {
         return +this.targetNodeInput.nativeElement.value || 1;
     }
 
-    private init(): void {
-        this.populateGraph();
+    private init(rawGraph?: RawGraph): void {
+        this.populateGraph(rawGraph);
         this.initAnimation();
     }
 
-    private populateGraph(): void {
-        const {nodes, edges} = this.graphGenerator.generateGraph(this.graphVisualizerComponent);
+    private populateGraph(rawGraph: RawGraph | undefined): void {
+        if (!rawGraph) rawGraph = this.graphGenerator.generateGraph(this.graphVisualizerComponent);
 
-        this.graphVisualizerComponent.setGraph(nodes, edges);
+        this.graphVisualizerComponent.setGraph(rawGraph);
         this.nodes = this.graphVisualizerComponent.getNodes();
         this.edges = this.graphVisualizerComponent.getEdges();
 
