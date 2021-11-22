@@ -67,4 +67,6 @@ export class HeaderComponent {
             }
         });
     }
+
+    public $Navigation = (navigation: Navigation): Navigation => navigation;
 }

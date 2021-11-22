@@ -45,7 +45,7 @@
 <ng-template #link let-navigation>
     <a
         routerLinkActive="active"
-        [routerLink]="navigation.routerLink"
+        [routerLink]="$Navigation(navigation).routerLink"
         [routerLinkActiveOptions]="{exact: !!navigation.exact}"
         >{{ navigation.title }}</a
     >

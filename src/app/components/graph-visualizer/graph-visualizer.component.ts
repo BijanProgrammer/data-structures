@@ -4,7 +4,7 @@ import {OgmaService} from '../../services/ogma.service';
 
 // @ts-ignore
 import * as Ogma from '../../../scripts/ogma.min';
-import {ClassName, Direction, Layout, RawGraph, Selector} from '../../models/ogma';
+import {ClassName, Direction, Edge, EdgeList, Layout, Node, NodeList, RawGraph, Selector} from '../../models/ogma';
 
 @Component({
     selector: 'app-graph-visualizer',
@@ -34,19 +34,19 @@ export class GraphVisualizerComponent implements AfterViewInit {
         this.initGraph();
     }
 
-    public getNodes(selector?: any): any {
+    public getNodes(selector?: any): NodeList {
         return this.ogma.getNodes(selector);
     }
 
-    public getNode(nodeId: any): any {
+    public getNode(nodeId: any): Node {
         return this.ogma.getNode(nodeId);
     }
 
-    public getEdges(selector?: any): any {
+    public getEdges(selector?: any): EdgeList {
         return this.ogma.getEdges(selector);
     }
 
-    public getEdge(edgeId: any): any {
+    public getEdge(edgeId: any): Edge {
         return this.ogma.getEdge(edgeId);
     }
 
@@ -59,14 +59,14 @@ export class GraphVisualizerComponent implements AfterViewInit {
         this.setLayout(this.layout).then();
     }
 
-    public addNodes(nodes: any[]): void {
+    public addNodes(nodes: Node[]): void {
         this.ogma.addNodes(nodes);
         this.ogma.getNodes().addClass(ClassName.IDLE);
 
         this.setLayout(this.layout).then();
     }
 
-    public addEdges(edges: any[]): void {
+    public addEdges(edges: Edge[]): void {
         this.ogma.addEdges(edges);
         this.ogma.getEdges().addClass(ClassName.IDLE);
 
@@ -138,7 +138,7 @@ export class GraphVisualizerComponent implements AfterViewInit {
         this.ogmaService.setStateAttributes(this.ogma);
 
         // TODO: tooltip
-        // this.ogma.tools.tooltip.onNodeHover((node: any) => {
+        // this.ogma.tools.tooltip.onNodeHover((node: Node) => {
         //     return '<p>' + node.getId() + '</p>';
         // });
     }
@@ -149,7 +149,7 @@ export class GraphVisualizerComponent implements AfterViewInit {
         await this.ogmaService.setLayout(this.ogma, this.layout, this.ogma.getNodes().get(0), this.direction);
     }
 
-    private selectorCallback({nodes, edges}: {nodes: any; edges: any}): void {
+    private selectorCallback({nodes, edges}: {nodes: NodeList; edges: EdgeList}): void {
         nodes.setSelected(true);
         edges.setSelected(true);
 

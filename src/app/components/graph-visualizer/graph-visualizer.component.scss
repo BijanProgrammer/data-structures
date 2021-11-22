@@ -1,8 +1,8 @@
 .wrapper {
     --gap: 2rem;
     --padding-block: 2rem;
-	
-	.graph-container:focus-within {
+
+    .graph-container:focus-within {
         outline: 0.5rem solid var(--color--primary);
     }
 
@@ -17,10 +17,10 @@
 
         .button-group {
             display: grid;
-	        grid-template-columns: 10ch repeat(auto-fill, minmax(10rem , 1fr));
+            grid-template-columns: 10ch repeat(auto-fill, minmax(10rem, 1fr));
             align-items: center;
             gap: 1rem;
-	        
+
             button {
                 &.active {
                     background-color: var(--color--primary-fade);

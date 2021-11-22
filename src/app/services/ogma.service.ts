@@ -2,7 +2,18 @@ import {Injectable} from '@angular/core';
 
 // @ts-ignore
 import * as Ogma from '../../../scripts/ogma.min';
-import {Layout, ClassName, Direction, OgmaAnimationActionType, OgmaAnimationStep} from '../models/ogma';
+import {
+    ClassName,
+    Direction,
+    Edge,
+    EdgeList,
+    Element,
+    Layout,
+    Node,
+    NodeList,
+    OgmaAnimationActionType,
+    OgmaAnimationStep,
+} from '../models/ogma';
 
 @Injectable({
     providedIn: 'root',
@@ -101,7 +112,7 @@ export class OgmaService {
         ogma.styles.setSelectedEdgeAttributes(this.SELECTED_EDGE_ATTRIBUTES);
     }
 
-    public async setLayout(ogma: Ogma, layout: Layout, centralNode?: any, direction?: Direction): Promise<void> {
+    public async setLayout(ogma: Ogma, layout: Layout, centralNode?: Node, direction?: Direction): Promise<void> {
         switch (layout) {
             case Layout.FORCE:
                 await ogma.layouts.force({
@@ -126,8 +137,8 @@ export class OgmaService {
                 break;
             case Layout.RADIAL:
                 await ogma.layouts.radial({
-                    centerX: centralNode.getPosition().x,
-                    centerY: centralNode.getPosition().y,
+                    centerX: centralNode?.getPosition().x,
+                    centerY: centralNode?.getPosition().y,
                     centralNode: centralNode,
                     duration: this.ANIMATION_DURATION,
                     locate: true,
@@ -157,7 +168,7 @@ export class OgmaService {
 
     public generateAddClassNameStep(
         animationSteps: OgmaAnimationStep[],
-        element: any,
+        element: Element<Node | Edge, NodeList | EdgeList>,
         className: ClassName = ClassName.PATH
     ): void {
         animationSteps.push({
@@ -165,7 +176,10 @@ export class OgmaService {
         });
     }
 
-    public generateRemoveClassNameStep(animationSteps: OgmaAnimationStep[], element: any): void {
+    public generateRemoveClassNameStep(
+        animationSteps: OgmaAnimationStep[],
+        element: Element<Node | Edge, NodeList | EdgeList>
+    ): void {
         animationSteps.push({
             actions: [
                 {element, actionType: OgmaAnimationActionType.REMOVE_CLASS, actionData: {className: ClassName.PATH}},

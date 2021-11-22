@@ -22,10 +22,10 @@ export class GraphAnimatorComponent {
         (actions as OgmaAnimationAction[]).forEach((action) => {
             switch (action.actionType) {
                 case OgmaAnimationActionType.ADD_CLASS:
-                    action.element.removeClass(action.actionData.className);
+                    action.element.removeClass(action.actionData.className).then();
                     break;
                 case OgmaAnimationActionType.REMOVE_CLASS:
-                    action.element.addClass(action.actionData.className);
+                    action.element.addClass(action.actionData.className).then();
                     break;
             }
         });
@@ -35,10 +35,10 @@ export class GraphAnimatorComponent {
         (actions as OgmaAnimationAction[]).forEach((action) => {
             switch (action.actionType) {
                 case OgmaAnimationActionType.ADD_CLASS:
-                    action.element.addClass(action.actionData.className);
+                    action.element.addClass(action.actionData.className).then();
                     break;
                 case OgmaAnimationActionType.REMOVE_CLASS:
-                    action.element.removeClass(action.actionData.className);
+                    action.element.removeClass(action.actionData.className).then();
                     break;
             }
         });

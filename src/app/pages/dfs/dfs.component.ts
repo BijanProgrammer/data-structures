@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {RandomGraphGenerator, SimpleDfsGraphGenerator} from '../../models/graph-generator';
-import {ClassName, OgmaAnimationStep} from '../../models/ogma';
+import {ClassName, Edge, Node, OgmaAnimationStep} from '../../models/ogma';
 import {OgmaService} from '../../services/ogma.service';
 
 @Component({
@@ -16,19 +16,19 @@ export class DfsComponent {
 
     public generateAnimationSteps(payload: {
         animationSteps: OgmaAnimationStep[];
-        startNode: any;
-        targetNode: any;
+        startNode: Node;
+        targetNode: Node;
     }): void {
         this.dfs(payload.animationSteps, payload.startNode, payload.targetNode);
     }
 
-    private dfs(animationSteps: OgmaAnimationStep[], currentNode: any, targetNode: any): boolean {
+    private dfs(animationSteps: OgmaAnimationStep[], currentNode: Node, targetNode: Node): boolean {
         this.ogmaService.generateAddClassNameStep(animationSteps, currentNode);
         currentNode.setData('visited', true);
 
         if (currentNode === targetNode) return true;
 
-        const edges: any[] = currentNode.getAdjacentEdges({direction: 'out'}).toArray();
+        const edges: Edge[] = currentNode.getAdjacentEdges({direction: 'out'}).toArray();
         for (const edge of edges) {
             if (edge.getData('visited')) continue;
 

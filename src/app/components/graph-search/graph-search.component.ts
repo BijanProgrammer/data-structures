@@ -11,7 +11,7 @@ import {
 
 import {GraphVisualizerComponent} from '../graph-visualizer/graph-visualizer.component';
 
-import {ClassName, Layout, OgmaAnimationStep, RawGraph} from 'src/app/models/ogma';
+import {ClassName, EdgeList, Layout, Node, NodeList, OgmaAnimationStep, RawGraph} from 'src/app/models/ogma';
 import {GraphAnimatorComponent} from '../graph-animator/graph-animator.component';
 import {GraphGenerator} from '../../models/graph-generator';
 
@@ -41,8 +41,8 @@ export class GraphSearchComponent implements AfterViewInit {
     @ViewChild('startNodeInput') public startNodeInput!: ElementRef<HTMLInputElement>;
     @ViewChild('targetNodeInput') public targetNodeInput!: ElementRef<HTMLInputElement>;
 
-    public nodes!: any;
-    public edges!: any;
+    public nodes!: NodeList;
+    public edges!: EdgeList;
 
     private animationSteps: OgmaAnimationStep[] = [];
 
@@ -107,8 +107,8 @@ export class GraphSearchComponent implements AfterViewInit {
     private generateAnimationSteps(): void {
         this.animationSteps = [];
 
-        const startNode: any = this.graphVisualizerComponent.getNode(this.startNodeIndex);
-        const targetNode: any = this.graphVisualizerComponent.getNode(this.targetNodeIndex);
+        const startNode: Node = this.graphVisualizerComponent.getNode(this.startNodeIndex);
+        const targetNode: Node = this.graphVisualizerComponent.getNode(this.targetNodeIndex);
 
         this.generateAnimationStepsEventEmitter.emit({animationSteps: this.animationSteps, startNode, targetNode});
     }
