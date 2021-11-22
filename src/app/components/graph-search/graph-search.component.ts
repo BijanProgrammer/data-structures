@@ -1,17 +1,17 @@
 import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, ViewChild} from '@angular/core';
 
-import {GraphVisualizerComponent} from '../../../components/graph-visualizer/graph-visualizer.component';
+import {GraphVisualizerComponent} from '../graph-visualizer/graph-visualizer.component';
 
 import {OgmaAnimationActionType, OgmaAnimationStep, ClassName, Layout, RawGraph} from 'src/app/models/ogma';
-import {GraphAnimatorComponent} from '../../../components/graph-animator/graph-animator.component';
-import {GraphGenerator} from '../../../models/graph-generator';
+import {GraphAnimatorComponent} from '../graph-animator/graph-animator.component';
+import {GraphGenerator} from '../../models/graph-generator';
 
 @Component({
     selector: 'app-dfs-graph',
-    templateUrl: './dfs-graph.component.html',
-    styleUrls: ['./dfs-graph.component.scss'],
+    templateUrl: './graph-search.component.html',
+    styleUrls: ['./graph-search.component.scss'],
 })
-export class DfsGraphComponent implements AfterViewInit {
+export class GraphSearchComponent implements AfterViewInit {
     public Layout = Layout;
 
     @Input() public graphId: string = 'graph-container';
