@@ -16,14 +16,11 @@
         gap: 1rem;
 
         .button-group {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+	        grid-template-columns: 10ch repeat(auto-fill, minmax(10rem , 1fr));
             align-items: center;
             gap: 1rem;
-
-            .title {
-            }
-
+	        
             button {
                 &.active {
                     background-color: var(--color--primary-fade);

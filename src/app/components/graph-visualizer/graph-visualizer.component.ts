@@ -4,7 +4,7 @@ import {OgmaService} from '../../services/ogma.service';
 
 // @ts-ignore
 import * as Ogma from '../../../scripts/ogma.min';
-import {ClassName, Layout, RawGraph, Selector} from '../../models/ogma';
+import {ClassName, Direction, Layout, RawGraph, Selector} from '../../models/ogma';
 
 @Component({
     selector: 'app-graph-visualizer',
@@ -13,12 +13,14 @@ import {ClassName, Layout, RawGraph, Selector} from '../../models/ogma';
 })
 export class GraphVisualizerComponent implements AfterViewInit {
     public Layout = Layout;
+    public Direction = Direction;
     public Selector = Selector;
 
     @ViewChild('graphElementRef') public graphElementRef!: ElementRef;
 
     @Input() public graphId: string = 'graph-container';
     @Input() public layout: Layout = Layout.GRID;
+    @Input() public direction: Direction = Direction.TB;
     @Input() public isDirected: boolean = false;
 
     public selector: Selector = Selector.DEFAULT;
@@ -75,6 +77,13 @@ export class GraphVisualizerComponent implements AfterViewInit {
         if (this.layout === layout) return;
 
         await this.setLayout(layout);
+    }
+
+    public async directionButtonClickHandler(direction: Direction): Promise<void> {
+        if (this.direction === direction) return;
+        this.direction = direction;
+
+        await this.setLayout();
     }
 
     public selectorButtonClickHandler(selector: Selector): void {
@@ -134,9 +143,10 @@ export class GraphVisualizerComponent implements AfterViewInit {
         // });
     }
 
-    private async setLayout(layout: Layout): Promise<void> {
-        this.layout = layout;
-        await this.ogmaService.setLayout(this.ogma, this.layout, this.ogma.getNodes().get(0));
+    private async setLayout(layout?: Layout): Promise<void> {
+        if (layout) this.layout = layout;
+
+        await this.ogmaService.setLayout(this.ogma, this.layout, this.ogma.getNodes().get(0), this.direction);
     }
 
     private selectorCallback({nodes, edges}: {nodes: any; edges: any}): void {

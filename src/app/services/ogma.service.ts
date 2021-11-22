@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 
 // @ts-ignore
 import * as Ogma from '../../../scripts/ogma.min';
-import {Layout, ClassName} from '../models/ogma';
+import {Layout, ClassName, Direction} from '../models/ogma';
 
 @Injectable({
     providedIn: 'root',
@@ -101,7 +101,7 @@ export class OgmaService {
         ogma.styles.setSelectedEdgeAttributes(this.SELECTED_EDGE_ATTRIBUTES);
     }
 
-    public async setLayout(ogma: Ogma, layout: Layout, centralNode?: any): Promise<void> {
+    public async setLayout(ogma: Ogma, layout: Layout, centralNode?: any, direction?: Direction): Promise<void> {
         switch (layout) {
             case Layout.FORCE:
                 await ogma.layouts.force({
@@ -140,7 +140,7 @@ export class OgmaService {
                 await ogma.layouts.sequential({
                     arrangeComponents: 'grid',
                     componentDistance: this.COMPONENT_DISTANCE,
-                    direction: 'TB',
+                    direction: direction || 'TB',
                     duration: this.ANIMATION_DURATION,
                     gridDistance: this.GRID_DISTANCE,
                     levelDistance: this.LEVEL_DISTANCE,

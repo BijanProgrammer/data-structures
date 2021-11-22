@@ -13,6 +13,13 @@ export enum Layout {
     SEQUENTIAL,
 }
 
+export enum Direction {
+    TB = 'TB',
+    BT = 'BT',
+    LR = 'LR',
+    RL = 'RL',
+}
+
 export enum Selector {
     DEFAULT,
     RECTANGLE,

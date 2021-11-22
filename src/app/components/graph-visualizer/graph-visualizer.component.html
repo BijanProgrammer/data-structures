@@ -3,7 +3,7 @@
 
     <div class="settings">
         <div class="button-group">
-            <span class="title">Layout: </span>
+            <span class="title">Layout</span>
             <button [ngClass]="{active: layout === Layout.FORCE}" (click)="layoutButtonClickHandler(Layout.FORCE)">
                 force
             </button>
@@ -22,7 +22,39 @@
         </div>
 
         <div class="button-group">
-            <span class="title">Selector: </span>
+            <span class="title">Direction</span>
+            <button
+                [disabled]="layout !== Layout.SEQUENTIAL"
+                [ngClass]="{active: direction === Direction.TB}"
+                (click)="directionButtonClickHandler(Direction.TB)"
+            >
+                tb
+            </button>
+            <button
+                [disabled]="layout !== Layout.SEQUENTIAL"
+                [ngClass]="{active: direction === Direction.BT}"
+                (click)="directionButtonClickHandler(Direction.BT)"
+            >
+                bt
+            </button>
+            <button
+                [disabled]="layout !== Layout.SEQUENTIAL"
+                [ngClass]="{active: direction === Direction.LR}"
+                (click)="directionButtonClickHandler(Direction.LR)"
+            >
+                lr
+            </button>
+            <button
+                [disabled]="layout !== Layout.SEQUENTIAL"
+                [ngClass]="{active: direction === Direction.RL}"
+                (click)="directionButtonClickHandler(Direction.RL)"
+            >
+                rl
+            </button>
+        </div>
+
+        <div class="button-group">
+            <span class="title">Selector</span>
             <button
                 [ngClass]="{active: selector === Selector.DEFAULT}"
                 (click)="selectorButtonClickHandler(Selector.DEFAULT)"
@@ -44,7 +76,7 @@
         </div>
 
         <div class="button-group">
-            <span class="title">Snapping: </span>
+            <span class="title">Snapping</span>
             <button [ngClass]="{active: isSnappingEnabled}" (click)="snappingButtonClickHandler()">
                 {{ isSnappingEnabled ? 'enabled' : 'disabled' }}
             </button>
