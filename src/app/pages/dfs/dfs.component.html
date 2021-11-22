@@ -19,21 +19,23 @@
     </section>
 
     <section id="simple-graph-section">
-        <app-dfs-graph
+        <app-graph-search
             graphTitle="Simple Graph"
             graphId="simple-graph"
             [graphGenerator]="simpleDfsGraphGenerator"
-        ></app-dfs-graph>
+            (generateAnimationStepsEventEmitter)="generateAnimationSteps($event)"
+        ></app-graph-search>
     </section>
 
     <section id="random-graph-section">
-        <app-dfs-graph
+        <app-graph-search
             graphTitle="Random Graph"
             graphId="random-graph"
             [graphGenerator]="randomGraphGenerator"
             [regenerateButtonEnabled]="true"
             [downloadButtonEnabled]="true"
             [uploadButtonEnabled]="true"
-        ></app-dfs-graph>
+            (generateAnimationStepsEventEmitter)="generateAnimationSteps($event)"
+        ></app-graph-search>
     </section>
 </div>

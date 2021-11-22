@@ -1,13 +1,22 @@
-import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, ViewChild} from '@angular/core';
+import {
+    AfterViewInit,
+    ChangeDetectorRef,
+    Component,
+    ElementRef,
+    EventEmitter,
+    Input,
+    Output,
+    ViewChild,
+} from '@angular/core';
 
 import {GraphVisualizerComponent} from '../graph-visualizer/graph-visualizer.component';
 
-import {OgmaAnimationActionType, OgmaAnimationStep, ClassName, Layout, RawGraph} from 'src/app/models/ogma';
+import {ClassName, Layout, OgmaAnimationStep, RawGraph} from 'src/app/models/ogma';
 import {GraphAnimatorComponent} from '../graph-animator/graph-animator.component';
 import {GraphGenerator} from '../../models/graph-generator';
 
 @Component({
-    selector: 'app-dfs-graph',
+    selector: 'app-graph-search',
     templateUrl: './graph-search.component.html',
     styleUrls: ['./graph-search.component.scss'],
 })
@@ -20,6 +29,8 @@ export class GraphSearchComponent implements AfterViewInit {
     @Input() public regenerateButtonEnabled: boolean = false;
     @Input() public downloadButtonEnabled: boolean = false;
     @Input() public uploadButtonEnabled: boolean = false;
+
+    @Output() public generateAnimationStepsEventEmitter: EventEmitter<any> = new EventEmitter<any>();
 
     @ViewChild('graphAnimatorComponent', {read: GraphAnimatorComponent})
     public graphAnimatorComponent!: GraphAnimatorComponent;
@@ -99,51 +110,6 @@ export class GraphSearchComponent implements AfterViewInit {
         const startNode: any = this.graphVisualizerComponent.getNode(this.startNodeIndex);
         const targetNode: any = this.graphVisualizerComponent.getNode(this.targetNodeIndex);
 
-        this.dfs(startNode, targetNode);
-    }
-
-    private dfs(currentNode: any, targetNode: any): boolean {
-        this.generateAddClassNameStep(currentNode);
-        currentNode.setData('visited', true);
-
-        if (currentNode === targetNode) return true;
-
-        const edges: any[] = currentNode.getAdjacentEdges({direction: 'out'}).toArray();
-        for (const edge of edges) {
-            if (edge.getData('visited')) continue;
-
-            const nextNode = edge.getTarget();
-            if (nextNode.getData('visited')) {
-                this.generateAddClassNameStep(edge, ClassName.DISABLED);
-                continue;
-            }
-
-            this.generateAddClassNameStep(edge);
-            edge.setData('visited', true);
-
-            const found = this.dfs(nextNode, targetNode);
-            if (found) return true;
-
-            this.generateRemoveClassNameStep(edge);
-        }
-
-        this.generateRemoveClassNameStep(currentNode);
-
-        return false;
-    }
-
-    private generateAddClassNameStep(element: any, className: ClassName = ClassName.PATH): void {
-        this.animationSteps.push({
-            actions: [{element, actionType: OgmaAnimationActionType.ADD_CLASS, actionData: {className}}],
-        });
-    }
-
-    private generateRemoveClassNameStep(element: any): void {
-        this.animationSteps.push({
-            actions: [
-                {element, actionType: OgmaAnimationActionType.REMOVE_CLASS, actionData: {className: ClassName.PATH}},
-                {element, actionType: OgmaAnimationActionType.ADD_CLASS, actionData: {className: ClassName.DISABLED}},
-            ],
-        });
+        this.generateAnimationStepsEventEmitter.emit({animationSteps: this.animationSteps, startNode, targetNode});
     }
 }

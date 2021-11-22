@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 
 // @ts-ignore
 import * as Ogma from '../../../scripts/ogma.min';
-import {Layout, ClassName, Direction} from '../models/ogma';
+import {Layout, ClassName, Direction, OgmaAnimationActionType, OgmaAnimationStep} from '../models/ogma';
 
 @Injectable({
     providedIn: 'root',
@@ -153,5 +153,24 @@ export class OgmaService {
         }
 
         ogma.getNodes().locate({duration: this.ANIMATION_DURATION});
+    }
+
+    public generateAddClassNameStep(
+        animationSteps: OgmaAnimationStep[],
+        element: any,
+        className: ClassName = ClassName.PATH
+    ): void {
+        animationSteps.push({
+            actions: [{element, actionType: OgmaAnimationActionType.ADD_CLASS, actionData: {className}}],
+        });
+    }
+
+    public generateRemoveClassNameStep(animationSteps: OgmaAnimationStep[], element: any): void {
+        animationSteps.push({
+            actions: [
+                {element, actionType: OgmaAnimationActionType.REMOVE_CLASS, actionData: {className: ClassName.PATH}},
+                {element, actionType: OgmaAnimationActionType.ADD_CLASS, actionData: {className: ClassName.DISABLED}},
+            ],
+        });
     }
 }
