@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
+import {BfsComponent} from './bfs/bfs.component';
 import {Chapter02Component} from './chapter02/chapter02.component';
 import {Chapter04Component} from './chapter04/chapter04.component';
 import {Chapter05Component} from './chapter05/chapter05.component';
@@ -19,6 +20,7 @@ import {IconsModule} from '../icons/icons.module';
 
 @NgModule({
     declarations: [
+        BfsComponent,
         Chapter02Component,
         Chapter04Component,
         Chapter05Component,
@@ -34,6 +36,7 @@ import {IconsModule} from '../icons/icons.module';
     ],
     imports: [CommonModule, ComponentsModule, IconsModule, PipesModule],
     exports: [
+        BfsComponent,
         Chapter02Component,
         Chapter04Component,
         Chapter05Component,

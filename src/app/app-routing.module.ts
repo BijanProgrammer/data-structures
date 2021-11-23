@@ -7,6 +7,7 @@ import {Chapter05Component} from './pages/chapter05/chapter05.component';
 import {PlaygroundComponent} from './pages/playground/playground.component';
 import {RggComponent} from './pages/rgg/rgg.component';
 import {DfsComponent} from './pages/dfs/dfs.component';
+import {BfsComponent} from './pages/bfs/bfs.component';
 
 const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
     {path: 'playground', component: PlaygroundComponent},
     {path: 'rgg', component: RggComponent},
     {path: 'dfs', component: DfsComponent},
+    {path: 'bfs', component: BfsComponent},
 ];
 
 @NgModule({

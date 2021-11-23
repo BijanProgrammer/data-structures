@@ -42,6 +42,43 @@ export class SimpleDfsGraphGenerator extends GraphGenerator {
     }
 }
 
+export class SimpleBfsGraphGenerator extends GraphGenerator {
+    private static readonly NODES: Node[] = [
+        new Node({
+            id: 1,
+            attributes: {text: 1},
+            data: {visited: false},
+        }),
+        new Node({id: 2, attributes: {text: 2}, data: {visited: false}}),
+        new Node({id: 3, attributes: {text: 3}, data: {visited: false}}),
+        new Node({id: 4, attributes: {text: 4}, data: {visited: false}}),
+        new Node({id: 5, attributes: {text: 5}, data: {visited: false}}),
+        new Node({id: 6, attributes: {text: 6}, data: {visited: false}}),
+        new Node({id: 7, attributes: {text: 7}, data: {visited: false}}),
+    ];
+
+    private static readonly EDGES: Edge[] = [
+        new Edge({id: 1, source: 1, target: 2, data: {visited: false}}),
+        new Edge({id: 3, source: 1, target: 5, data: {visited: false}}),
+
+        new Edge({id: 5, source: 2, target: 3, data: {visited: false}}),
+        new Edge({id: 7, source: 2, target: 4, data: {visited: false}}),
+
+        new Edge({id: 9, source: 3, target: 6, data: {visited: false}}),
+
+        new Edge({id: 11, source: 4, target: 6, data: {visited: false}}),
+
+        new Edge({id: 13, source: 5, target: 7, data: {visited: false}}),
+
+        new Edge({id: 15, source: 6, target: 7, data: {visited: false}}),
+    ];
+
+    public generateGraph(): RawGraph {
+        const graph = {nodes: SimpleBfsGraphGenerator.NODES, edges: SimpleBfsGraphGenerator.EDGES};
+        return JSON.parse(JSON.stringify(graph));
+    }
+}
+
 export class RandomGraphGenerator extends GraphGenerator {
     public constructor(private nodesMaximumCount = 20, private edgesMaximumCount = 30) {
         super();

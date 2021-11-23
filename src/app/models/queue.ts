@@ -207,5 +207,5 @@ export class PriorityQueue extends Queue {
 }
 
 export class Cell {
-    public constructor(public value: string | number = '') {}
+    public constructor(public value: any = '') {}
 }

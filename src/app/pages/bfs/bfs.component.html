@@ -1,0 +1,49 @@
+<div class="wrapper">
+    <h1>Breadth-first Search</h1>
+
+    <section id="introduction-section">
+        <header>
+            <h2>Introduction</h2>
+        </header>
+
+        <p>
+            Breadth-first search (BFS) is an algorithm for searching a tree data structure for a node that satisfies a
+            given property. It starts at the tree root and explores all nodes at the present depth prior to moving on to
+            the nodes at the next depth level. Extra memory, usually a queue, is needed to keep track of the child nodes
+            that were encountered but not yet explored.
+        </p>
+
+        <p>
+            Breadth-first search can be generalized to graphs, when the start node (sometimes referred to as a 'search
+            key') is explicitly given, and precautions are taken against following a vertex twice.
+        </p>
+
+        <p>
+            BFS and its application in finding connected components of graphs were invented in 1945 by Konrad Zuse, in
+            his (rejected) Ph.D. thesis on the Plankalkül programming language, but this was not published until 1972.
+            It was reinvented in 1959 by Edward F. Moore, who used it to find the shortest path out of a maze, and later
+            developed by C. Y. Lee into a wire routing algorithm (published 1961).
+        </p>
+    </section>
+
+    <section id="simple-graph-section">
+        <app-graph-search
+            graphTitle="Simple Graph"
+            graphId="simple-graph"
+            [graphGenerator]="simpleBfsGraphGenerator"
+            (generateAnimationStepsEventEmitter)="generateAnimationSteps($event)"
+        ></app-graph-search>
+    </section>
+
+    <section id="random-graph-section">
+        <app-graph-search
+            graphTitle="Random Graph"
+            graphId="random-graph"
+            [graphGenerator]="randomGraphGenerator"
+            [regenerateButtonEnabled]="true"
+            [downloadButtonEnabled]="true"
+            [uploadButtonEnabled]="true"
+            (generateAnimationStepsEventEmitter)="generateAnimationSteps($event)"
+        ></app-graph-search>
+    </section>
+</div>

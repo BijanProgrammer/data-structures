@@ -9,6 +9,7 @@ export class Element<T extends Node | Edge, TList extends NodeList | EdgeList> {
     public addClass!: (className: string) => Promise<T>;
     public getClassList!: () => [string];
     public getData!: (propertyPath: string | string[]) => any;
+    public getId!: () => any;
     public removeClass!: (className: string) => Promise<T>;
     public removeClasses!: (classNames: string[]) => Promise<TList>;
     public setData!: (propertyPath: string | string[], value: any) => T;
@@ -23,9 +24,9 @@ export class ElementList<T> {
 }
 
 export class Node extends Element<Node, NodeList> {
-    public id!: any;
-    public attributes!: any;
-    public data!: any;
+    private id!: any;
+    private attributes!: any;
+    private data!: any;
 
     public constructor({id, attributes, data}: {id: any; attributes: any; data: any}) {
         super();
@@ -42,10 +43,10 @@ export class Node extends Element<Node, NodeList> {
 export class NodeList extends ElementList<Node> {}
 
 export class Edge extends Element<Edge, EdgeList> {
-    public id!: any;
-    public source!: any;
-    public target!: any;
-    public data!: any;
+    private id!: any;
+    private source!: any;
+    private target!: any;
+    private data!: any;
 
     public constructor({id, source, target, data}: {id: any; source: any; target: any; data: any}) {
         super();
@@ -69,7 +70,7 @@ export interface AdjacencyOptions {
 }
 
 export enum Layout {
-    FORCE,
+    FORCE = 1,
     FORCE_LINK,
     GRID,
     RADIAL,

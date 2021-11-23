@@ -39,6 +39,7 @@ export class HeaderComponent {
             subNavigations: [
                 {isMega: false, title: 'Random Graph Generator', routerLink: '/rgg'},
                 {isMega: false, title: 'Depth-first Search', routerLink: '/dfs'},
+                {isMega: false, title: 'Breadth-first Search', routerLink: '/bfs'},
             ],
         },
     ];
