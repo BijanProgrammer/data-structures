@@ -130,3 +130,44 @@ export class RandomGraphGenerator extends GraphGenerator {
         return edges;
     }
 }
+
+export class RandomTreeGenerator extends GraphGenerator {
+    public constructor(private nodesMaximumCount = 20) {
+        super();
+    }
+
+    public generateGraph(): RawGraph {
+        const nodesCount = Math.floor(Math.random() * this.nodesMaximumCount) + 1;
+
+        const width = 800;
+        const height = 600;
+
+        const nodes = [];
+        const edges: Edge[] = [];
+
+        for (let i = 0; i < nodesCount; i++) {
+            const randomX = Math.random() * width - width / 2;
+            const randomY = Math.random() * height - height / 2;
+
+            const data = {name: `node #${i}`};
+            const attributes = {x: randomX, y: randomY, text: i + 1};
+
+            const node: Node = new Node({id: i + 1, data, attributes});
+            nodes.push(node);
+
+            if (nodes.length === 1) continue;
+
+            const sourceId = Math.floor(Math.random() * (nodes.length - 1)) + 1;
+            edges.push(
+                new Edge({
+                    id: 'e' + i,
+                    source: sourceId,
+                    target: i + 1,
+                    data: {name: `edge #${i}`},
+                })
+            );
+        }
+
+        return JSON.parse(JSON.stringify({nodes, edges}));
+    }
+}

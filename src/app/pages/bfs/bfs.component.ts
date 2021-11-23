@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {RandomGraphGenerator, SimpleBfsGraphGenerator} from '../../models/graph-generator';
-import {ClassName, Edge, Node, OgmaAnimationStep} from '../../models/ogma';
+import {RandomGraphGenerator, RandomTreeGenerator, SimpleBfsGraphGenerator} from '../../models/graph-generator';
+import {ClassName, Edge, Layout, Node, OgmaAnimationStep} from '../../models/ogma';
 import {OgmaService} from '../../services/ogma.service';
 import {Cell, LinearQueue} from '../../models/queue';
 
@@ -10,8 +10,11 @@ import {Cell, LinearQueue} from '../../models/queue';
     styleUrls: ['./bfs.component.scss'],
 })
 export class BfsComponent {
+    public Layout = Layout;
+
     public simpleBfsGraphGenerator: SimpleBfsGraphGenerator = new SimpleBfsGraphGenerator();
     public randomGraphGenerator: RandomGraphGenerator = new RandomGraphGenerator();
+    public randomTreeGenerator: RandomTreeGenerator = new RandomTreeGenerator();
 
     public constructor(public ogmaService: OgmaService) {}
 

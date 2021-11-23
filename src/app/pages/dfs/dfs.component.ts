@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {RandomGraphGenerator, SimpleDfsGraphGenerator} from '../../models/graph-generator';
-import {ClassName, Edge, Node, OgmaAnimationStep} from '../../models/ogma';
+import {RandomGraphGenerator, RandomTreeGenerator, SimpleDfsGraphGenerator} from '../../models/graph-generator';
+import {ClassName, Edge, Layout, Node, OgmaAnimationStep} from '../../models/ogma';
 import {OgmaService} from '../../services/ogma.service';
 
 @Component({
@@ -9,8 +9,11 @@ import {OgmaService} from '../../services/ogma.service';
     styleUrls: ['./dfs.component.scss'],
 })
 export class DfsComponent {
+    public Layout = Layout;
+
     public simpleDfsGraphGenerator: SimpleDfsGraphGenerator = new SimpleDfsGraphGenerator();
     public randomGraphGenerator: RandomGraphGenerator = new RandomGraphGenerator();
+    public randomTreeGenerator: RandomTreeGenerator = new RandomTreeGenerator();
 
     public constructor(public ogmaService: OgmaService) {}
 

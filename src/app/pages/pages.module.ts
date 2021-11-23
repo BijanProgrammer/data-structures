@@ -14,6 +14,7 @@ import {PlaygroundComponent} from './playground/playground.component';
 import {ProblemComponent} from './chapter02/problem/problem.component';
 import {QueuePlaygroundComponent} from './chapter04/queue-playground/queue-playground.component';
 import {RggComponent} from './rgg/rgg.component';
+import {RtgComponent} from './rtg/rtg.component';
 import {ComponentsModule} from '../components/components.module';
 import {PipesModule} from '../pipes/pipes.module';
 import {IconsModule} from '../icons/icons.module';
@@ -33,6 +34,7 @@ import {IconsModule} from '../icons/icons.module';
         ProblemComponent,
         QueuePlaygroundComponent,
         RggComponent,
+        RtgComponent,
     ],
     imports: [CommonModule, ComponentsModule, IconsModule, PipesModule],
     exports: [
@@ -49,6 +51,7 @@ import {IconsModule} from '../icons/icons.module';
         ProblemComponent,
         QueuePlaygroundComponent,
         RggComponent,
+        RtgComponent,
     ],
 })
 export class PagesModule {}

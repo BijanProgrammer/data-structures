@@ -23,8 +23,9 @@ import {GraphGenerator} from '../../models/graph-generator';
 export class GraphSearchComponent implements AfterViewInit {
     public Layout = Layout;
 
-    @Input() public graphId: string = 'graph-container';
     @Input() public graphTitle: string = 'Graph';
+    @Input() public graphId: string = 'graph-container';
+    @Input() public layout: Layout = Layout.RADIAL;
     @Input() public graphGenerator!: GraphGenerator;
     @Input() public regenerateButtonEnabled: boolean = false;
     @Input() public downloadButtonEnabled: boolean = false;

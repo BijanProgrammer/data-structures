@@ -159,6 +159,18 @@ export class OgmaService {
                     nodeDistance: this.NODE_DISTANCE,
                 });
                 break;
+            case Layout.HIERARCHICAL:
+                await ogma.layouts.sequential({
+                    arrangeComponents: 'grid',
+                    componentDistance: this.COMPONENT_DISTANCE,
+                    direction: direction || 'TB',
+                    duration: this.ANIMATION_DURATION,
+                    gridDistance: this.GRID_DISTANCE,
+                    levelDistance: this.LEVEL_DISTANCE,
+                    locate: true,
+                    nodeDistance: this.NODE_DISTANCE,
+                });
+                break;
             default:
                 return;
         }

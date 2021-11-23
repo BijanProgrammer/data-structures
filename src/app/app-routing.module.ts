@@ -6,6 +6,7 @@ import {Chapter04Component} from './pages/chapter04/chapter04.component';
 import {Chapter05Component} from './pages/chapter05/chapter05.component';
 import {PlaygroundComponent} from './pages/playground/playground.component';
 import {RggComponent} from './pages/rgg/rgg.component';
+import {RtgComponent} from './pages/rtg/rtg.component';
 import {DfsComponent} from './pages/dfs/dfs.component';
 import {BfsComponent} from './pages/bfs/bfs.component';
 
@@ -16,6 +17,7 @@ const routes: Routes = [
     {path: 'chapter05', component: Chapter05Component},
     {path: 'playground', component: PlaygroundComponent},
     {path: 'rgg', component: RggComponent},
+    {path: 'rtg', component: RtgComponent},
     {path: 'dfs', component: DfsComponent},
     {path: 'bfs', component: BfsComponent},
 ];

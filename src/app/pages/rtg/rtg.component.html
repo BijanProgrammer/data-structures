@@ -1,0 +1,20 @@
+<div class="wrapper">
+    <h1>Random Tree Generator</h1>
+
+    <section id="graph-section">
+        <app-graph-header
+            graphTitle="Tree"
+            [graphVisualizerComponent]="graphVisualizerComponent"
+            [regenerateButtonEnabled]="true"
+            [downloadButtonEnabled]="true"
+            [uploadButtonEnabled]="true"
+            (regenerateButtonClick)="regenerateButtonClickHandler()"
+        ></app-graph-header>
+
+        <app-graph-visualizer
+            #graphVisualizerComponent
+            [layout]="Layout.SEQUENTIAL"
+            [isDirected]="true"
+        ></app-graph-visualizer>
+    </section>
+</div>

@@ -38,4 +38,17 @@
             (generateAnimationStepsEventEmitter)="generateAnimationSteps($event)"
         ></app-graph-search>
     </section>
+
+    <section id="random-tree-section">
+        <app-graph-search
+            graphTitle="Random Tree"
+            graphId="random-tree"
+            [layout]="Layout.SEQUENTIAL"
+            [graphGenerator]="randomTreeGenerator"
+            [regenerateButtonEnabled]="true"
+            [downloadButtonEnabled]="true"
+            [uploadButtonEnabled]="true"
+            (generateAnimationStepsEventEmitter)="generateAnimationSteps($event)"
+        ></app-graph-search>
+    </section>
 </div>

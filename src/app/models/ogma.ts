@@ -75,6 +75,7 @@ export enum Layout {
     GRID,
     RADIAL,
     SEQUENTIAL,
+    HIERARCHICAL,
 }
 
 export enum Direction {
