@@ -18,16 +18,16 @@ export class RtgComponent implements AfterViewInit {
 
     private treeGenerator: GraphGenerator = new RandomTreeGenerator();
 
-    public ngAfterViewInit(): void {
-        this.populateGraph();
+    public async ngAfterViewInit(): Promise<void> {
+        await this.populateGraph();
     }
 
-    public regenerateButtonClickHandler(): void {
-        this.populateGraph();
+    public async regenerateButtonClickHandler(): Promise<void> {
+        await this.populateGraph();
     }
 
-    private populateGraph(): void {
+    private async populateGraph(): Promise<void> {
         const rawGraph = this.treeGenerator.generateGraph(this.graphVisualizerComponent);
-        this.graphVisualizerComponent.setGraph(rawGraph);
+        await this.graphVisualizerComponent.setGraph(rawGraph);
     }
 }

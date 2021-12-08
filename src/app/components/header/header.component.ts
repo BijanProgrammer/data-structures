@@ -31,6 +31,7 @@ export class HeaderComponent {
                 {isMega: false, title: 'Chapter 02', routerLink: '/chapter02'},
                 {isMega: false, title: 'Chapter 04', routerLink: '/chapter04'},
                 {isMega: false, title: 'Chapter 05', routerLink: '/chapter05'},
+                {isMega: false, title: 'Chapter 07', routerLink: '/chapter07'},
             ],
         },
         {

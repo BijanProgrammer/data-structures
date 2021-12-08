@@ -171,3 +171,36 @@ export class RandomTreeGenerator extends GraphGenerator {
         return JSON.parse(JSON.stringify({nodes, edges}));
     }
 }
+
+export class LinearOneWayLinkedListGraphGenerator extends GraphGenerator {
+    public constructor(sizeOrValues?: number | any[]) {
+        super();
+
+        if (Array.isArray(sizeOrValues)) {
+            this.size = sizeOrValues.length;
+            this.values = JSON.parse(JSON.stringify(sizeOrValues));
+
+            return;
+        }
+
+        this.size = sizeOrValues ?? 4;
+        this.values = Array(this.size)
+            .fill(null)
+            .map((_, i) => i + 1);
+    }
+
+    private size!: number;
+    private values!: any[];
+
+    public generateGraph(): RawGraph {
+        const nodes: Node[] = this.values.map((value, i) => new Node({id: i, attributes: {text: value}}));
+
+        const edges: Edge[] = [];
+        for (let i = 0; i < nodes.length - 1; i++) {
+            edges.push(new Edge({id: i, source: i, target: i + 1}));
+        }
+
+        const graph = {nodes, edges};
+        return JSON.parse(JSON.stringify(graph));
+    }
+}

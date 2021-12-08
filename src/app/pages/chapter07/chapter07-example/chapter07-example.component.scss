@@ -1,0 +1,14 @@
+.wrapper {
+    --gap: 2rem;
+
+    .animation-control-panel {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        gap: 2rem;
+
+        app-graph-animator {
+            margin-inline-start: auto;
+        }
+    }
+}

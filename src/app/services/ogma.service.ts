@@ -190,12 +190,50 @@ export class OgmaService {
 
     public generateRemoveClassNameStep(
         animationSteps: OgmaAnimationStep[],
+        element: Element<Node | Edge, NodeList | EdgeList>,
+        className: ClassName = ClassName.PATH
+    ): void {
+        animationSteps.push({
+            actions: [{element, actionType: OgmaAnimationActionType.REMOVE_CLASS, actionData: {className}}],
+        });
+    }
+
+    public generateRemovePathClassNameStep(
+        animationSteps: OgmaAnimationStep[],
         element: Element<Node | Edge, NodeList | EdgeList>
     ): void {
         animationSteps.push({
             actions: [
                 {element, actionType: OgmaAnimationActionType.REMOVE_CLASS, actionData: {className: ClassName.PATH}},
                 {element, actionType: OgmaAnimationActionType.ADD_CLASS, actionData: {className: ClassName.DISABLED}},
+            ],
+        });
+    }
+
+    public generateRewireStep(animationSteps: OgmaAnimationStep[], edge: Edge, newTarget: Node): void {
+        animationSteps.push({
+            actions: [
+                {
+                    element: edge,
+                    actionType: OgmaAnimationActionType.REWIRE,
+                    actionData: {oldTarget: edge.getTarget(), newTarget},
+                },
+            ],
+        });
+    }
+
+    public generateRemoveElementStep(
+        animationSteps: OgmaAnimationStep[],
+        element: Element<Node | Edge, NodeList | EdgeList>,
+        actionData: any
+    ): void {
+        animationSteps.push({
+            actions: [
+                {
+                    element,
+                    actionType: OgmaAnimationActionType.REMOVE_ELEMENT,
+                    actionData,
+                },
             ],
         });
     }

@@ -4,7 +4,18 @@ import {OgmaService} from '../../services/ogma.service';
 
 // @ts-ignore
 import * as Ogma from '../../../scripts/ogma.min';
-import {ClassName, Direction, Edge, EdgeList, Layout, Node, NodeList, RawGraph, Selector} from '../../models/ogma';
+import {
+    ClassName,
+    Direction,
+    Element,
+    Edge,
+    EdgeList,
+    Layout,
+    Node,
+    NodeList,
+    RawGraph,
+    Selector,
+} from '../../models/ogma';
 
 @Component({
     selector: 'app-graph-visualizer',
@@ -50,13 +61,36 @@ export class GraphVisualizerComponent implements AfterViewInit {
         return this.ogma.getEdge(edgeId);
     }
 
-    public setGraph(rawGraph: RawGraph): void {
+    public async setGraph(rawGraph: RawGraph): Promise<void> {
         this.ogma.setGraph(rawGraph);
 
         this.ogma.getNodes().addClass(ClassName.IDLE);
         this.ogma.getEdges().addClass(ClassName.IDLE);
 
-        this.setLayout(this.layout).then();
+        await this.setLayout(this.layout);
+    }
+
+    public addNode(
+        data: {id: any; attributes?: any; data?: any; edge: {id: any; source: any; target: any; data?: any}},
+        redraw: boolean = true
+    ): void {
+        this.ogma.addNode({...data});
+        this.ogma.addEdge({...data.edge});
+
+        if (redraw) this.setLayout(this.layout).then();
+    }
+
+    public addEdge(node: Node, redraw: boolean = true): void {
+        // TODO
+
+        if (redraw) this.setLayout(this.layout).then();
+    }
+
+    public removeElement(element: Element<Node | Edge, NodeList | EdgeList>, redraw: boolean = true): void {
+        if (element.isNode) this.ogma.removeNode(element);
+        else this.ogma.removeEdge(element);
+
+        if (redraw) this.setLayout(this.layout).then();
     }
 
     public addNodes(nodes: Node[]): void {
@@ -120,7 +154,7 @@ export class GraphVisualizerComponent implements AfterViewInit {
         if (!content) return undefined;
 
         const rawGraph = await this.ogma.parse.json(content);
-        this.setGraph(rawGraph);
+        await this.setGraph(rawGraph);
 
         return rawGraph;
     }

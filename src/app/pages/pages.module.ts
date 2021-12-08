@@ -18,6 +18,7 @@ import {RtgComponent} from './rtg/rtg.component';
 import {ComponentsModule} from '../components/components.module';
 import {PipesModule} from '../pipes/pipes.module';
 import {IconsModule} from '../icons/icons.module';
+import {Chapter07Module} from './chapter07/chapter07.module';
 
 @NgModule({
     declarations: [
@@ -42,6 +43,7 @@ import {IconsModule} from '../icons/icons.module';
         Chapter02Component,
         Chapter04Component,
         Chapter05Component,
+        Chapter07Module,
         DfsComponent,
         ExampleComponent,
         ExpressionComponent,

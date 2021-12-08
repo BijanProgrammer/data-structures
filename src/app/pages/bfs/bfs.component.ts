@@ -54,7 +54,7 @@ export class BfsComponent {
                 if (indexInQueue === -1) queue.enqueue(new Cell(nextNode));
             }
 
-            this.ogmaService.generateRemoveClassNameStep(animationSteps, currentNode);
+            this.ogmaService.generateRemovePathClassNameStep(animationSteps, currentNode);
         }
 
         return false;

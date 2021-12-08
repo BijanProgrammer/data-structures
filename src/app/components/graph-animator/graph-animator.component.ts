@@ -1,7 +1,8 @@
-import {ChangeDetectorRef, Component, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, ViewChild} from '@angular/core';
 import {AnimatorComponent} from '../animator/animator.component';
 import {OgmaAnimationAction, OgmaAnimationActionType, OgmaAnimationStep} from '../../models/ogma';
 import {AnimationAction} from '../../models/animator';
+import {GraphVisualizerComponent} from '../graph-visualizer/graph-visualizer.component';
 
 @Component({
     selector: 'app-graph-animator',
@@ -9,6 +10,8 @@ import {AnimationAction} from '../../models/animator';
     styleUrls: ['./graph-animator.component.scss'],
 })
 export class GraphAnimatorComponent {
+    @Input() public graphVisualizerComponent!: GraphVisualizerComponent;
+
     @ViewChild('animator', {read: AnimatorComponent}) private animator!: AnimatorComponent;
 
     public constructor(private changeDetectorRef: ChangeDetectorRef) {}
@@ -21,6 +24,13 @@ export class GraphAnimatorComponent {
     public performReverseActions(actions: AnimationAction[]): void {
         (actions as OgmaAnimationAction[]).forEach((action) => {
             switch (action.actionType) {
+                case OgmaAnimationActionType.ADD_ELEMENT:
+                    this.graphVisualizerComponent.removeElement(action.element);
+                    break;
+                case OgmaAnimationActionType.REMOVE_ELEMENT:
+                    if (action.element.isNode) this.graphVisualizerComponent.addNode(action.actionData);
+                    else this.graphVisualizerComponent.addEdge(action.actionData.edge);
+                    break;
                 case OgmaAnimationActionType.ADD_CLASS:
                     action.element.removeClass(action.actionData.className).then();
                     break;
@@ -34,6 +44,13 @@ export class GraphAnimatorComponent {
     public performActions(actions: AnimationAction[]): void {
         (actions as OgmaAnimationAction[]).forEach((action) => {
             switch (action.actionType) {
+                case OgmaAnimationActionType.ADD_ELEMENT:
+                    if (action.element.isNode) this.graphVisualizerComponent.addNode(action.actionData);
+                    else this.graphVisualizerComponent.addEdge(action.actionData.edge);
+                    break;
+                case OgmaAnimationActionType.REMOVE_ELEMENT:
+                    this.graphVisualizerComponent.removeElement(action.element);
+                    break;
                 case OgmaAnimationActionType.ADD_CLASS:
                     action.element.addClass(action.actionData.className).then();
                     break;

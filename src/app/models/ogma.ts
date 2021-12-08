@@ -6,9 +6,12 @@ export class RawGraph {
 }
 
 export class Element<T extends Node | Edge, TList extends NodeList | EdgeList> {
+    public isNode!: boolean;
+    public isEdge!: boolean;
     public addClass!: (className: string) => Promise<T>;
     public getClassList!: () => [string];
-    public getData!: (propertyPath: string | string[]) => any;
+    public getAttributes!: () => any;
+    public getData!: (propertyPath?: string | string[]) => any;
     public getId!: () => any;
     public removeClass!: (className: string) => Promise<T>;
     public removeClasses!: (classNames: string[]) => Promise<TList>;
@@ -28,7 +31,7 @@ export class Node extends Element<Node, NodeList> {
     private attributes!: any;
     private data!: any;
 
-    public constructor({id, attributes, data}: {id: any; attributes: any; data: any}) {
+    public constructor({id, attributes, data}: {id: any; attributes?: any; data?: any}) {
         super();
 
         this.id = id;
@@ -36,7 +39,7 @@ export class Node extends Element<Node, NodeList> {
         this.data = data;
     }
 
-    public getAdjacentEdges!: (options: AdjacencyOptions) => EdgeList;
+    public getAdjacentEdges!: (options?: AdjacencyOptions) => EdgeList;
     public getPosition!: () => {x: number; y: number};
 }
 
@@ -48,7 +51,7 @@ export class Edge extends Element<Edge, EdgeList> {
     private target!: any;
     private data!: any;
 
-    public constructor({id, source, target, data}: {id: any; source: any; target: any; data: any}) {
+    public constructor({id, source, target, data}: {id: any; source: any; target: any; data?: any}) {
         super();
 
         this.id = id;
@@ -57,6 +60,7 @@ export class Edge extends Element<Edge, EdgeList> {
         this.data = data;
     }
 
+    public getSource!: () => Node;
     public getTarget!: () => Node;
 }
 
@@ -108,6 +112,11 @@ export interface OgmaAnimationAction extends AnimationAction {
 }
 
 export enum OgmaAnimationActionType {
+    ADD_ELEMENT,
+    REMOVE_ELEMENT,
     ADD_CLASS,
     REMOVE_CLASS,
+    REWIRE,
+    ADD_EDGE,
+    REMOVE_EDGE,
 }

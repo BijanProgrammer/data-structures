@@ -1,0 +1,26 @@
+<div class="wrapper">
+    <app-graph-header
+        [graphTitle]="graphTitle"
+        [graphVisualizerComponent]="graphVisualizerComponent"
+        [regenerateButtonEnabled]="regenerateButtonEnabled"
+        [downloadButtonEnabled]="downloadButtonEnabled"
+        [uploadButtonEnabled]="uploadButtonEnabled"
+        (regenerateButtonClick)="regenerateButtonClickHandler()"
+        (uploadButtonClick)="uploadButtonClickHandler($event)"
+    ></app-graph-header>
+
+    <div class="animation-control-panel">
+        <app-graph-animator
+            #graphAnimatorComponent
+            [graphVisualizerComponent]="graphVisualizerComponent"
+        ></app-graph-animator>
+    </div>
+
+    <app-graph-visualizer
+        #graphVisualizerComponent
+        [graphId]="graphId"
+        [layout]="Layout.SEQUENTIAL"
+        [direction]="Direction.LR"
+        [isDirected]="true"
+    ></app-graph-visualizer>
+</div>

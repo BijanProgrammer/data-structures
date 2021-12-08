@@ -47,10 +47,10 @@ export class DfsComponent {
             const found = this.dfs(animationSteps, nextNode, targetNode);
             if (found) return true;
 
-            this.ogmaService.generateRemoveClassNameStep(animationSteps, edge);
+            this.ogmaService.generateRemovePathClassNameStep(animationSteps, edge);
         }
 
-        this.ogmaService.generateRemoveClassNameStep(animationSteps, currentNode);
+        this.ogmaService.generateRemovePathClassNameStep(animationSteps, currentNode);
 
         return false;
     }

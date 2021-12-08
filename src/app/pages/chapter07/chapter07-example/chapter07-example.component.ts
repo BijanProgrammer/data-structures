@@ -9,29 +9,29 @@ import {
     ViewChild,
 } from '@angular/core';
 
-import {GraphVisualizerComponent} from '../graph-visualizer/graph-visualizer.component';
+import {GraphVisualizerComponent} from '../../../components/graph-visualizer/graph-visualizer.component';
 
-import {ClassName, EdgeList, Layout, Node, NodeList, OgmaAnimationStep, RawGraph} from 'src/app/models/ogma';
-import {GraphAnimatorComponent} from '../graph-animator/graph-animator.component';
-import {GraphGenerator} from '../../models/graph-generator';
+import {ClassName, Direction, EdgeList, Layout, NodeList, OgmaAnimationStep, RawGraph} from 'src/app/models/ogma';
+import {GraphAnimatorComponent} from '../../../components/graph-animator/graph-animator.component';
+import {GraphGenerator} from '../../../models/graph-generator';
 
 @Component({
-    selector: 'app-graph-search',
-    templateUrl: './graph-search.component.html',
-    styleUrls: ['./graph-search.component.scss'],
+    selector: 'app-chapter07-example',
+    templateUrl: './chapter07-example.component.html',
+    styleUrls: ['./chapter07-example.component.scss'],
 })
-export class GraphSearchComponent implements AfterViewInit {
+export class Chapter07ExampleComponent implements AfterViewInit {
     public Layout = Layout;
+    public Direction = Direction;
 
     @Input() public graphTitle: string = 'Graph';
     @Input() public graphId: string = 'graph-container';
-    @Input() public layout: Layout = Layout.RADIAL;
     @Input() public graphGenerator!: GraphGenerator;
-    @Input() public regenerateButtonEnabled: boolean = false;
+    @Input() public regenerateButtonEnabled: boolean = true;
     @Input() public downloadButtonEnabled: boolean = false;
     @Input() public uploadButtonEnabled: boolean = false;
 
-    @Output() public generateAnimationStepsEventEmitter: EventEmitter<any> = new EventEmitter<any>();
+    @Output() public generateAnimationStepsEventEmitter = new EventEmitter<any>();
 
     @ViewChild('graphAnimatorComponent', {read: GraphAnimatorComponent})
     public graphAnimatorComponent!: GraphAnimatorComponent;
@@ -59,19 +59,6 @@ export class GraphSearchComponent implements AfterViewInit {
 
     public uploadButtonClickHandler(rawGraph: RawGraph): void {
         this.init(rawGraph);
-    }
-
-    public formSubmitHandler(event: Event): void {
-        event.preventDefault();
-        this.initAnimation();
-    }
-
-    private get startNodeIndex(): number {
-        return +this.startNodeInput.nativeElement.value || 1;
-    }
-
-    private get targetNodeIndex(): number {
-        return +this.targetNodeInput.nativeElement.value || 1;
     }
 
     private init(rawGraph?: RawGraph): void {
@@ -102,14 +89,15 @@ export class GraphSearchComponent implements AfterViewInit {
             element.removeClasses(element.getClassList());
             element.addClass(ClassName.IDLE);
         });
+
+        this.nodes.toArray()[0].addClass(ClassName.PATH).then();
     }
 
     private generateAnimationSteps(): void {
         this.animationSteps = [];
-
-        const startNode: Node = this.graphVisualizerComponent.getNode(this.startNodeIndex);
-        const targetNode: Node = this.graphVisualizerComponent.getNode(this.targetNodeIndex);
-
-        this.generateAnimationStepsEventEmitter.emit({animationSteps: this.animationSteps, startNode, targetNode});
+        this.generateAnimationStepsEventEmitter.emit({
+            animationSteps: this.animationSteps,
+            head: this.nodes.toArray()[0],
+        });
     }
 }
