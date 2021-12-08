@@ -28,23 +28,7 @@ export class Chapter07Example01Component {
             ClassName.PATH
         );
 
-        // console.log(head.rawData());
-        // for (const edge of head.getAdjacentEdges().toArray()) console.log(edge.rawData());
-
-        const edge = head.getAdjacentEdges().toArray()[0];
-
-        const data = {
-            id: head.getId(),
-            attributes: head.getAttributes(),
-            data: head.getData(),
-            edge: {
-                id: edge.getId(),
-                source: edge.getSource(),
-                target: edge.getTarget(),
-                data: edge.getData(),
-            },
-        };
-
-        this.ogmaService.generateRemoveElementStep(animationSteps, head, data);
+        const rawData = this.ogmaService.generateLinkedListNodeRawData(head);
+        this.ogmaService.generateRemoveElementStep(animationSteps, head, rawData);
     }
 }

@@ -74,23 +74,28 @@ export class GraphVisualizerComponent implements AfterViewInit {
         data: {id: any; attributes?: any; data?: any; edge: {id: any; source: any; target: any; data?: any}},
         redraw: boolean = true
     ): void {
+        console.log({...data});
+        console.log({...data.edge});
         this.ogma.addNode({...data});
         this.ogma.addEdge({...data.edge});
 
-        if (redraw) this.setLayout(this.layout).then();
+        // if (redraw)
+        this.setLayout(this.layout).then();
     }
 
     public addEdge(node: Node, redraw: boolean = true): void {
         // TODO
 
-        if (redraw) this.setLayout(this.layout).then();
+        // if (redraw)
+        this.setLayout(this.layout).then();
     }
 
     public removeElement(element: Element<Node | Edge, NodeList | EdgeList>, redraw: boolean = true): void {
         if (element.isNode) this.ogma.removeNode(element);
         else this.ogma.removeEdge(element);
 
-        if (redraw) this.setLayout(this.layout).then();
+        // if (redraw)
+        this.setLayout(this.layout).then();
     }
 
     public addNodes(nodes: Node[]): void {

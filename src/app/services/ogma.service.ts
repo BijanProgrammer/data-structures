@@ -178,6 +178,22 @@ export class OgmaService {
         ogma.getNodes().locate({duration: this.ANIMATION_DURATION});
     }
 
+    public generateLinkedListNodeRawData(node: Node): any {
+        const edge = node.getAdjacentEdges().toArray()[0];
+
+        return {
+            id: node.getId(),
+            attributes: node.getAttributes(),
+            data: node.getData(),
+            edge: {
+                id: edge.getId(),
+                source: edge.getSource().getId(),
+                target: edge.getTarget().getId(),
+                data: edge.getData(),
+            },
+        };
+    }
+
     public generateAddClassNameStep(
         animationSteps: OgmaAnimationStep[],
         element: Element<Node | Edge, NodeList | EdgeList>,

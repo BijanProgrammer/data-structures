@@ -25,11 +25,11 @@ export class GraphAnimatorComponent {
         (actions as OgmaAnimationAction[]).forEach((action) => {
             switch (action.actionType) {
                 case OgmaAnimationActionType.ADD_ELEMENT:
-                    this.graphVisualizerComponent.removeElement(action.element);
+                    this.graphVisualizerComponent.removeElement(action.element, false);
                     break;
                 case OgmaAnimationActionType.REMOVE_ELEMENT:
-                    if (action.element.isNode) this.graphVisualizerComponent.addNode(action.actionData);
-                    else this.graphVisualizerComponent.addEdge(action.actionData.edge);
+                    if (action.element.isNode) this.graphVisualizerComponent.addNode(action.actionData, false);
+                    else this.graphVisualizerComponent.addEdge(action.actionData.edge, false);
                     break;
                 case OgmaAnimationActionType.ADD_CLASS:
                     action.element.removeClass(action.actionData.className).then();
@@ -45,11 +45,11 @@ export class GraphAnimatorComponent {
         (actions as OgmaAnimationAction[]).forEach((action) => {
             switch (action.actionType) {
                 case OgmaAnimationActionType.ADD_ELEMENT:
-                    if (action.element.isNode) this.graphVisualizerComponent.addNode(action.actionData);
-                    else this.graphVisualizerComponent.addEdge(action.actionData.edge);
+                    if (action.element.isNode) this.graphVisualizerComponent.addNode(action.actionData, false);
+                    else this.graphVisualizerComponent.addEdge(action.actionData.edge, false);
                     break;
                 case OgmaAnimationActionType.REMOVE_ELEMENT:
-                    this.graphVisualizerComponent.removeElement(action.element);
+                    this.graphVisualizerComponent.removeElement(action.element, false);
                     break;
                 case OgmaAnimationActionType.ADD_CLASS:
                     action.element.addClass(action.actionData.className).then();
