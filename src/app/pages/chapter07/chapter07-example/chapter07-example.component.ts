@@ -97,6 +97,7 @@ export class Chapter07ExampleComponent implements AfterViewInit {
         this.animationSteps = [];
         this.generateAnimationStepsEventEmitter.emit({
             animationSteps: this.animationSteps,
+            graphVisualizerComponent: this.graphVisualizerComponent,
             head: this.nodes.toArray()[0],
         });
     }

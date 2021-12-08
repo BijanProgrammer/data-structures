@@ -37,6 +37,11 @@ export class GraphAnimatorComponent {
                 case OgmaAnimationActionType.REMOVE_CLASS:
                     action.element.addClass(action.actionData.className).then();
                     break;
+                case OgmaAnimationActionType.REWIRE:
+                    (action.element as any).setTarget(
+                        this.graphVisualizerComponent.getNode(action.actionData.oldTarget)
+                    );
+                    break;
             }
         });
     }
@@ -56,6 +61,12 @@ export class GraphAnimatorComponent {
                     break;
                 case OgmaAnimationActionType.REMOVE_CLASS:
                     action.element.removeClass(action.actionData.className).then();
+                    break;
+                case OgmaAnimationActionType.REWIRE:
+                    console.log(action.actionData.newTarget);
+                    (action.element as any).setTarget(
+                        this.graphVisualizerComponent.getNode(action.actionData.newTarget)
+                    );
                     break;
             }
         });

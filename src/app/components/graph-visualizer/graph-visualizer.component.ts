@@ -36,6 +36,8 @@ export class GraphVisualizerComponent implements AfterViewInit {
 
     public selector: Selector = Selector.DEFAULT;
     public isSnappingEnabled = false;
+    public isRewiringEnabled = false;
+    public isConnectNodesEnabled = false;
 
     private ogma: Ogma;
 
@@ -149,6 +151,20 @@ export class GraphVisualizerComponent implements AfterViewInit {
 
         if (this.isSnappingEnabled) this.ogma.tools.snapping.enable({tolerance: 100});
         else this.ogma.tools.snapping.disable();
+    }
+
+    public rewiringButtonClickHandler(): void {
+        this.isRewiringEnabled = !this.isRewiringEnabled;
+
+        if (this.isRewiringEnabled) this.ogma.tools.rewire.enable();
+        else this.ogma.tools.rewire.disable();
+    }
+
+    public connectNodesButtonClickHandler(): void {
+        this.isConnectNodesEnabled = !this.isConnectNodesEnabled;
+
+        if (this.isConnectNodesEnabled) this.ogma.tools.connectNodes.enable();
+        else this.ogma.tools.connectNodes.disable();
     }
 
     public async exportJson(): Promise<string> {

@@ -81,5 +81,19 @@
                 {{ isSnappingEnabled ? 'enabled' : 'disabled' }}
             </button>
         </div>
+
+        <div class="button-group">
+            <span class="title">Rewiring</span>
+            <button [ngClass]="{active: isRewiringEnabled}" (click)="rewiringButtonClickHandler()">
+                {{ isRewiringEnabled ? 'enabled' : 'disabled' }}
+            </button>
+        </div>
+
+        <div class="button-group">
+            <span class="title">ConnectNodes</span>
+            <button [ngClass]="{active: isConnectNodesEnabled}" (click)="connectNodesButtonClickHandler()">
+                {{ isConnectNodesEnabled ? 'enabled' : 'disabled' }}
+            </button>
+        </div>
     </div>
 </div>

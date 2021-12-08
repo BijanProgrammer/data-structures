@@ -232,7 +232,7 @@ export class OgmaService {
                 {
                     element: edge,
                     actionType: OgmaAnimationActionType.REWIRE,
-                    actionData: {oldTarget: edge.getTarget(), newTarget},
+                    actionData: {oldTarget: edge.getTarget().getId(), newTarget: newTarget.getId()},
                 },
             ],
         });
