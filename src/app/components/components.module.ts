@@ -21,6 +21,7 @@ import {QueueComponent} from './queue/queue.component';
 import {StackComponent} from './stack/stack.component';
 import {TexComponent} from './tex/tex.component';
 import {TextParserComponent} from './text-parser/text-parser.component';
+import {UnderConstructionComponent} from './under-construction/under-construction.component';
 
 @NgModule({
     declarations: [
@@ -36,6 +37,7 @@ import {TextParserComponent} from './text-parser/text-parser.component';
         StackComponent,
         TexComponent,
         TextParserComponent,
+        UnderConstructionComponent,
     ],
     imports: [CommonModule, FormsModule, RouterModule, KatexModule, MonacoEditorModule, IconsModule, PipesModule],
     exports: [
@@ -51,6 +53,7 @@ import {TextParserComponent} from './text-parser/text-parser.component';
         StackComponent,
         TexComponent,
         TextParserComponent,
+        UnderConstructionComponent,
     ],
 })
 export class ComponentsModule {}

@@ -83,7 +83,7 @@ export class Chapter07Component {
     }
 
     private getEdge(node: Node): Edge {
-        return node.getAdjacentEdges().toArray()[0];
+        return node.getAdjacentEdges({direction: 'out'}).toArray()[0];
     }
 
     private next(node: Node): Node {

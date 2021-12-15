@@ -1,0 +1,30 @@
+.notice {
+    background-color: var(--color--notice);
+    color: var(--color--notice-opposite);
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    font-size: 4.8rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+
+    &::before,
+    &::after {
+        --size: 1rem;
+
+        content: '';
+
+        background-image: repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent var(--size),
+            currentColor var(--size),
+            currentColor calc(2 * var(--size))
+        );
+
+        height: 2rem;
+    }
+}

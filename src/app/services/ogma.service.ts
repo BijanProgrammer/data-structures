@@ -227,6 +227,9 @@ export class OgmaService {
     }
 
     public generateRewireStep(animationSteps: OgmaAnimationStep[], edge: Edge, newTarget: Node): void {
+        console.log('edge.getTarget().getId()', edge.getTarget().getId());
+        console.log('newTarget.getId()', newTarget.getId());
+
         animationSteps.push({
             actions: [
                 {
