@@ -110,6 +110,11 @@ export class GraphSearchComponent implements AfterViewInit {
         const startNode: Node = this.graphVisualizerComponent.getNode(this.startNodeIndex);
         const targetNode: Node = this.graphVisualizerComponent.getNode(this.targetNodeIndex);
 
-        this.generateAnimationStepsEventEmitter.emit({animationSteps: this.animationSteps, startNode, targetNode});
+        this.generateAnimationStepsEventEmitter.emit({
+            animationSteps: this.animationSteps,
+            graphVisualizerComponent: this.graphVisualizerComponent,
+            startNode,
+            targetNode,
+        });
     }
 }

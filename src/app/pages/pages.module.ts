@@ -19,6 +19,7 @@ import {ComponentsModule} from '../components/components.module';
 import {PipesModule} from '../pipes/pipes.module';
 import {IconsModule} from '../icons/icons.module';
 import {Chapter07Module} from './chapter07/chapter07.module';
+import {TreeTraversalComponent} from './tree-traversal/tree-traversal.component';
 
 @NgModule({
     declarations: [
@@ -36,6 +37,7 @@ import {Chapter07Module} from './chapter07/chapter07.module';
         QueuePlaygroundComponent,
         RggComponent,
         RtgComponent,
+        TreeTraversalComponent,
     ],
     imports: [CommonModule, ComponentsModule, IconsModule, PipesModule],
     exports: [

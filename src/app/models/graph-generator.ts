@@ -79,6 +79,39 @@ export class SimpleBfsGraphGenerator extends GraphGenerator {
     }
 }
 
+export class SimpleTreeGenerator extends GraphGenerator {
+    private static readonly NODES: Node[] = [
+        new Node({
+            id: 1,
+            attributes: {text: 'A'},
+            data: {},
+        }),
+        new Node({id: 2, attributes: {text: 'B'}, data: {}}),
+        new Node({id: 3, attributes: {text: 'C'}, data: {}}),
+        new Node({id: 4, attributes: {text: 'N'}, data: {}}),
+        new Node({id: 5, attributes: {text: 'M'}, data: {}}),
+        new Node({id: 6, attributes: {text: 'P'}, data: {}}),
+        new Node({id: 7, attributes: {text: 'F'}, data: {}}),
+    ];
+
+    private static readonly EDGES: Edge[] = [
+        new Edge({id: 1, source: 1, target: 2, data: {}}),
+        new Edge({id: 2, source: 1, target: 3, data: {}}),
+
+        new Edge({id: 3, source: 2, target: 4, data: {}}),
+
+        new Edge({id: 4, source: 3, target: 5, data: {}}),
+
+        new Edge({id: 6, source: 5, target: 6, data: {}}),
+        new Edge({id: 7, source: 5, target: 7, data: {}}),
+    ];
+
+    public generateGraph(): RawGraph {
+        const graph = {nodes: SimpleTreeGenerator.NODES, edges: SimpleTreeGenerator.EDGES};
+        return JSON.parse(JSON.stringify(graph));
+    }
+}
+
 export class RandomGraphGenerator extends GraphGenerator {
     public constructor(private nodesMaximumCount = 20, private edgesMaximumCount = 30) {
         super();

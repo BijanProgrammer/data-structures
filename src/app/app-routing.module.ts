@@ -13,6 +13,7 @@ import {RggComponent} from './pages/rgg/rgg.component';
 import {RtgComponent} from './pages/rtg/rtg.component';
 import {DfsComponent} from './pages/dfs/dfs.component';
 import {BfsComponent} from './pages/bfs/bfs.component';
+import {TreeTraversalComponent} from './pages/tree-traversal/tree-traversal.component';
 
 const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
     {path: 'chapter07', component: Chapter07Component},
     {path: 'rgg', component: RggComponent},
     {path: 'rtg', component: RtgComponent},
+    {path: 'tree-traversal', component: TreeTraversalComponent},
     {path: 'dfs', component: DfsComponent},
     {path: 'bfs', component: BfsComponent},
 ];
