@@ -30,6 +30,7 @@ export class GraphSearchComponent implements AfterViewInit {
     @Input() public regenerateButtonEnabled: boolean = false;
     @Input() public downloadButtonEnabled: boolean = false;
     @Input() public uploadButtonEnabled: boolean = false;
+    @Input() public formEnabled: boolean = true;
 
     @Output() public generateAnimationStepsEventEmitter: EventEmitter<any> = new EventEmitter<any>();
 
@@ -106,6 +107,15 @@ export class GraphSearchComponent implements AfterViewInit {
 
     private generateAnimationSteps(): void {
         this.animationSteps = [];
+
+        if (!this.formEnabled) {
+            this.generateAnimationStepsEventEmitter.emit({
+                animationSteps: this.animationSteps,
+                graphVisualizerComponent: this.graphVisualizerComponent,
+            });
+
+            return;
+        }
 
         const startNode: Node = this.graphVisualizerComponent.getNode(this.startNodeIndex);
         const targetNode: Node = this.graphVisualizerComponent.getNode(this.targetNodeIndex);

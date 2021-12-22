@@ -19,33 +19,39 @@
             >
                 sequential
             </button>
+            <button
+                [ngClass]="{active: layout === Layout.HIERARCHICAL}"
+                (click)="layoutButtonClickHandler(Layout.HIERARCHICAL)"
+            >
+                hierarchical
+            </button>
         </div>
 
         <div class="button-group">
             <span class="title">Direction</span>
             <button
-                [disabled]="layout !== Layout.SEQUENTIAL"
+                [disabled]="isDirectionSettingsDisabled(layout)"
                 [ngClass]="{active: direction === Direction.TB}"
                 (click)="directionButtonClickHandler(Direction.TB)"
             >
                 tb
             </button>
             <button
-                [disabled]="layout !== Layout.SEQUENTIAL"
+                [disabled]="isDirectionSettingsDisabled(layout)"
                 [ngClass]="{active: direction === Direction.BT}"
                 (click)="directionButtonClickHandler(Direction.BT)"
             >
                 bt
             </button>
             <button
-                [disabled]="layout !== Layout.SEQUENTIAL"
+                [disabled]="isDirectionSettingsDisabled(layout)"
                 [ngClass]="{active: direction === Direction.LR}"
                 (click)="directionButtonClickHandler(Direction.LR)"
             >
                 lr
             </button>
             <button
-                [disabled]="layout !== Layout.SEQUENTIAL"
+                [disabled]="isDirectionSettingsDisabled(layout)"
                 [ngClass]="{active: direction === Direction.RL}"
                 (click)="directionButtonClickHandler(Direction.RL)"
             >

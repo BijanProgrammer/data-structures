@@ -5,11 +5,12 @@
         <app-graph-search
             graphTitle="Infix"
             graphId="infix"
-            [layout]="Layout.SEQUENTIAL"
+            [layout]="Layout.HIERARCHICAL"
             [graphGenerator]="randomTreeGenerator"
             [regenerateButtonEnabled]="true"
             [downloadButtonEnabled]="true"
             [uploadButtonEnabled]="true"
+            [formEnabled]="false"
             (generateAnimationStepsEventEmitter)="generateAnimationSteps($event, 'infix')"
         ></app-graph-search>
     </section>
@@ -18,11 +19,12 @@
         <app-graph-search
             graphTitle="Prefix"
             graphId="prefix"
-            [layout]="Layout.SEQUENTIAL"
+            [layout]="Layout.HIERARCHICAL"
             [graphGenerator]="randomTreeGenerator"
             [regenerateButtonEnabled]="true"
             [downloadButtonEnabled]="true"
             [uploadButtonEnabled]="true"
+            [formEnabled]="false"
             (generateAnimationStepsEventEmitter)="generateAnimationSteps($event, 'prefix')"
         ></app-graph-search>
     </section>
@@ -31,11 +33,12 @@
         <app-graph-search
             graphTitle="Suffix"
             graphId="suffix"
-            [layout]="Layout.SEQUENTIAL"
+            [layout]="Layout.HIERARCHICAL"
             [graphGenerator]="randomTreeGenerator"
             [regenerateButtonEnabled]="true"
             [downloadButtonEnabled]="true"
             [uploadButtonEnabled]="true"
+            [formEnabled]="false"
             (generateAnimationStepsEventEmitter)="generateAnimationSteps($event, 'suffix')"
         ></app-graph-search>
     </section>

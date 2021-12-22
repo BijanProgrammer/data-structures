@@ -160,7 +160,7 @@ export class OgmaService {
                 });
                 break;
             case Layout.HIERARCHICAL:
-                await ogma.layouts.sequential({
+                await ogma.layouts.hierarchical({
                     arrangeComponents: 'grid',
                     componentDistance: this.COMPONENT_DISTANCE,
                     direction: direction || 'TB',

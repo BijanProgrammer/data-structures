@@ -47,6 +47,10 @@ export class GraphVisualizerComponent implements AfterViewInit {
         this.initGraph();
     }
 
+    public isDirectionSettingsDisabled(layout: Layout): boolean {
+        return ![Layout.SEQUENTIAL, Layout.HIERARCHICAL].includes(layout);
+    }
+
     public getNodes(selector?: any): NodeList {
         return this.ogma.getNodes(selector);
     }

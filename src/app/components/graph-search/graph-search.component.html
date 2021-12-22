@@ -10,7 +10,7 @@
     ></app-graph-header>
 
     <div class="animation-control-panel">
-        <form class="horizontal" (submit)="formSubmitHandler($event)">
+        <form *ngIf="formEnabled" class="horizontal" (submit)="formSubmitHandler($event)">
             <label>
                 Start Node
                 <input #startNodeInput type="number" value="1" min="1" [max]="nodes?.size" />
