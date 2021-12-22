@@ -21,6 +21,7 @@ import {IconsModule} from '../icons/icons.module';
 import {Chapter07Module} from './chapter07/chapter07.module';
 import {TreeTraversalComponent} from './tree-traversal/tree-traversal.component';
 import {BinarySearchTreeComponent} from './binary-search-tree/binary-search-tree.component';
+import {HuffmanComponent} from './huffman/huffman.component';
 
 @NgModule({
     declarations: [
@@ -40,6 +41,7 @@ import {BinarySearchTreeComponent} from './binary-search-tree/binary-search-tree
         RtgComponent,
         TreeTraversalComponent,
         BinarySearchTreeComponent,
+        HuffmanComponent,
     ],
     imports: [CommonModule, ComponentsModule, IconsModule, PipesModule],
     exports: [

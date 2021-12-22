@@ -62,6 +62,9 @@ export class GraphAnimatorComponent {
                     const edge = this.graphVisualizerComponent.getEdge(action.actionData.id);
                     if (edge) this.graphVisualizerComponent.removeElement(edge, true);
                     break;
+                case OgmaAnimationActionType.SET_DATA:
+                    action.element.setData(action.actionData.path, action.actionData.oldData);
+                    break;
             }
         });
     }
@@ -104,6 +107,9 @@ export class GraphAnimatorComponent {
                     break;
                 case OgmaAnimationActionType.ADD_EDGE:
                     this.graphVisualizerComponent.addEdge(action.actionData, true);
+                    break;
+                case OgmaAnimationActionType.SET_DATA:
+                    action.element.setData(action.actionData.path, action.actionData.newData);
                     break;
             }
         });

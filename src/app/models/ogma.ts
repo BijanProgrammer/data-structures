@@ -149,4 +149,5 @@ export enum OgmaAnimationActionType {
     ADD_NODE,
     ADD_EDGE,
     REMOVE_EDGE,
+    SET_DATA,
 }

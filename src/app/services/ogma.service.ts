@@ -46,12 +46,21 @@ export class OgmaService {
         easing: Easing.LINEAR,
     };
 
-    private readonly DEFAULT_ATTRIBUTE_TEXT = {
+    private readonly DEFAULT_NODE_ATTRIBUTE_TEXT = {
         color: this.COLOR_LIGHT,
         minVisibleSize: 10,
         position: 'center',
         font: 'Consolas',
-        scale: 0.5,
+        scale: 0.2,
+        scaling: true,
+    };
+
+    private readonly DEFAULT_Edge_ATTRIBUTE_TEXT = {
+        backgroundColor: 'transparent',
+        color: this.COLOR_DARK,
+        minVisibleSize: 0,
+        font: 'Consolas',
+        scale: 10,
         scaling: true,
     };
 
@@ -78,22 +87,31 @@ export class OgmaService {
 
     private readonly HOVERED_EDGE_ATTRIBUTES = {
         color: this.COLOR_PRIMARY,
+        text: {
+            backgroundColor: 'transparent',
+        },
     };
 
     private readonly SELECTED_EDGE_ATTRIBUTES = {
         color: this.COLOR_SECONDARY,
     };
 
-    private readonly FAKE_ELEMENT = new Element();
+    public readonly FAKE_ELEMENT = new Element();
 
     public attachClasses(ogma: Ogma, isDirected: boolean): void {
         ogma.styles.createClass({
             name: ClassName.IDLE,
-            nodeAttributes: {color: this.COLOR_PRIMARY, radius: 24, shape: 'circle', text: this.DEFAULT_ATTRIBUTE_TEXT},
+            nodeAttributes: {
+                color: this.COLOR_PRIMARY,
+                radius: 24,
+                shape: 'circle',
+                text: this.DEFAULT_NODE_ATTRIBUTE_TEXT,
+            },
             edgeAttributes: {
                 color: this.COLOR_DARK,
                 shape: isDirected ? 'arrow' : 'line',
                 width: 3,
+                text: this.DEFAULT_Edge_ATTRIBUTE_TEXT,
             },
         });
 
@@ -173,8 +191,8 @@ export class OgmaService {
                     duration: this.ANIMATION_DURATION,
                     gridDistance: this.GRID_DISTANCE,
                     levelDistance: this.LEVEL_DISTANCE,
-                    locate: true,
                     nodeDistance: this.NODE_DISTANCE,
+                    locate: true,
                 });
                 break;
             case Layout.HIERARCHICAL:
@@ -185,12 +203,12 @@ export class OgmaService {
                     duration: this.ANIMATION_DURATION,
                     gridDistance: this.GRID_DISTANCE,
                     levelDistance: this.LEVEL_DISTANCE,
-                    locate: true,
                     nodeDistance: this.NODE_DISTANCE,
+                    locate: true,
                 });
                 break;
             case Layout.TREE:
-                await this.setTreeLayout(ogma);
+                await this.setTreeLayout(ogma, centralNode);
                 break;
             default:
                 return;
@@ -291,14 +309,16 @@ export class OgmaService {
         });
     }
 
-    private async setTreeLayout(ogma: Ogma): Promise<void> {
+    private async setTreeLayout(ogma: Ogma, root?: Node): Promise<void> {
         const nodes: Node[] = ogma.getNodes().toArray();
+
+        console.log(root);
 
         let depth = 0;
         let branchingFactor = 0;
         await this.dfs(
             null,
-            nodes[0],
+            root || nodes[0],
             0,
             0,
             async (parent: Node, currentNode: Node, currentDepth: number, edgeIndex: number, edges: Edge[]) => {
@@ -309,7 +329,7 @@ export class OgmaService {
 
         await this.dfs(
             null,
-            nodes[0],
+            root || nodes[0],
             0,
             0,
             async (parent: Node, currentNode: Node, currentDepth: number, edgeIndex: number) => {

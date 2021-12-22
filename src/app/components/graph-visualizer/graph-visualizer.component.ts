@@ -30,7 +30,9 @@ export class GraphVisualizerComponent implements AfterViewInit {
     @ViewChild('graphElementRef') public graphElementRef!: ElementRef;
 
     @Input() public graphId: string = 'graph-container';
+    @Input() public setLayoutEnabled: boolean = true;
     @Input() public layout: Layout = Layout.GRID;
+    @Input() public rootId?: number;
     @Input() public direction: Direction = Direction.TB;
     @Input() public isDirected: boolean = false;
 
@@ -77,9 +79,9 @@ export class GraphVisualizerComponent implements AfterViewInit {
     }
 
     public addNode(
-        data: {id: any; attributes?: any; data?: any; edge: {id: any; source: any; target: any; data?: any}},
+        data: {id: any; attributes?: any; data?: any; edge?: {id: any; source: any; target: any; data?: any}},
         redraw: boolean = true
-    ): void {
+    ): Node {
         const addedNode: Node = this.ogma.addNode({...data});
         addedNode.addClass(ClassName.IDLE).then();
 
@@ -87,6 +89,8 @@ export class GraphVisualizerComponent implements AfterViewInit {
 
         // if (redraw)
         this.setLayout(this.layout).then();
+
+        return addedNode;
     }
 
     public addEdge(data: {id: any; source: any; target: any; data?: any}, redraw: boolean = true): void {
@@ -204,9 +208,11 @@ export class GraphVisualizerComponent implements AfterViewInit {
     }
 
     private async setLayout(layout?: Layout): Promise<void> {
+        if (!this.setLayoutEnabled) return;
+
         if (layout) this.layout = layout;
 
-        await this.ogmaService.setLayout(this.ogma, this.layout, this.ogma.getNodes().get(0), this.direction);
+        await this.ogmaService.setLayout(this.ogma, this.layout, this.getNode(this.rootId ?? 1), this.direction);
     }
 
     private selectorCallback({nodes, edges}: {nodes: NodeList; edges: EdgeList}): void {

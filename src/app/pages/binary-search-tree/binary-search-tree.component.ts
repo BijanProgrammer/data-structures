@@ -3,7 +3,6 @@ import {SimpleBinarySearchTreeGenerator} from '../../models/graph-generator';
 import {ClassName, Edge, Layout, Node, OgmaAnimationActionType, OgmaAnimationStep} from '../../models/ogma';
 import {GraphVisualizerComponent} from '../../components/graph-visualizer/graph-visualizer.component';
 import {OgmaService} from '../../services/ogma.service';
-import {animate} from '@angular/animations';
 
 @Component({
     selector: 'app-binary-search-tree',
@@ -112,21 +111,6 @@ export class BinarySearchTreeComponent {
                     actionType: OgmaAnimationActionType.ADD_CLASS_BY_ID,
                     actionData: {id: nodeId, className: ClassName.PATH},
                 },
-            ],
-        });
-    }
-
-    private print(index: number): void {
-        const element: Node = this.graphVisualizerComponent.getNode(index);
-
-        this.animationSteps.push({
-            actions: [
-                {
-                    element,
-                    actionType: OgmaAnimationActionType.REMOVE_CLASS,
-                    actionData: {className: ClassName.SECONDARY},
-                },
-                {element, actionType: OgmaAnimationActionType.ADD_CLASS, actionData: {className: ClassName.PATH}},
             ],
         });
     }

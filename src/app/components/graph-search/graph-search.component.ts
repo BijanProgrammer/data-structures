@@ -25,7 +25,9 @@ export class GraphSearchComponent implements AfterViewInit {
 
     @Input() public graphTitle: string = 'Graph';
     @Input() public graphId: string = 'graph-container';
+    @Input() public setLayoutEnabled: boolean = true;
     @Input() public layout: Layout = Layout.RADIAL;
+    @Input() public rootId?: number;
     @Input() public graphGenerator!: GraphGenerator;
     @Input() public regenerateButtonEnabled: boolean = false;
     @Input() public downloadButtonEnabled: boolean = false;
