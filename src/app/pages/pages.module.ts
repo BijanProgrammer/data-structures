@@ -20,6 +20,7 @@ import {PipesModule} from '../pipes/pipes.module';
 import {IconsModule} from '../icons/icons.module';
 import {Chapter07Module} from './chapter07/chapter07.module';
 import {TreeTraversalComponent} from './tree-traversal/tree-traversal.component';
+import {BinarySearchTreeComponent} from './binary-search-tree/binary-search-tree.component';
 
 @NgModule({
     declarations: [
@@ -38,6 +39,7 @@ import {TreeTraversalComponent} from './tree-traversal/tree-traversal.component'
         RggComponent,
         RtgComponent,
         TreeTraversalComponent,
+        BinarySearchTreeComponent,
     ],
     imports: [CommonModule, ComponentsModule, IconsModule, PipesModule],
     exports: [

@@ -30,13 +30,17 @@ export class Node extends Element<Node, NodeList> {
     private id!: any;
     private attributes!: any;
     private data!: any;
+    private x!: any;
+    private y!: any;
 
-    public constructor({id, attributes, data}: {id: any; attributes?: any; data?: any}) {
+    public constructor({id, attributes, data, x, y}: {id: any; attributes?: any; data?: any; x?: number; y?: number}) {
         super();
 
         this.id = id;
         this.attributes = attributes;
         this.data = data;
+        this.x = x;
+        this.y = y;
     }
 
     public getAdjacentEdges!: (options?: AdjacencyOptions) => EdgeList;

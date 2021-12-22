@@ -1,0 +1,17 @@
+<div class="wrapper">
+    <h1>Binary Search Tree</h1>
+
+    <section *ngFor="let method of methods" [id]="method + '-section'">
+        <app-graph-search
+            [graphTitle]="method"
+            [graphId]="method"
+            [layout]="Layout.HIERARCHICAL"
+            [graphGenerator]="randomTreeGenerator"
+            [regenerateButtonEnabled]="true"
+            [downloadButtonEnabled]="true"
+            [uploadButtonEnabled]="true"
+            [formEnabled]="false"
+            (generateAnimationStepsEventEmitter)="generateAnimationSteps($event, method)"
+        ></app-graph-search>
+    </section>
+</div>
