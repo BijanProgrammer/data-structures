@@ -1,5 +1,5 @@
 <header>
-    <h2>{{ graphTitle }}</h2>
+    <h2>{{ graphTitle | wordsToTitleCase }}</h2>
     <button *ngIf="regenerateButtonEnabled" class="button button--regenerate" (click)="regenerateButtonClickHandler()">
         regenerate
         <icon-shuffle></icon-shuffle>

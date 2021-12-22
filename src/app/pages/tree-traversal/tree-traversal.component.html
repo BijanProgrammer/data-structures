@@ -1,45 +1,17 @@
 <div class="wrapper">
     <h1>Tree Traversal</h1>
 
-    <section id="infix-section">
+    <section *ngFor="let method of methods" [id]="method + '-section'">
         <app-graph-search
-            graphTitle="Infix"
-            graphId="infix"
+            [graphTitle]="method"
+            [graphId]="method"
             [layout]="Layout.HIERARCHICAL"
             [graphGenerator]="randomTreeGenerator"
             [regenerateButtonEnabled]="true"
             [downloadButtonEnabled]="true"
             [uploadButtonEnabled]="true"
             [formEnabled]="false"
-            (generateAnimationStepsEventEmitter)="generateAnimationSteps($event, 'infix')"
-        ></app-graph-search>
-    </section>
-
-    <section id="prefix-section">
-        <app-graph-search
-            graphTitle="Prefix"
-            graphId="prefix"
-            [layout]="Layout.HIERARCHICAL"
-            [graphGenerator]="randomTreeGenerator"
-            [regenerateButtonEnabled]="true"
-            [downloadButtonEnabled]="true"
-            [uploadButtonEnabled]="true"
-            [formEnabled]="false"
-            (generateAnimationStepsEventEmitter)="generateAnimationSteps($event, 'prefix')"
-        ></app-graph-search>
-    </section>
-
-    <section id="suffix-section">
-        <app-graph-search
-            graphTitle="Suffix"
-            graphId="suffix"
-            [layout]="Layout.HIERARCHICAL"
-            [graphGenerator]="randomTreeGenerator"
-            [regenerateButtonEnabled]="true"
-            [downloadButtonEnabled]="true"
-            [uploadButtonEnabled]="true"
-            [formEnabled]="false"
-            (generateAnimationStepsEventEmitter)="generateAnimationSteps($event, 'suffix')"
+            (generateAnimationStepsEventEmitter)="generateAnimationSteps($event, method)"
         ></app-graph-search>
     </section>
 </div>

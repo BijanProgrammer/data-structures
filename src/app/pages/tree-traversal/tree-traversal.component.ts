@@ -14,6 +14,10 @@ export class TreeTraversalComponent {
     public Layout = Layout;
 
     public randomTreeGenerator = new SimpleTreeGenerator();
+    public methods: string[] = ['inorder', 'preorder', 'postorder'];
+
+    private animationSteps!: OgmaAnimationStep[];
+    private graphVisualizerComponent!: GraphVisualizerComponent;
 
     private tree: {[key: number]: TreeNode} = {
         1: {
@@ -45,9 +49,6 @@ export class TreeTraversalComponent {
         },
     };
 
-    private animationSteps!: OgmaAnimationStep[];
-    private graphVisualizerComponent!: GraphVisualizerComponent;
-
     public constructor(public ogmaService: OgmaService) {}
 
     public generateAnimationSteps(
@@ -64,33 +65,33 @@ export class TreeTraversalComponent {
         this[method](1);
     }
 
-    private infix(index: number | undefined): void {
+    private inorder(index: number | undefined): void {
         if (index === undefined) return;
 
         this.markAsVisited(index);
 
-        this.infix(this.tree[index].left);
+        this.inorder(this.tree[index].left);
         this.print(index);
-        this.infix(this.tree[index].right);
+        this.inorder(this.tree[index].right);
     }
 
-    private prefix(index: number | undefined): void {
+    private preorder(index: number | undefined): void {
         if (index === undefined) return;
 
         this.markAsVisited(index);
 
         this.print(index);
-        this.prefix(this.tree[index].left);
-        this.prefix(this.tree[index].right);
+        this.preorder(this.tree[index].left);
+        this.preorder(this.tree[index].right);
     }
 
-    private suffix(index: number | undefined): void {
+    private postorder(index: number | undefined): void {
         if (index === undefined) return;
 
         this.markAsVisited(index);
 
-        this.suffix(this.tree[index].left);
-        this.suffix(this.tree[index].right);
+        this.postorder(this.tree[index].left);
+        this.postorder(this.tree[index].right);
         this.print(index);
     }
 
