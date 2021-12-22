@@ -10,12 +10,18 @@ export class Element<T extends Node | Edge, TList extends NodeList | EdgeList> {
     public isEdge!: boolean;
     public addClass!: (className: string) => Promise<T>;
     public getClassList!: () => [string];
+    public getAttribute!: (propertyPath?: string | string[]) => any;
     public getAttributes!: () => any;
     public getData!: (propertyPath?: string | string[]) => any;
     public getId!: () => any;
     public removeClass!: (className: string) => Promise<T>;
     public removeClasses!: (classNames: string[]) => Promise<TList>;
     public setData!: (propertyPath: string | string[], value: any) => T;
+    public setAttribute!: (
+        propertyPath: string | string[],
+        value: any,
+        options?: AttributeAnimationOptions
+    ) => Promise<T>;
 }
 
 export class ElementList<T> {
@@ -77,6 +83,21 @@ export interface AdjacencyOptions {
     policy?: 'union' | 'include-sources' | 'exclude-sources';
 }
 
+export interface AttributeAnimationOptions {
+    duration?: number;
+    easing?: Easing;
+}
+
+export enum Easing {
+    LINEAR = 'linear',
+    QUADRATIC_IN = 'quadraticIn',
+    QUADRATIC_OUT = 'quadraticOut',
+    QUADRATIC_IN_OUT = 'quadraticInOut',
+    CUBIC_IN = 'cubicIn',
+    CUBIC_OUT = 'cubicOut',
+    CUBIC_IN_OUT = 'cubicInOut',
+}
+
 export enum Layout {
     FORCE = 1,
     FORCE_LINK,
@@ -84,6 +105,7 @@ export enum Layout {
     RADIAL,
     SEQUENTIAL,
     HIERARCHICAL,
+    TREE,
 }
 
 export enum Direction {

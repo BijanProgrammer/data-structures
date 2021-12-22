@@ -84,14 +84,14 @@ export class SimpleTreeGenerator extends GraphGenerator {
         new Node({
             id: 1,
             attributes: {text: 'A'},
-            data: {},
+            data: {index: 0},
         }),
-        new Node({id: 2, attributes: {text: 'B'}, data: {}}),
-        new Node({id: 3, attributes: {text: 'C'}, data: {}}),
-        new Node({id: 4, attributes: {text: 'N'}, data: {}}),
-        new Node({id: 5, attributes: {text: 'M'}, data: {}}),
-        new Node({id: 6, attributes: {text: 'P'}, data: {}}),
-        new Node({id: 7, attributes: {text: 'F'}, data: {}}),
+        new Node({id: 2, attributes: {text: 'B'}, data: {index: 0}}),
+        new Node({id: 3, attributes: {text: 'C'}, data: {index: 1}}),
+        new Node({id: 4, attributes: {text: 'N'}, data: {index: 1}}),
+        new Node({id: 5, attributes: {text: 'M'}, data: {index: 0}}),
+        new Node({id: 6, attributes: {text: 'P'}, data: {index: 0}}),
+        new Node({id: 7, attributes: {text: 'F'}, data: {index: 1}}),
     ];
 
     private static readonly EDGES: Edge[] = [

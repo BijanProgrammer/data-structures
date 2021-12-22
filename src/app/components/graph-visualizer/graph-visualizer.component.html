@@ -25,6 +25,9 @@
             >
                 hierarchical
             </button>
+            <button [ngClass]="{active: layout === Layout.TREE}" (click)="layoutButtonClickHandler(Layout.TREE)">
+                tree
+            </button>
         </div>
 
         <div class="button-group">

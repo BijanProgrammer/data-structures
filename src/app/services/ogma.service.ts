@@ -3,8 +3,10 @@ import {Injectable} from '@angular/core';
 // @ts-ignore
 import * as Ogma from '../../../scripts/ogma.min';
 import {
+    AttributeAnimationOptions,
     ClassName,
     Direction,
+    Easing,
     Edge,
     EdgeList,
     Element,
@@ -38,6 +40,11 @@ export class OgmaService {
     public readonly NODE_GAP: number = 150;
     public readonly RADIUS_DELTA: number = 150;
     public readonly REPULSION: number = 20;
+
+    private readonly ATTRIBUTE_ANIMATION_OPTIONS: AttributeAnimationOptions = {
+        duration: 0,
+        easing: Easing.LINEAR,
+    };
 
     private readonly DEFAULT_ATTRIBUTE_TEXT = {
         color: this.COLOR_LIGHT,
@@ -180,6 +187,9 @@ export class OgmaService {
                     nodeDistance: this.NODE_DISTANCE,
                 });
                 break;
+            case Layout.TREE:
+                await this.setTreeLayout(ogma);
+                break;
             default:
                 return;
         }
@@ -263,6 +273,74 @@ export class OgmaService {
                     actionData,
                 },
             ],
+        });
+    }
+
+    private async setTreeLayout(ogma: Ogma): Promise<void> {
+        const nodes: Node[] = ogma.getNodes().toArray();
+        console.log(nodes);
+
+        let depth = 0;
+        let branchingFactor = 0;
+        await this.dfs(
+            null,
+            nodes[0],
+            0,
+            0,
+            async (parent: Node, currentNode: Node, currentDepth: number, edgeIndex: number, edges: Edge[]) => {
+                if (depth < currentDepth) depth = currentDepth;
+                if (branchingFactor < edges.length) branchingFactor = edges.length;
+            }
+        );
+
+        await this.dfs(
+            null,
+            nodes[0],
+            0,
+            0,
+            async (parent: Node, currentNode: Node, currentDepth: number, edgeIndex: number) => {
+                if (!parent) {
+                    await currentNode.setAttribute('x', 0, this.ATTRIBUTE_ANIMATION_OPTIONS);
+                    await currentNode.setAttribute('y', 0, this.ATTRIBUTE_ANIMATION_OPTIONS);
+                    return;
+                }
+
+                const parentX = +parent.getAttribute('x');
+                const parentY = +parent.getAttribute('y');
+
+                let xMultiplier;
+                if (branchingFactor % 2 === 0) {
+                    xMultiplier = edgeIndex - branchingFactor / 2;
+                    xMultiplier += 0.5;
+                } else {
+                    xMultiplier = edgeIndex - (branchingFactor - 1) / 2;
+                }
+
+                const x = parentX + Math.pow(branchingFactor, depth - currentDepth) * xMultiplier * this.NODE_DISTANCE;
+                const y = parentY + this.LEVEL_DISTANCE;
+
+                console.log({id: currentNode.getId(), x, y, xMultiplier});
+
+                await currentNode.setAttribute('x', x, this.ATTRIBUTE_ANIMATION_OPTIONS);
+                await currentNode.setAttribute('y', y, this.ATTRIBUTE_ANIMATION_OPTIONS);
+            }
+        );
+    }
+
+    private async dfs(
+        parent: Node | null,
+        currentNode: Node,
+        currentDepth: number,
+        edgeIndex: number,
+        callback: Function
+    ): Promise<void> {
+        const edges: Edge[] = currentNode.getAdjacentEdges({direction: 'out'}).toArray();
+
+        await callback(parent, currentNode, currentDepth, currentNode.getData('index') || edgeIndex, edges);
+
+        edges.forEach((edge, index) => {
+            const nextNode = edge.getTarget();
+            this.dfs(currentNode, nextNode, currentDepth + 1, index, callback);
         });
     }
 }
