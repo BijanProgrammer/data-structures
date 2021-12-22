@@ -98,6 +98,7 @@ export enum Selector {
 export enum ClassName {
     IDLE = 'IDLE',
     PATH = 'PATH',
+    SECONDARY = 'SECONDARY',
     DISABLED = 'DISABLED',
 }
 

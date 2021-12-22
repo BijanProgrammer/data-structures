@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {SimpleTreeGenerator} from '../../models/graph-generator';
 import {OgmaService} from '../../services/ogma.service';
-import {Layout, Node, OgmaAnimationStep} from '../../models/ogma';
+import {ClassName, Layout, Node, OgmaAnimationActionType, OgmaAnimationStep} from '../../models/ogma';
 import {TreeNode} from '../../models/binary-tree';
 import {GraphVisualizerComponent} from '../../components/graph-visualizer/graph-visualizer.component';
 
@@ -45,54 +45,77 @@ export class TreeTraversalComponent {
         },
     };
 
+    private animationSteps!: OgmaAnimationStep[];
+    private graphVisualizerComponent!: GraphVisualizerComponent;
+
     public constructor(public ogmaService: OgmaService) {}
 
     public generateAnimationSteps(
         payload: {
             animationSteps: OgmaAnimationStep[];
             graphVisualizerComponent: GraphVisualizerComponent;
-            startNode: Node;
-            targetNode: Node;
         },
         method: string
     ): void {
+        this.animationSteps = payload.animationSteps;
+        this.graphVisualizerComponent = payload.graphVisualizerComponent;
+
         // @ts-ignore
-        this[method](payload.animationSteps, payload.graphVisualizerComponent, 1);
+        this[method](1);
     }
 
-    private infix(
-        animationSteps: OgmaAnimationStep[],
-        graphVisualizerComponent: GraphVisualizerComponent,
-        index: number | undefined
-    ): void {
+    private infix(index: number | undefined): void {
         if (index === undefined) return;
 
-        this.infix(animationSteps, graphVisualizerComponent, this.tree[index].left);
-        this.ogmaService.generateAddClassNameStep(animationSteps, graphVisualizerComponent.getNode(index));
-        this.infix(animationSteps, graphVisualizerComponent, this.tree[index].right);
+        this.markAsVisited(index);
+
+        this.infix(this.tree[index].left);
+        this.print(index);
+        this.infix(this.tree[index].right);
     }
 
-    private prefix(
-        animationSteps: OgmaAnimationStep[],
-        graphVisualizerComponent: GraphVisualizerComponent,
-        index: number | undefined
-    ): void {
+    private prefix(index: number | undefined): void {
         if (index === undefined) return;
 
-        this.ogmaService.generateAddClassNameStep(animationSteps, graphVisualizerComponent.getNode(index));
-        this.prefix(animationSteps, graphVisualizerComponent, this.tree[index].left);
-        this.prefix(animationSteps, graphVisualizerComponent, this.tree[index].right);
+        this.markAsVisited(index);
+
+        this.print(index);
+        this.prefix(this.tree[index].left);
+        this.prefix(this.tree[index].right);
     }
 
-    private suffix(
-        animationSteps: OgmaAnimationStep[],
-        graphVisualizerComponent: GraphVisualizerComponent,
-        index: number | undefined
-    ): void {
+    private suffix(index: number | undefined): void {
         if (index === undefined) return;
 
-        this.suffix(animationSteps, graphVisualizerComponent, this.tree[index].left);
-        this.suffix(animationSteps, graphVisualizerComponent, this.tree[index].right);
-        this.ogmaService.generateAddClassNameStep(animationSteps, graphVisualizerComponent.getNode(index));
+        this.markAsVisited(index);
+
+        this.suffix(this.tree[index].left);
+        this.suffix(this.tree[index].right);
+        this.print(index);
+    }
+
+    private markAsVisited(index: number): void {
+        const element: Node = this.graphVisualizerComponent.getNode(index);
+
+        this.animationSteps.push({
+            actions: [
+                {element, actionType: OgmaAnimationActionType.ADD_CLASS, actionData: {className: ClassName.SECONDARY}},
+            ],
+        });
+    }
+
+    private print(index: number): void {
+        const element: Node = this.graphVisualizerComponent.getNode(index);
+
+        this.animationSteps.push({
+            actions: [
+                {
+                    element,
+                    actionType: OgmaAnimationActionType.REMOVE_CLASS,
+                    actionData: {className: ClassName.SECONDARY},
+                },
+                {element, actionType: OgmaAnimationActionType.ADD_CLASS, actionData: {className: ClassName.PATH}},
+            ],
+        });
     }
 }

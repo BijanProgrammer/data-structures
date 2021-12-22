@@ -98,6 +98,15 @@ export class OgmaService {
         });
 
         ogma.styles.createClass({
+            name: ClassName.SECONDARY,
+            nodeAttributes: {color: this.COLOR_SECONDARY},
+            edgeAttributes: {
+                color: this.COLOR_SECONDARY,
+                width: 5,
+            },
+        });
+
+        ogma.styles.createClass({
             name: ClassName.DISABLED,
             nodeAttributes: {color: this.COLOR_DISABLED},
             edgeAttributes: {color: this.COLOR_DISABLED},
