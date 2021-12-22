@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
-import {SimpleTreeGenerator} from '../../models/graph-generator';
-import {ClassName, Layout, Node, OgmaAnimationActionType, OgmaAnimationStep} from '../../models/ogma';
+import {SimpleBinarySearchTreeGenerator} from '../../models/graph-generator';
+import {ClassName, Edge, Layout, Node, OgmaAnimationActionType, OgmaAnimationStep} from '../../models/ogma';
 import {GraphVisualizerComponent} from '../../components/graph-visualizer/graph-visualizer.component';
-import {TreeNode} from '../../models/binary-tree';
 import {OgmaService} from '../../services/ogma.service';
+import {animate} from '@angular/animations';
 
 @Component({
     selector: 'app-binary-search-tree',
@@ -13,41 +13,11 @@ import {OgmaService} from '../../services/ogma.service';
 export class BinarySearchTreeComponent {
     public Layout = Layout;
 
-    public randomTreeGenerator = new SimpleTreeGenerator();
-    public methods: string[] = ['inorder', 'preorder', 'postorder'];
+    public randomTreeGenerator = new SimpleBinarySearchTreeGenerator();
+    public methods: string[] = ['add'];
 
     private animationSteps!: OgmaAnimationStep[];
     private graphVisualizerComponent!: GraphVisualizerComponent;
-
-    private tree: {[key: number]: TreeNode} = {
-        1: {
-            value: 'A',
-            left: 3,
-            right: 2,
-        },
-        2: {
-            value: 'B',
-            left: 4,
-        },
-        3: {
-            value: 'C',
-            left: 5,
-        },
-        4: {
-            value: 'N',
-        },
-        5: {
-            value: 'M',
-            left: 7,
-            right: 6,
-        },
-        6: {
-            value: 'P',
-        },
-        7: {
-            value: 'F',
-        },
-    };
 
     public constructor(public ogmaService: OgmaService) {}
 
@@ -61,38 +31,62 @@ export class BinarySearchTreeComponent {
         this.animationSteps = payload.animationSteps;
         this.graphVisualizerComponent = payload.graphVisualizerComponent;
 
-        // @ts-ignore
-        this[method](1);
+        switch (method) {
+            case 'add':
+                this.add(Math.floor(Math.random() * 20));
+                break;
+        }
     }
 
-    private inorder(index: number | undefined): void {
-        if (index === undefined) return;
+    private add(x: number): void {
+        console.info(`adding ${x} to the tree ...`);
 
-        this.markAsVisited(index);
+        let node = this.graphVisualizerComponent.getNode(1);
+        const nodeId = this.graphVisualizerComponent.getNodes().size + 1;
+        const edgeId = this.graphVisualizerComponent.getEdges().size + 1;
 
-        this.inorder(this.tree[index].left);
-        this.print(index);
-        this.inorder(this.tree[index].right);
+        while (true) {
+            const currentIndex = node.getId();
+            const currentValue = +node.getAttribute('text');
+
+            this.markAsVisited(currentIndex);
+            const {left, right} = this.leftAndRight(currentIndex);
+
+            if (x <= currentValue) {
+                if (!left) {
+                    this.addNode(node, 0, nodeId, edgeId, x);
+                    return;
+                }
+
+                node = this.graphVisualizerComponent.getNode(left);
+            } else {
+                if (!right) {
+                    this.addNode(node, 1, nodeId, edgeId, x);
+                    return;
+                }
+
+                node = this.graphVisualizerComponent.getNode(right);
+            }
+        }
     }
 
-    private preorder(index: number | undefined): void {
-        if (index === undefined) return;
+    private leftAndRight(index: number): {left: number | undefined; right: number | undefined} {
+        let left;
+        let right;
 
-        this.markAsVisited(index);
+        const node = this.graphVisualizerComponent.getNode(index);
+        const [first, second]: Edge[] = node.getAdjacentEdges({direction: 'out'}).toArray();
 
-        this.print(index);
-        this.preorder(this.tree[index].left);
-        this.preorder(this.tree[index].right);
-    }
+        const firstIndex = first?.getTarget().getData('index');
+        const secondIndex = second?.getTarget().getData('index');
 
-    private postorder(index: number | undefined): void {
-        if (index === undefined) return;
+        if (firstIndex === 0) left = first.getTarget().getId();
+        if (secondIndex === 0) left = second.getTarget().getId();
 
-        this.markAsVisited(index);
+        if (firstIndex === 1) right = first.getTarget().getId();
+        if (secondIndex === 1) right = second.getTarget().getId();
 
-        this.postorder(this.tree[index].left);
-        this.postorder(this.tree[index].right);
-        this.print(index);
+        return {left, right};
     }
 
     private markAsVisited(index: number): void {
@@ -101,6 +95,23 @@ export class BinarySearchTreeComponent {
         this.animationSteps.push({
             actions: [
                 {element, actionType: OgmaAnimationActionType.ADD_CLASS, actionData: {className: ClassName.SECONDARY}},
+            ],
+        });
+    }
+
+    private addNode(parent: Node, index: number, nodeId: number, edgeId: number, value: number): void {
+        const node = {id: nodeId, attributes: {text: value.toString()}, data: {index}};
+        const edge = {id: edgeId, source: parent.getId(), target: nodeId, data: {}};
+
+        this.animationSteps.push({
+            actions: [
+                {element: parent, actionType: OgmaAnimationActionType.ADD_NODE, actionData: node},
+                {element: parent, actionType: OgmaAnimationActionType.ADD_EDGE, actionData: edge},
+                {
+                    element: parent,
+                    actionType: OgmaAnimationActionType.ADD_CLASS_BY_ID,
+                    actionData: {id: nodeId, className: ClassName.PATH},
+                },
             ],
         });
     }

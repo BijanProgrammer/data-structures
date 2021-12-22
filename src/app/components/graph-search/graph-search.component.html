@@ -24,7 +24,10 @@
             <button type="submit">Initialize Animation</button>
         </form>
 
-        <app-graph-animator #graphAnimatorComponent></app-graph-animator>
+        <app-graph-animator
+            #graphAnimatorComponent
+            [graphVisualizerComponent]="graphVisualizerComponent"
+        ></app-graph-animator>
     </div>
 
     <app-graph-visualizer

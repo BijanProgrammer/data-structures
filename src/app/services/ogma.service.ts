@@ -84,6 +84,8 @@ export class OgmaService {
         color: this.COLOR_SECONDARY,
     };
 
+    private readonly FAKE_ELEMENT = new Element();
+
     public attachClasses(ogma: Ogma, isDirected: boolean): void {
         ogma.styles.createClass({
             name: ClassName.IDLE,
@@ -223,6 +225,22 @@ export class OgmaService {
         });
     }
 
+    public generateAddClassNameByIdStep(
+        animationSteps: OgmaAnimationStep[],
+        id: number,
+        className: ClassName = ClassName.PATH
+    ): void {
+        animationSteps.push({
+            actions: [
+                {
+                    element: this.FAKE_ELEMENT,
+                    actionType: OgmaAnimationActionType.ADD_CLASS_BY_ID,
+                    actionData: {id, className},
+                },
+            ],
+        });
+    }
+
     public generateRemoveClassNameStep(
         animationSteps: OgmaAnimationStep[],
         element: Element<Node | Edge, NodeList | EdgeList>,
@@ -246,9 +264,6 @@ export class OgmaService {
     }
 
     public generateRewireStep(animationSteps: OgmaAnimationStep[], edge: Edge, newTarget: Node): void {
-        console.log('edge.getTarget().getId()', edge.getTarget().getId());
-        console.log('newTarget.getId()', newTarget.getId());
-
         animationSteps.push({
             actions: [
                 {
@@ -278,7 +293,6 @@ export class OgmaService {
 
     private async setTreeLayout(ogma: Ogma): Promise<void> {
         const nodes: Node[] = ogma.getNodes().toArray();
-        console.log(nodes);
 
         let depth = 0;
         let branchingFactor = 0;
@@ -316,10 +330,9 @@ export class OgmaService {
                     xMultiplier = edgeIndex - (branchingFactor - 1) / 2;
                 }
 
-                const x = parentX + Math.pow(branchingFactor, depth - currentDepth) * xMultiplier * this.NODE_DISTANCE;
+                const x =
+                    parentX + (Math.pow(branchingFactor, depth - currentDepth) * xMultiplier * this.NODE_DISTANCE) / 2;
                 const y = parentY + this.LEVEL_DISTANCE;
-
-                console.log({id: currentNode.getId(), x, y, xMultiplier});
 
                 await currentNode.setAttribute('x', x, this.ATTRIBUTE_ANIMATION_OPTIONS);
                 await currentNode.setAttribute('y', y, this.ATTRIBUTE_ANIMATION_OPTIONS);
@@ -336,7 +349,7 @@ export class OgmaService {
     ): Promise<void> {
         const edges: Edge[] = currentNode.getAdjacentEdges({direction: 'out'}).toArray();
 
-        await callback(parent, currentNode, currentDepth, currentNode.getData('index') || edgeIndex, edges);
+        await callback(parent, currentNode, currentDepth, currentNode.getData('index') ?? edgeIndex, edges);
 
         edges.forEach((edge, index) => {
             const nextNode = edge.getTarget();

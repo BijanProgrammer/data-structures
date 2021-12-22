@@ -143,7 +143,10 @@ export enum OgmaAnimationActionType {
     REMOVE_ELEMENT,
     ADD_CLASS,
     REMOVE_CLASS,
+    ADD_CLASS_BY_ID,
+    REMOVE_CLASS_BY_ID,
     REWIRE,
+    ADD_NODE,
     ADD_EDGE,
     REMOVE_EDGE,
 }

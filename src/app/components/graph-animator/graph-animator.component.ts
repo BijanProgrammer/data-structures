@@ -22,6 +22,8 @@ export class GraphAnimatorComponent {
     }
 
     public performReverseActions(actions: AnimationAction[]): void {
+        let node;
+
         (actions as OgmaAnimationAction[]).forEach((action) => {
             switch (action.actionType) {
                 case OgmaAnimationActionType.ADD_ELEMENT:
@@ -37,10 +39,28 @@ export class GraphAnimatorComponent {
                 case OgmaAnimationActionType.REMOVE_CLASS:
                     action.element.addClass(action.actionData.className).then();
                     break;
+                case OgmaAnimationActionType.ADD_CLASS_BY_ID:
+                    node = this.graphVisualizerComponent.getNode(action.actionData.id);
+                    if (node) node.removeClass(action.actionData.className).then();
+                    break;
+                case OgmaAnimationActionType.REMOVE_CLASS_BY_ID:
+                    this.graphVisualizerComponent
+                        .getNode(action.actionData.id)
+                        .addClass(action.actionData.className)
+                        .then();
+                    break;
                 case OgmaAnimationActionType.REWIRE:
                     (action.element as any).setTarget(
                         this.graphVisualizerComponent.getNode(action.actionData.oldTarget)
                     );
+                    break;
+                case OgmaAnimationActionType.ADD_NODE:
+                    node = this.graphVisualizerComponent.getNode(action.actionData.id);
+                    if (node) this.graphVisualizerComponent.removeElement(node, true);
+                    break;
+                case OgmaAnimationActionType.ADD_EDGE:
+                    const edge = this.graphVisualizerComponent.getEdge(action.actionData.id);
+                    if (edge) this.graphVisualizerComponent.removeElement(edge, true);
                     break;
             }
         });
@@ -62,11 +82,28 @@ export class GraphAnimatorComponent {
                 case OgmaAnimationActionType.REMOVE_CLASS:
                     action.element.removeClass(action.actionData.className).then();
                     break;
+                case OgmaAnimationActionType.ADD_CLASS_BY_ID:
+                    this.graphVisualizerComponent
+                        .getNode(action.actionData.id)
+                        .addClass(action.actionData.className)
+                        .then();
+                    break;
+                case OgmaAnimationActionType.REMOVE_CLASS_BY_ID:
+                    this.graphVisualizerComponent
+                        .getNode(action.actionData.id)
+                        .removeClass(action.actionData.className)
+                        .then();
+                    break;
                 case OgmaAnimationActionType.REWIRE:
-                    console.log(action.actionData.newTarget);
                     (action.element as any).setTarget(
                         this.graphVisualizerComponent.getNode(action.actionData.newTarget)
                     );
+                    break;
+                case OgmaAnimationActionType.ADD_NODE:
+                    this.graphVisualizerComponent.addNode(action.actionData, true);
+                    break;
+                case OgmaAnimationActionType.ADD_EDGE:
+                    this.graphVisualizerComponent.addEdge(action.actionData, true);
                     break;
             }
         });
