@@ -61,6 +61,12 @@ export class GraphVisualizerComponent implements AfterViewInit {
         return this.ogma.getNode(nodeId);
     }
 
+    public getNodeByText(text: string): Node | undefined {
+        return this.getNodes()
+            .toArray()
+            .find((x) => x.getAttribute('text') === text);
+    }
+
     public getEdges(selector?: any): EdgeList {
         return this.ogma.getEdges(selector);
     }

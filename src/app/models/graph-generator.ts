@@ -145,6 +145,35 @@ export class SimpleBinarySearchTreeGenerator extends GraphGenerator {
     }
 }
 
+export class SimpleAvlTreeGenerator extends GraphGenerator {
+    private static readonly NODES: Node[] = [
+        new Node({id: 1, attributes: {text: '30'}, data: {index: 0}}),
+        new Node({id: 2, attributes: {text: '20'}, data: {index: 0}}),
+        new Node({id: 3, attributes: {text: '50'}, data: {index: 1}}),
+        new Node({id: 4, attributes: {text: '10'}, data: {index: 0}}),
+        new Node({id: 5, attributes: {text: '40'}, data: {index: 0}}),
+        new Node({id: 6, attributes: {text: '55'}, data: {index: 1}}),
+        new Node({id: 7, attributes: {text: '45'}, data: {index: 1}}),
+    ];
+
+    private static readonly EDGES: Edge[] = [
+        new Edge({id: 1, source: 1, target: 2, data: {}}),
+        new Edge({id: 2, source: 1, target: 3, data: {}}),
+
+        new Edge({id: 3, source: 2, target: 4, data: {}}),
+
+        new Edge({id: 4, source: 3, target: 5, data: {}}),
+        new Edge({id: 5, source: 3, target: 6, data: {}}),
+
+        new Edge({id: 6, source: 5, target: 7, data: {}}),
+    ];
+
+    public generateGraph(): RawGraph {
+        const graph = {nodes: SimpleAvlTreeGenerator.NODES, edges: SimpleAvlTreeGenerator.EDGES};
+        return JSON.parse(JSON.stringify(graph));
+    }
+}
+
 export class HuffmanGenerator extends GraphGenerator {
     // private static readonly NODES: Node[] = [
     //     new Node({

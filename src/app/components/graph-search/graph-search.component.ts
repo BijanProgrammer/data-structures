@@ -110,9 +110,6 @@ export class GraphSearchComponent implements AfterViewInit {
             element.removeClasses(element.getClassList());
             element.addClass(ClassName.IDLE);
         });
-
-        console.log(this.nodes.toArray());
-        console.log(this.edges.toArray());
     }
 
     private generateAnimationSteps(): void {
