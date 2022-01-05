@@ -57,26 +57,28 @@ export class AvlComponent {
         const right = this.nodeOnTheRightOf(node);
         if (!right) return;
 
-        const edgeFromParentToNode = node.getAdjacentEdges({direction: 'in'}).toArray()[0];
-        const parent = edgeFromParentToNode.getSource();
+        const actions = [];
 
-        const actions = [
-            {
-                element: this.ogmaService.FAKE_ELEMENT,
-                actionType: OgmaAnimationActionType.REMOVE_EDGE,
-                actionData: this.edgeRawData(edgeFromParentToNode),
-            },
-            {
-                element: this.ogmaService.FAKE_ELEMENT,
-                actionType: OgmaAnimationActionType.ADD_EDGE,
-                actionData: this.newEdgeRawData(1, parent, right),
-            },
-            {
-                element: right,
-                actionType: OgmaAnimationActionType.SET_DATA,
-                actionData: {path: 'index', oldData: right.getData('index'), newData: node.getData('index')},
-            },
-        ];
+        const edgeFromParentToNode = node.getAdjacentEdges({direction: 'in'}).toArray()[0];
+        if (edgeFromParentToNode) {
+            actions.push(
+                {
+                    element: this.ogmaService.FAKE_ELEMENT,
+                    actionType: OgmaAnimationActionType.REMOVE_EDGE,
+                    actionData: this.edgeRawData(edgeFromParentToNode),
+                },
+                {
+                    element: this.ogmaService.FAKE_ELEMENT,
+                    actionType: OgmaAnimationActionType.ADD_EDGE,
+                    actionData: this.newEdgeRawData(1, edgeFromParentToNode.getSource(), right),
+                },
+                {
+                    element: right,
+                    actionType: OgmaAnimationActionType.SET_DATA,
+                    actionData: {path: 'index', oldData: right.getData('index'), newData: node.getData('index')},
+                }
+            );
+        }
 
         const rightLeft = this.nodeOnTheLeftOf(right);
         if (rightLeft) {

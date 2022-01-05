@@ -56,14 +56,14 @@ export class GraphAnimatorComponent {
                     break;
                 case OgmaAnimationActionType.ADD_NODE:
                     node = this.graphVisualizerComponent.getNode(action.actionData.id);
-                    if (node) this.graphVisualizerComponent.removeElement(node, true);
+                    if (node) this.graphVisualizerComponent.removeElement(node, false);
                     break;
                 case OgmaAnimationActionType.ADD_EDGE:
                     const edge = this.graphVisualizerComponent.getEdge(action.actionData.id);
-                    if (edge) this.graphVisualizerComponent.removeElement(edge, true);
+                    if (edge) this.graphVisualizerComponent.removeElement(edge, false);
                     break;
                 case OgmaAnimationActionType.REMOVE_EDGE:
-                    this.graphVisualizerComponent.addEdge(action.actionData, true);
+                    this.graphVisualizerComponent.addEdge(action.actionData, false);
                     break;
                 case OgmaAnimationActionType.SET_DATA:
                     action.element.setData(action.actionData.path, action.actionData.oldData);
@@ -106,14 +106,14 @@ export class GraphAnimatorComponent {
                     );
                     break;
                 case OgmaAnimationActionType.ADD_NODE:
-                    this.graphVisualizerComponent.addNode(action.actionData, true);
+                    this.graphVisualizerComponent.addNode(action.actionData, false);
                     break;
                 case OgmaAnimationActionType.ADD_EDGE:
-                    this.graphVisualizerComponent.addEdge(action.actionData, true);
+                    this.graphVisualizerComponent.addEdge(action.actionData, false);
                     break;
                 case OgmaAnimationActionType.REMOVE_EDGE:
                     const edge = this.graphVisualizerComponent.getEdge(action.actionData.id);
-                    if (edge) this.graphVisualizerComponent.removeElement(edge, true);
+                    if (edge) this.graphVisualizerComponent.removeElement(edge, false);
                     break;
                 case OgmaAnimationActionType.SET_DATA:
                     action.element.setData(action.actionData.path, action.actionData.newData);

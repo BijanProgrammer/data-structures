@@ -311,6 +311,7 @@ export class OgmaService {
 
     private async setTreeLayout(ogma: Ogma, root?: Node): Promise<void> {
         const nodes: Node[] = ogma.getNodes().toArray();
+        root = nodes.find((x) => x.getAdjacentEdges({direction: 'in'}).size === 0);
 
         let depth = 0;
         let branchingFactor = 0;
