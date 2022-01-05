@@ -51,7 +51,7 @@ export class OgmaService {
         minVisibleSize: 10,
         position: 'center',
         font: 'Consolas',
-        scale: 0.2,
+        scale: 0.5,
         scaling: true,
     };
 
