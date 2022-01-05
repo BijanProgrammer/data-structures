@@ -2,7 +2,7 @@ import {GraphVisualizerComponent} from '../components/graph-visualizer/graph-vis
 import {Edge, Node, RawGraph} from './ogma';
 
 export abstract class GraphGenerator {
-    public abstract generateGraph(graphVisualizerComponent: GraphVisualizerComponent): RawGraph;
+    public abstract generateGraph(graphVisualizerComponent?: GraphVisualizerComponent): RawGraph;
 }
 
 export class SimpleDfsGraphGenerator extends GraphGenerator {
@@ -216,32 +216,6 @@ export class BigAvlTreeGenerator extends GraphGenerator {
 }
 
 export class HuffmanGenerator extends GraphGenerator {
-    // private static readonly NODES: Node[] = [
-    //     new Node({
-    //         id: 1,
-    //         attributes: {text: '8'},
-    //         data: {index: 0},
-    //     }),
-    //     new Node({id: 2, attributes: {text: '7'}, data: {index: 0}}),
-    //     new Node({id: 3, attributes: {text: '14'}, data: {index: 1}}),
-    //     new Node({id: 4, attributes: {text: '3'}, data: {index: 0}}),
-    //     new Node({id: 5, attributes: {text: '11'}, data: {index: 0}}),
-    //     new Node({id: 6, attributes: {text: '15'}, data: {index: 1}}),
-    //     new Node({id: 7, attributes: {text: '5'}, data: {index: 1}}),
-    // ];
-    //
-    // private static readonly EDGES: Edge[] = [
-    //     new Edge({id: 1, source: 1, target: 2, data: {}}),
-    //     new Edge({id: 2, source: 1, target: 3, data: {}}),
-    //
-    //     new Edge({id: 3, source: 2, target: 4, data: {}}),
-    //
-    //     new Edge({id: 4, source: 3, target: 5, data: {}}),
-    //     new Edge({id: 5, source: 3, target: 6, data: {}}),
-    //
-    //     new Edge({id: 6, source: 4, target: 7, data: {}}),
-    // ];
-
     public generateGraph(): RawGraph {
         const text = 'abacabcabcdaabcde';
         const characters: {[key: string]: number} = {};
@@ -262,6 +236,47 @@ export class HuffmanGenerator extends GraphGenerator {
         });
 
         const graph = {nodes, edges: []};
+        return JSON.parse(JSON.stringify(graph));
+    }
+}
+
+export class HeapSortGenerator extends GraphGenerator {
+    public constructor(private numbers: number[] = [8, 2, 12, 6, 7, 19]) {
+        super();
+    }
+
+    public generateGraph(): RawGraph {
+        const numbers: number[] = JSON.parse(JSON.stringify(this.numbers));
+
+        for (let i = 0; i < numbers.length; i++) {
+            let currentIndex = i;
+            while (currentIndex > 0) {
+                const parentIndex = Math.floor((currentIndex - 1) / 2);
+                if (numbers[currentIndex] <= numbers[parentIndex]) break;
+
+                const temp = numbers[parentIndex];
+                numbers[parentIndex] = numbers[currentIndex];
+                numbers[currentIndex] = temp;
+
+                currentIndex = Math.floor((currentIndex - 1) / 2);
+            }
+        }
+
+        const nodes: Node[] = numbers.map(
+            (x, i) =>
+                new Node({
+                    id: i + 1,
+                    attributes: {text: x},
+                    data: {index: i % 2 == 1 ? 0 : 1},
+                })
+        );
+
+        const edges: Edge[] = [];
+        for (let i = 1; i < nodes.length; i++) {
+            edges.push(new Edge({id: edges.length + 1, source: Math.floor((i - 1) / 2) + 1, target: i + 1, data: {}}));
+        }
+
+        const graph = {nodes, edges};
         return JSON.parse(JSON.stringify(graph));
     }
 }

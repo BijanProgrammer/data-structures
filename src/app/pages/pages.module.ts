@@ -23,6 +23,7 @@ import {TreeTraversalComponent} from './tree-traversal/tree-traversal.component'
 import {BinarySearchTreeComponent} from './binary-search-tree/binary-search-tree.component';
 import {HuffmanComponent} from './huffman/huffman.component';
 import {AvlComponent} from './avl/avl.component';
+import {HeapSortComponent} from './heap-sort/heap-sort.component';
 
 @NgModule({
     declarations: [
@@ -44,6 +45,7 @@ import {AvlComponent} from './avl/avl.component';
         BinarySearchTreeComponent,
         HuffmanComponent,
         AvlComponent,
+        HeapSortComponent,
     ],
     imports: [CommonModule, ComponentsModule, IconsModule, PipesModule],
     exports: [

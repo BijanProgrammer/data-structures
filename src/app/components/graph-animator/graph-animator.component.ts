@@ -74,6 +74,9 @@ export class GraphAnimatorComponent {
                 case OgmaAnimationActionType.SET_DATA:
                     action.element.setData(action.actionData.path, action.actionData.oldData);
                     break;
+                case OgmaAnimationActionType.SET_ATTRIBUTE:
+                    action.element.setAttribute(action.actionData.path, action.actionData.oldAttribute).then();
+                    break;
             }
         });
     }
@@ -129,6 +132,9 @@ export class GraphAnimatorComponent {
                     break;
                 case OgmaAnimationActionType.SET_DATA:
                     action.element.setData(action.actionData.path, action.actionData.newData);
+                    break;
+                case OgmaAnimationActionType.SET_ATTRIBUTE:
+                    action.element.setAttribute(action.actionData.path, action.actionData.newAttribute).then();
                     break;
             }
         });

@@ -44,6 +44,7 @@ export class HeaderComponent {
                 {isMega: false, title: 'Binary Search Tree', routerLink: '/binary-search-tree'},
                 {isMega: false, title: 'AVL Tree', routerLink: '/avl'},
                 {isMega: false, title: 'Huffman Coding', routerLink: '/huffman'},
+                {isMega: false, title: 'Heap Sort', routerLink: '/heap-sort'},
                 {isMega: false, title: 'Depth-first Search', routerLink: '/dfs'},
                 {isMega: false, title: 'Breadth-first Search', routerLink: '/bfs'},
             ],

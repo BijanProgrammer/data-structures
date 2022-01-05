@@ -1,0 +1,19 @@
+<div class="wrapper">
+    <h1>Heap Sort</h1>
+
+    <section *ngFor="let graph of graphs" [id]="graph.name + '-section'">
+        <app-graph-search
+            [graphTitle]="graph.name"
+            [graphId]="graph.name"
+            [setLayoutEnabled]="setLayoutEnabled"
+            [layout]="Layout.TREE"
+            [rootId]="rootId"
+            [graphGenerator]="graph.generator"
+            [regenerateButtonEnabled]="true"
+            [downloadButtonEnabled]="true"
+            [uploadButtonEnabled]="true"
+            [formEnabled]="false"
+            (generateAnimationStepsEventEmitter)="generateAnimationSteps($event, graph.generator)"
+        ></app-graph-search>
+    </section>
+</div>
