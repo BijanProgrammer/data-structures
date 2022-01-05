@@ -312,8 +312,6 @@ export class OgmaService {
     private async setTreeLayout(ogma: Ogma, root?: Node): Promise<void> {
         const nodes: Node[] = ogma.getNodes().toArray();
 
-        console.log(root);
-
         let depth = 0;
         let branchingFactor = 0;
         await this.dfs(

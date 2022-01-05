@@ -33,6 +33,7 @@ export class GraphSearchComponent implements AfterViewInit {
     @Input() public downloadButtonEnabled: boolean = false;
     @Input() public uploadButtonEnabled: boolean = false;
     @Input() public formEnabled: boolean = true;
+    @Input() public customFormEnabled: boolean = true;
 
     @Output() public generateAnimationStepsEventEmitter: EventEmitter<any> = new EventEmitter<any>();
 
@@ -42,6 +43,7 @@ export class GraphSearchComponent implements AfterViewInit {
     @ViewChild('graphVisualizerComponent', {read: GraphVisualizerComponent})
     public graphVisualizerComponent!: GraphVisualizerComponent;
 
+    @ViewChild('form') public form!: ElementRef<HTMLFormElement>;
     @ViewChild('startNodeInput') public startNodeInput!: ElementRef<HTMLInputElement>;
     @ViewChild('targetNodeInput') public targetNodeInput!: ElementRef<HTMLInputElement>;
 
@@ -98,6 +100,9 @@ export class GraphSearchComponent implements AfterViewInit {
     }
 
     private resetNodesAndEdges(): void {
+        this.nodes = this.graphVisualizerComponent.getNodes();
+        this.edges = this.graphVisualizerComponent.getEdges();
+
         this.nodes.setData('visited', () => false);
         this.edges.setData('visited', () => false);
 
@@ -105,6 +110,9 @@ export class GraphSearchComponent implements AfterViewInit {
             element.removeClasses(element.getClassList());
             element.addClass(ClassName.IDLE);
         });
+
+        console.log(this.nodes.toArray());
+        console.log(this.edges.toArray());
     }
 
     private generateAnimationSteps(): void {
@@ -114,6 +122,16 @@ export class GraphSearchComponent implements AfterViewInit {
             this.generateAnimationStepsEventEmitter.emit({
                 animationSteps: this.animationSteps,
                 graphVisualizerComponent: this.graphVisualizerComponent,
+            });
+
+            return;
+        }
+
+        if (this.customFormEnabled) {
+            this.generateAnimationStepsEventEmitter.emit({
+                animationSteps: this.animationSteps,
+                graphVisualizerComponent: this.graphVisualizerComponent,
+                form: this.form.nativeElement,
             });
 
             return;

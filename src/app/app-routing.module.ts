@@ -13,6 +13,7 @@ import {RggComponent} from './pages/rgg/rgg.component';
 import {RtgComponent} from './pages/rtg/rtg.component';
 import {TreeTraversalComponent} from './pages/tree-traversal/tree-traversal.component';
 import {BinarySearchTreeComponent} from './pages/binary-search-tree/binary-search-tree.component';
+import {AvlComponent} from './pages/avl/avl.component';
 import {HuffmanComponent} from './pages/huffman/huffman.component';
 import {DfsComponent} from './pages/dfs/dfs.component';
 import {BfsComponent} from './pages/bfs/bfs.component';
@@ -28,6 +29,7 @@ const routes: Routes = [
     {path: 'rtg', component: RtgComponent},
     {path: 'tree-traversal', component: TreeTraversalComponent},
     {path: 'binary-search-tree', component: BinarySearchTreeComponent},
+    {path: 'avl', component: AvlComponent},
     {path: 'huffman', component: HuffmanComponent},
     {path: 'dfs', component: DfsComponent},
     {path: 'bfs', component: BfsComponent},

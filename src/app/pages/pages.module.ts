@@ -22,6 +22,7 @@ import {Chapter07Module} from './chapter07/chapter07.module';
 import {TreeTraversalComponent} from './tree-traversal/tree-traversal.component';
 import {BinarySearchTreeComponent} from './binary-search-tree/binary-search-tree.component';
 import {HuffmanComponent} from './huffman/huffman.component';
+import {AvlComponent} from './avl/avl.component';
 
 @NgModule({
     declarations: [
@@ -42,6 +43,7 @@ import {HuffmanComponent} from './huffman/huffman.component';
         TreeTraversalComponent,
         BinarySearchTreeComponent,
         HuffmanComponent,
+        AvlComponent,
     ],
     imports: [CommonModule, ComponentsModule, IconsModule, PipesModule],
     exports: [

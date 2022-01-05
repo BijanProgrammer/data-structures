@@ -181,11 +181,8 @@ export class HuffmanGenerator extends GraphGenerator {
             else characters[character] = 1;
         });
 
-        console.log('characters', characters);
-
         const nodes: Node[] = Object.entries(characters).map((value, index) => {
             const [character, count] = value;
-            console.log([character, count]);
 
             return new Node({
                 id: index,

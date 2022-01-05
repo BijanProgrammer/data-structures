@@ -1,0 +1,23 @@
+<div class="wrapper">
+    <h1>Binary Search Tree</h1>
+
+    <section *ngFor="let method of methods" [id]="method + '-section'">
+        <app-graph-search
+            [graphTitle]="method"
+            [graphId]="method"
+            [layout]="Layout.TREE"
+            [graphGenerator]="randomTreeGenerator"
+            [regenerateButtonEnabled]="true"
+            [downloadButtonEnabled]="true"
+            [uploadButtonEnabled]="true"
+            [formEnabled]="true"
+            [customFormEnabled]="true"
+            (generateAnimationStepsEventEmitter)="generateAnimationSteps($event, method)"
+        >
+            <label>
+                Value to be added
+                <input name="value" type="number" value="1" min="1" />
+            </label>
+        </app-graph-search>
+    </section>
+</div>
