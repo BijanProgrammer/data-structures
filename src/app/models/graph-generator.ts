@@ -174,6 +174,47 @@ export class SimpleAvlTreeGenerator extends GraphGenerator {
     }
 }
 
+export class BigAvlTreeGenerator extends GraphGenerator {
+    private static readonly NODES: Node[] = [
+        new Node({id: 1, attributes: {text: '40'}, data: {index: 0}}),
+        new Node({id: 2, attributes: {text: '20'}, data: {index: 0}}),
+        new Node({id: 3, attributes: {text: '50'}, data: {index: 1}}),
+        new Node({id: 4, attributes: {text: '10'}, data: {index: 0}}),
+        new Node({id: 5, attributes: {text: '30'}, data: {index: 1}}),
+        new Node({id: 6, attributes: {text: '45'}, data: {index: 0}}),
+        new Node({id: 7, attributes: {text: '90'}, data: {index: 1}}),
+        new Node({id: 8, attributes: {text: '5'}, data: {index: 0}}),
+        new Node({id: 9, attributes: {text: '15'}, data: {index: 1}}),
+        new Node({id: 10, attributes: {text: '42'}, data: {index: 0}}),
+        new Node({id: 11, attributes: {text: '60'}, data: {index: 0}}),
+        new Node({id: 12, attributes: {text: '95'}, data: {index: 1}}),
+    ];
+
+    private static readonly EDGES: Edge[] = [
+        new Edge({id: 1, source: 1, target: 2, data: {}}),
+        new Edge({id: 2, source: 1, target: 3, data: {}}),
+
+        new Edge({id: 3, source: 2, target: 4, data: {}}),
+        new Edge({id: 4, source: 2, target: 5, data: {}}),
+
+        new Edge({id: 5, source: 3, target: 6, data: {}}),
+        new Edge({id: 6, source: 3, target: 7, data: {}}),
+
+        new Edge({id: 7, source: 4, target: 8, data: {}}),
+        new Edge({id: 8, source: 4, target: 9, data: {}}),
+
+        new Edge({id: 9, source: 6, target: 10, data: {}}),
+
+        new Edge({id: 10, source: 7, target: 11, data: {}}),
+        new Edge({id: 11, source: 7, target: 12, data: {}}),
+    ];
+
+    public generateGraph(): RawGraph {
+        const graph = {nodes: BigAvlTreeGenerator.NODES, edges: BigAvlTreeGenerator.EDGES};
+        return JSON.parse(JSON.stringify(graph));
+    }
+}
+
 export class HuffmanGenerator extends GraphGenerator {
     // private static readonly NODES: Node[] = [
     //     new Node({

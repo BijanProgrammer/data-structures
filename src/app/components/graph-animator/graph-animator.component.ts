@@ -25,6 +25,11 @@ export class GraphAnimatorComponent {
         let node;
 
         (actions as OgmaAnimationAction[]).forEach((action) => {
+            if (action.callback) {
+                action.callback(true);
+                return;
+            }
+
             switch (action.actionType) {
                 case OgmaAnimationActionType.ADD_ELEMENT:
                     this.graphVisualizerComponent.removeElement(action.element, false);
@@ -63,6 +68,7 @@ export class GraphAnimatorComponent {
                     if (edge) this.graphVisualizerComponent.removeElement(edge, false);
                     break;
                 case OgmaAnimationActionType.REMOVE_EDGE:
+                    if (!action.actionData.id) action.actionData.id = this.graphVisualizerComponent.getEdges().size + 1;
                     this.graphVisualizerComponent.addEdge(action.actionData, false);
                     break;
                 case OgmaAnimationActionType.SET_DATA:
@@ -74,6 +80,11 @@ export class GraphAnimatorComponent {
 
     public performActions(actions: AnimationAction[]): void {
         (actions as OgmaAnimationAction[]).forEach((action) => {
+            if (action.callback) {
+                action.callback(false);
+                return;
+            }
+
             switch (action.actionType) {
                 case OgmaAnimationActionType.ADD_ELEMENT:
                     if (action.element.isNode) this.graphVisualizerComponent.addNode(action.actionData, false);
@@ -109,6 +120,7 @@ export class GraphAnimatorComponent {
                     this.graphVisualizerComponent.addNode(action.actionData, false);
                     break;
                 case OgmaAnimationActionType.ADD_EDGE:
+                    if (!action.actionData.id) action.actionData.id = this.graphVisualizerComponent.getEdges().size + 1;
                     this.graphVisualizerComponent.addEdge(action.actionData, false);
                     break;
                 case OgmaAnimationActionType.REMOVE_EDGE:

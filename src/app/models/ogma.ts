@@ -136,6 +136,7 @@ export interface OgmaAnimationAction extends AnimationAction {
     element: Element<Node | Edge, NodeList | EdgeList>;
     actionType: OgmaAnimationActionType;
     actionData: any;
+    callback?: (isReversed: boolean) => void;
 }
 
 export enum OgmaAnimationActionType {
