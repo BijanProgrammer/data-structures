@@ -14,12 +14,12 @@
             <ng-container *ngIf="!customFormEnabled">
                 <label>
                     Start Node
-                    <input #startNodeInput type="number" value="1" min="1" [max]="nodes?.size" />
+                    <input #startNodeInput type="number" value="1" min="1" [max]="nodes.size" />
                 </label>
 
                 <label>
                     Target Node
-                    <input #targetNodeInput type="number" value="5" min="1" [max]="nodes?.size" />
+                    <input #targetNodeInput type="number" value="5" min="1" [max]="nodes.size" />
                 </label>
             </ng-container>
 

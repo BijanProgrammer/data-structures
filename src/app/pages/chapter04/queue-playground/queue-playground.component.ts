@@ -19,7 +19,7 @@ export class QueuePlaygroundComponent {
             const randomNumber: number = Math.floor(Math.random() * 10);
             this.queue.enqueue(new Cell(randomNumber));
             this.error = '';
-        } catch (e) {
+        } catch (e: any) {
             this.error = e;
         }
     }
@@ -28,7 +28,7 @@ export class QueuePlaygroundComponent {
         try {
             this.dequeuedCell = this.queue.dequeue();
             this.error = '';
-        } catch (e) {
+        } catch (e: any) {
             this.error = e;
         }
     }

@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 
-import {MonacoEditorModule} from 'ngx-monaco-editor';
+import {MonacoEditorModule} from 'ngx-monaco-editor-v2';
 import {KatexModule} from 'ng-katex';
 
 import {AppRoutingModule} from './app-routing.module';

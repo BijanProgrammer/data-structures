@@ -4,7 +4,7 @@ import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 
 import {KatexModule} from 'ng-katex';
-import {MonacoEditorModule} from 'ngx-monaco-editor';
+import {MonacoEditorModule} from 'ngx-monaco-editor-v2';
 
 import {IconsModule} from '../icons/icons.module';
 import {PipesModule} from '../pipes/pipes.module';
